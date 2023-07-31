@@ -54,7 +54,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="#">
                             <img src="{% static 'assets/img/logo.png' %}" width="45px" height="50px" alt="logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -98,13 +98,13 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="banner-content">
-                        <h2 class="text-white">Course</h2>
+                        <h2 class="text-white">Course Feedback Form</h2>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" aria-current="page"><a
                                             href="javascript:void(0)">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                                   
                                 </ol>
                             </nav>
                         </div>
@@ -115,49 +115,55 @@
     </section>
     <!-- ========================= page-banner-section end ========================= -->
 
-    <!-- ========================= contact-section start ========================= -->
+      <!-- ========================= contact-section start ========================= -->
     <section class="contact-section pt-130">
         <div class="container">
             <div class="row">
 
                 <div class="col-xl-12">
                     <div class="contact-form-wrapper">
-                        <div class="row">
+                       <div class="row">
                             <div class="col-xl-10 col-lg-8 mx-auto">
-                                <div class="section-title text-center mb-50">
-                                    <span class="wow fadeInDown" data-wow-delay=".2s">Fill here </span>
-
-
+                                <div class="section-title1 text-center mb-50">
+                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a student, it's your right to evaluate your instructor in different aspects, so kindly take some little time to fill the form below, which is intended to provide us with feedback about your instructor of your choice according to the given fields.<br>
+                                    In doing this, it will help the institution to improve teaching and learning. Your response will be treated with utmost confidentiality. Respond without bias. Thank you.</span>
                                 </div>
                             </div>
                         </div>
-                        <form action="assets/php/mail.php" class="contact-form">
+
+                        <form action="" class="contact-form">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" name="name" id="name" placeholder="Name" required>
+                                    <input type="text" name="Course_Name" id="name" placeholder="Course_Name" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" id="email" placeholder="Email" required>
+                                    <input type="text" name="Course Code" id="Code" placeholder="Course Code" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" name="phone" id="phone" placeholder="Phone" required>
+                                    <input type="text" name="Course Description" id="Description" placeholder="Course Description" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="subject" id="email" placeholder="Subject" required>
+                                    <input type="text" name="Course Remark" id="Remark" placeholder="Remark" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <textarea name="message" id="message" placeholder="Type Message"
+                                    <textarea name="How to improve this course " id="improve" placeholder="Type improvement"
+                                        rows="5"></textarea>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-12">
+                                    <textarea name="What did you find wrong with this coure " id="Wrong" placeholder="Type wrong"
                                         rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="button text-center">
-                                        <button type="submit" class="theme-btn">Send Message</button>
+                                       <a href="{% url 'instructor'%}"><button type="submit" class="theme-btn">Send Message</button></a> 
                                     </div>
                                 </div>
                             </div>
@@ -170,26 +176,17 @@
     <!-- ========================= contact-section end ========================= -->
 
 
-    <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100"
-        style="background-image: url('assets/img/bg/cta-bg.jpg');">
+    <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100" >
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-7">
                     <div class="section-title mb-60">
-                        <span class="text-white wow fadeInDown" data-wow-delay=".2s"
-                            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">Space Free
-                            Lite</span>
-                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s"
-                            style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">You are using
-                            free lite version of Space</h2>
-                        <p class="text-white wow fadeInUp" data-wow-delay=".6s"
-                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Please,
-                            purchase full version of the template to get all pages, features and commercial license</p>
+                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Thank you for participting in this exercise of rating your courses.</h2>
+                        <p class="text-white wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Your Feedback helps us all.</p>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-5">
                     <div class="contact-btn text-start text-lg-end">
-                        <a href="https://rebrand.ly/space-gg" rel="nofollow" class="theme-btn">Purchase Now</a>
                     </div>
                 </div>
             </div>

@@ -33,3 +33,26 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'	
 
 
+
+from .models import InstructorFeedback
+
+class InstructorForm(forms.ModelForm):
+    class Meta:
+        model = InstructorFeedback
+        fields = ['instructorName', 'department', 'courseUnit', 'knowledge', 'communication', 'teachingStyle', 'responsiveness', 'additional_comments']
+
+        widgets = {
+            'instructorName': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'department': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'courseUnit': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'knowledge': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
+            'communication': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
+            'teachingStyle': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
+            'responsiveness': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
+            'additional_comments': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
+        }
+
+
+
+
+

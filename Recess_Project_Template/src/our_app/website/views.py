@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm
+from .forms import InstructorForm
+from .models import InstructorFeedback
 
 
 def home(request):
@@ -110,3 +112,32 @@ def signup(request):
 		return render(request, 'dashboard/pages/sign_up.html', {'form':form})
 
 	return render(request, 'dashboard/pages/sign_up.html', {'form':form})
+
+
+
+
+
+def instructor_feedback(request):
+    if request.method == 'POST':
+        form = InstructorForm(request.POST)
+        if form.is_valid():
+            # Save the form data to the database
+            form_data = form.cleaned_data
+            feedback = InstructorFeedback(
+                instructorName=form_data['instructorName'],
+                department=form_data['department'],
+                courseUnit=form_data['courseUnit'],
+                knowledge=form_data['knowledge'],
+                communication=form_data['communication'],
+                teachingStyle=form_data['teachingStyle'],
+                responsiveness=form_data['responsiveness'],
+                additional_comments=form_data['additional_comments']
+            )
+            feedback.save()
+
+            return redirect('home')  # Redirect to a success page after successful form submission
+    else:
+        form = InstructorForm()
+
+    return render(request, 'instructor.html', {'form': form})
+
