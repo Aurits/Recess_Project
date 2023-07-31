@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 
-        <style>
+    <style>
         /* Additional CSS styles for spacing */
         .form-group {
             margin-bottom: 20px;
         }
-    
+
         .rating-label {
             display: inline-block;
             width: 50px;
@@ -112,13 +112,13 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="banner-content">
-                       <h2 class="text-white">Instructor Feedback Form</h2>
+                        <h2 class="text-white">Instructor Feedback Form</h2>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" aria-current="page"><a
                                             href="javascript:void(0)">Home</a></li>
-                                   
+
                                 </ol>
                             </nav>
                         </div>
@@ -129,96 +129,112 @@
     </section>
     <!-- ========================= page-banner-section end ========================= -->
 
-        <!-- ========================= contact-section start ========================= -->
+    <!-- ========================= contact-section start ========================= -->
     <section class="contact-section " style="background-color: #f8f9fa;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="contact-form-wrapper" style="background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div class="contact-form-wrapper"
+                        style="background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                         <div class="row">
                             <div class="col-xl-10 col-lg-8 mx-auto">
                                 <div class="section-title1 text-center mb-50">
-                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a student, it's your right to evaluate your instructor in different aspects, so kindly take some little time to fill the form below, which is intended to provide us with feedback about your instructor of your choice according to the given fields.<br>
-                                    In doing this, it will help the institution to improve teaching and learning. Your response will be treated with utmost confidentiality. Respond without bias. Thank you.</span>
+                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a
+                                        student, it's your right to evaluate your instructor in different aspects, so
+                                        kindly take some little time to fill the form below, which is intended to
+                                        provide us with feedback about your instructor of your choice according to the
+                                        given fields.<br>
+                                        In doing this, it will help the institution to improve teaching and learning.
+                                        Your response will be treated with utmost confidentiality. Respond without bias.
+                                        Thank you.</span>
                                 </div>
                             </div>
                         </div>
 
-                 
 
-<form method="post" class="needs-validation" novalidate>
-    {% csrf_token %}
 
-    <div class="form-group">
-        <label for="{{ form.instructorName.id_for_label }}">Instructor Name<span style="color: red;">*</span>:</label>
-        {{ form.instructorName }}
-        <div class="invalid-feedback">Please provide the instructor's name.</div>
-    </div>
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
 
-    <div class="form-group">
-        <label for="{{ form.department.id_for_label }}">Department<span style="color: red;">*</span>:</label>
-        {{ form.department }}
-        <div class="invalid-feedback">Please provide the department name.</div>
-    </div>
+                            <div class="form-group">
+                                <label for="{{ form.instructorName.id_for_label }}">Instructor Name<span
+                                        style="color: red;">*</span>:</label>
+                                {{ form.instructorName }}
+                                <div class="invalid-feedback">Please provide the instructor's name.</div>
+                            </div>
 
-    <div class="form-group">
-        <label for="{{ form.courseUnit.id_for_label }}">Course Unit<span style="color: red;">*</span>:</label>
-        {{ form.courseUnit }}
-        <div class="invalid-feedback">Please provide the course unit.</div>
-    </div>
+                            <div class="form-group">
+                                <label for="{{ form.department.id_for_label }}">Department<span
+                                        style="color: red;">*</span>:</label>
+                                {{ form.department }}
+                                <div class="invalid-feedback">Please provide the department name.</div>
+                            </div>
 
-    <span class="wow fadeInDown" style="color: #333;"><b>HOW WOULD YOU RATE YOUR INSTRUCTOR IN THE FOLLOWING FIELDS?</b></span>
+                            <div class="form-group">
+                                <label for="{{ form.courseUnit.id_for_label }}">Course Unit<span
+                                        style="color: red;">*</span>:</label>
+                                {{ form.courseUnit }}
+                                <div class="invalid-feedback">Please provide the course unit.</div>
+                            </div>
 
-    <!-- Knowledge -->
-    <div class="form-group">
-        <label for="{{ form.knowledge.id_for_label }}" class="d-block"><b>Knowledge</b><span style="color: red;">*</span>:</label>
-        <div class="form-check form-check-inline justify-content-between gap">
-            {{ form.knowledge }}
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's knowledge.</div>
-    </div>
+                            <span class="wow fadeInDown" style="color: #333;"><b>HOW WOULD YOU RATE YOUR INSTRUCTOR IN
+                                    THE FOLLOWING FIELDS?</b></span>
 
-    <!-- Communication -->
-    <div class="form-group">
-        <label for="{{ form.communication.id_for_label }}" class="d-block"><b>Communication</b><span style="color: red;">*</span>:</label>
-        <div class="form-check form-check-inline justify-content-between gap">
-            {{ form.communication }}
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's communication.</div>
-    </div>
+                            <!-- Knowledge -->
+                            <div class="form-group">
+                                <label for="{{ form.knowledge.id_for_label }}" class="d-block"><b>Knowledge</b><span
+                                        style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ form.knowledge }}
+                                </div>
+                                <div class="invalid-feedback">Please rate the instructor's knowledge.</div>
+                            </div>
 
-    <!-- Teaching Style -->
-    <div class="form-group">
-        <label for="{{ form.teachingStyle.id_for_label }}" class="d-block"><b>Teaching Style</b><span style="color: red;">*</span>:</label>
-        <div class="form-check form-check-inline justify-content-between gap">
-            {{ form.teachingStyle }}
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's teaching style.</div>
-    </div>
+                            <!-- Communication -->
+                            <div class="form-group">
+                                <label for="{{ form.communication.id_for_label }}"
+                                    class="d-block"><b>Communication</b><span style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ form.communication }}
+                                </div>
+                                <div class="invalid-feedback">Please rate the instructor's communication.</div>
+                            </div>
 
-    <!-- Responsiveness -->
-    <div class="form-group">
-        <label for="{{ form.responsiveness.id_for_label }}" class="d-block"><b>Responsiveness</b><span style="color: red;">*</span>:</label>
-        <div class="form-check form-check-inline justify-content-between gap">
-            {{ form.responsiveness }}
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's responsiveness.</div>
-    </div>
+                            <!-- Teaching Style -->
+                            <div class="form-group">
+                                <label for="{{ form.teachingStyle.id_for_label }}" class="d-block"><b>Teaching
+                                        Style</b><span style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ form.teachingStyle }}
+                                </div>
+                                <div class="invalid-feedback">Please rate the instructor's teaching style.</div>
+                            </div>
 
-    <div class="form-group">
-        <label for="{{ form.additional_comments.id_for_label }}"><b>Additional Comments:</b></label>
-        {{ form.additional_comments }}
-        <div class="invalid-feedback">Please provide additional comments.</div>
-    </div>
+                            <!-- Responsiveness -->
+                            <div class="form-group">
+                                <label for="{{ form.responsiveness.id_for_label }}"
+                                    class="d-block"><b>Responsiveness</b><span style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ form.responsiveness }}
+                                </div>
+                                <div class="invalid-feedback">Please rate the instructor's responsiveness.</div>
+                            </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="button text-center">
-                <button type="submit" class="theme-btn">Submit Feedback</button>
-            </div>
-        </div>
-    </div>
-</form>
+                            <div class="form-group">
+                                <label for="{{ form.additional_comments.id_for_label }}"><b>Additional
+                                        Comments:</b></label>
+                                {{ form.additional_comments }}
+                                <div class="invalid-feedback">Please provide additional comments.</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="button text-center">
+                                        <button type="submit" class="theme-btn">Submit Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
 
                     </div>
@@ -231,13 +247,17 @@
 
 
 
-      <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100" >
+    <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-7">
                     <div class="section-title mb-60">
-                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Thank you for participting in this exercise of rating your instructor.</h2>
-                        <p class="text-white wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Your Feedback helps us all.</p>
+                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s"
+                            style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Thank you for
+                            participting in this exercise of rating your instructor.</h2>
+                        <p class="text-white wow fadeInUp" data-wow-delay=".6s"
+                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Your Feedback
+                            helps us all.</p>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-5">

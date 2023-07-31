@@ -23,37 +23,36 @@
     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 
-     <style>
-            /* Style for star icons */
-            .rating {
-                unicode-bidi: bidi-override;
-                direction: rtl;
-                display: inline-block;
-                position: relative;
-            }
-    
-            .rating input {
-                display: none;
-            }
-    
-            .rating label {
-                color: #ccc;
-                font-size: 30px;
-                padding: 0 2px;
-                cursor: pointer;
-            }
-    
-            .rating label:before {
-                content: '\2605';
-            }
-    
-            .rating input:checked ~ label:before,
-            .rating label:hover ~ label:before {
-                content: '\2605';
-                color: #ffdd00;
-            }
+    <style>
+        /* Style for star icons */
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            display: inline-block;
+            position: relative;
+        }
 
-        </style>
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            color: #ccc;
+            font-size: 30px;
+            padding: 0 2px;
+            cursor: pointer;
+        }
+
+        .rating label:before {
+            content: '\2605';
+        }
+
+        .rating input:checked~label:before,
+        .rating label:hover~label:before {
+            content: '\2605';
+            color: #ffdd00;
+        }
+    </style>
 </head>
 
 <body>
@@ -136,7 +135,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" aria-current="page"><a
                                             href="javascript:void(0)">Home</a></li>
-                                    
+
                                 </ol>
                             </nav>
                         </div>
@@ -150,93 +149,108 @@
     <!-- ========================= contact-section start ========================= -->
 
 
-        <!-- ========================= contact-section start ========================= -->
-        <section class="contact-section pt-130">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-xl-12">
-                        <div class="contact-form-wrapper">
-                            <div class="row">
+    <!-- ========================= contact-section start ========================= -->
+    <section class="contact-section pt-130">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-12">
+                    <div class="contact-form-wrapper">
+                        <div class="row">
                             <div class="col-xl-10 col-lg-8 mx-auto">
                                 <div class="section-title1 text-center mb-50">
-                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a student, it's your right to evaluate your instructor in different aspects, so kindly take some little time to fill the form below, which is intended to provide us with feedback about your instructor of your choice according to the given fields.<br>
-                                    In doing this, it will help the institution to improve teaching and learning. Your response will be treated with utmost confidentiality. Respond without bias. Thank you.</span>
+                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a
+                                        student, it's your right to evaluate your instructor in different aspects, so
+                                        kindly take some little time to fill the form below, which is intended to
+                                        provide us with feedback about your instructor of your choice according to the
+                                        given fields.<br>
+                                        In doing this, it will help the institution to improve teaching and learning.
+                                        Your response will be treated with utmost confidentiality. Respond without bias.
+                                        Thank you.</span>
                                 </div>
                             </div>
                         </div>
 
-                            <form action="assets/php/mail.php" class="contact-form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" name="name" id="name" placeholder="Facility name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        
-                                            <p>Overaall facility rating:
-                                                <span class="rating">
-                                                    <input type="radio" id="star5_sports" name="facility_rating" value="very_good" />
-                                                    <label for="star5_sports"></label>
-                                                    <input type="radio" id="star4_sports" name="facility_rating" value="good" />
-                                                    <label for="star4_sports"></label>
-                                                    <input type="radio" id="star3_sports" name="facility_rating" value="fair" />
-                                                    <label for="star3_sports"></label>
-                                                    <input type="radio" id="star2_sports" name="facility_rating" value="poor" />
-                                                    <label for="star2_sports"></label>
-                                                    <input type="radio" id="star1_sports" name="facility_rating" value="very_poor" />
-                                                    <label for="star1_sports"></label>
-                                                </span>
-                                            </p>
-                                       
-                                    </div>
+                        <form action="assets/php/mail.php" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" id="name" placeholder="Facility name" required>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" name="facility_college" id="email" placeholder="College of facility" required>
-                                        
-                                          
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="facility_accesibility">Facility accesibility:</label><br>
-                                        <select id="facility_accesibility" name="facility_accesibility">
+                                <div class="col-md-6">
+
+                                    <p>Overaall facility rating:
+                                        <span class="rating">
+                                            <input type="radio" id="star5_sports" name="facility_rating"
+                                                value="very_good" />
+                                            <label for="star5_sports"></label>
+                                            <input type="radio" id="star4_sports" name="facility_rating" value="good" />
+                                            <label for="star4_sports"></label>
+                                            <input type="radio" id="star3_sports" name="facility_rating" value="fair" />
+                                            <label for="star3_sports"></label>
+                                            <input type="radio" id="star2_sports" name="facility_rating" value="poor" />
+                                            <label for="star2_sports"></label>
+                                            <input type="radio" id="star1_sports" name="facility_rating"
+                                                value="very_poor" />
+                                            <label for="star1_sports"></label>
+                                        </span>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="facility_college" id="email"
+                                        placeholder="College of facility" required>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="facility_accesibility">Facility accesibility:</label><br>
+                                    <select id="facility_accesibility" name="facility_accesibility">
                                         <option value="">-- Select one --</option>
                                         <option value="fully">Fully accessible</option>
-                                         <option value="partial">Partially accessible</option>
-                                         <option value="not">Not accessible</option>
-                                        
-                                        
-                                         </select>
+                                        <option value="partial">Partially accessible</option>
+                                        <option value="not">Not accessible</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <textarea name="comment" id="message"
+                                        placeholder="Please provide any additional comments or suggestions about our college facilities."
+                                        rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="button text-center">
+                                        <button type="submit" class="theme-btn">Submit</button>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <textarea name="comment" id="message" placeholder="Please provide any additional comments or suggestions about our college facilities." rows="5"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="button text-center">
-                                            <button type="submit" class="theme-btn">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ========================= contact-section end ========================= -->
+        </div>
+    </section>
+    <!-- ========================= contact-section end ========================= -->
     <!-- ========================= contact-section end ========================= -->
 
 
-       <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100" >
+    <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-7">
                     <div class="section-title mb-60">
-                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Thank you for participting in this exercise of rating your facilities.</h2>
-                        <p class="text-white wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Your Feedback helps us all.</p>
+                        <h2 class="text-white wow fadeInUp" data-wow-delay=".4s"
+                            style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Thank you for
+                            participting in this exercise of rating your facilities.</h2>
+                        <p class="text-white wow fadeInUp" data-wow-delay=".6s"
+                            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Your Feedback
+                            helps us all.</p>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-5">

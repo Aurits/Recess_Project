@@ -15,4 +15,5 @@ urlpatterns = [
     path('signup', views.signup, name='sign_up'),
     path('profile', views.profile, name='profile'),
     path('instructor_feedback/', views.instructor_feedback, name='instructor'),
+    path('feedbacks/<int:feedback_id>/delete/', views.delete_instructor_feedback, name='delete_instructor_feedback'),
 ]

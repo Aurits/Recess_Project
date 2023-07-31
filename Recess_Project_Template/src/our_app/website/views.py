@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import SignUpForm
 from .forms import InstructorForm
 from .models import InstructorFeedback
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 
 def home(request):
@@ -44,10 +46,22 @@ def facilities(request):
 	return render(request, 'dashboard/pages/facilities.html')
 
 
-
-
 def instructors(request):
-	return render(request, 'dashboard/pages/instructors.html')
+    feedbacks = InstructorFeedback.objects.all()
+    return render(request, 'dashboard/pages/instructors.html', {'feedbacks': feedbacks})
+
+
+
+from .models import InstructorFeedback
+
+
+def delete_instructor_feedback(request, feedback_id):
+    feedback = get_object_or_404(InstructorFeedback, id=feedback_id)
+    if request.method == 'POST':
+        feedback.delete()
+        return redirect('instructors')
+    return render(request, 'dashboard/pages/delete_instructor_feedback.html', {'feedback': feedback})
+
 
 
 
