@@ -9,7 +9,7 @@ import mysql.connector
 dataBase = mysql.connector.connect(
 	host = 'localhost',
 	user = 'root',
-	passwd = 'Aurit'
+	passwd = ''
 
 	)
 
@@ -17,6 +17,6 @@ dataBase = mysql.connector.connect(
 cursorObject = dataBase.cursor()
 
 # Create a database
-cursorObject.execute("CREATE DATABASE groupS")
+cursorObject.execute("CREATE DATABASE recess_project")
 
 print("All Done!")
