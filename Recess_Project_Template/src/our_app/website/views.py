@@ -14,7 +14,7 @@ def home(request):
 
 def course(request):
     form = CourseForm()
-    return render(request, 'course.html', {'courseForm':form} )
+    return render(request, 'course.html', {'courseForm': form})
 
 
 def course_feedback(request):
@@ -24,8 +24,8 @@ def course_feedback(request):
             # Save the form data to the database
             form_data = form.cleaned_data
             feedback = Course(
-                course_name=form_data['courseName'],
-                course_description=form_data['courseDescription'],
+                courseName=form_data['courseName'],
+                courseDescription=form_data['courseDescription'],
                 courseCode=form_data['courseCode'],
                 effectiveness=form_data['effectiveness'],
                 interest=form_data['interest'],

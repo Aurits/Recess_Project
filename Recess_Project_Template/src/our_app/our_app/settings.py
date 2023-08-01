@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'groupS',
-        'USER': 'root',
-        'PASSWORD': 'Aurit',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'recess',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '3306', 
+        'PORT': '',
     }
 }
 
