@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'groupS',
+        'NAME': 'recess_one',
         'USER': 'root',
-        'PASSWORD': 'Aurit',
+        'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '3306', 
+        'PORT': '3306',
     }
 }
 
