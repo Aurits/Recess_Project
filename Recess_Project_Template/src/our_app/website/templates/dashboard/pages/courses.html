@@ -396,24 +396,16 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0"></p>
-                      </td>
+                     {% for item in course_items %}
+                    <tr>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseName}}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseCode }}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseDescription }}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.effectiveness }}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.interest }}</p></td>
+                        <td><p class="text-sm font-weight-bold mb-0">{{ item.improvement }}</p></td>
+                    </tr>
+                    {% endfor %}
 
                       <td class="align-middle">
                         <button class="btn btn-link text-secondary mb-0">

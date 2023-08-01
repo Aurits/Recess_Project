@@ -58,7 +58,13 @@ def dashboard(request):
 
 
 def courses(request):
-    return render(request, 'dashboard/pages/courses.html')
+    course_items = Course.objects.all()
+
+    context = {
+        'course_items': course_items,
+    }
+
+    return render(request, 'dashboard/pages/courses.html', context)
 
 
 def facilities(request):
