@@ -71,7 +71,7 @@
                                     <a class="page-scroll " href="{% url 'home'%}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="{% url 'course'%}">course</a>
+                                    <a class="page-scroll" href="{% url 'x'%}">course</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="page-scroll " href="{% url 'facility' %}">facility</a>
@@ -137,45 +137,71 @@
                             </div>
                         </div>
 
-                        <form action="" class="contact-form">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" name="Course_Name" id="name" placeholder="Course_Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" name="Course Code" id="Code" placeholder="Course Code" required>
-                                </div>
+                       <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="{{ courseForm.courseName.id_for_label }}">Course Name<span
+                                        style="color: red;">*</span>:</label>
+                                {{ courseForm.courseName }}
+                                <div class="invalid-feedback">Please provide the course's name.</div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" name="Course Description" id="Description"
-                                        placeholder="Course Description" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" name="Course Remark" id="Remark" placeholder="Remark" required>
-                                </div>
+
+                            <div class="form-group">
+                                <label for="{{ courseForm.courseCode.id_for_label }}">Course Code<span
+                                        style="color: red;">*</span>:</label>
+                                {{ courseForm.courseCode }}
+                                <div class="invalid-feedback">Please provide the course's code.</div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <textarea name="How to improve this course " id="improve"
-                                        placeholder="Type improvement" rows="5"></textarea>
-                                </div>
+
+                            <div class="form-group">
+                                <label for="{{ courseForm.courseDescription.id_for_label }}">Course Description<span
+                                        style="color: red;">*</span>:</label>
+                                {{ courseForm.courseDescription }}
+                                <div class="invalid-feedback">Please provide the course description.</div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <textarea name="What did you find wrong with this coure " id="Wrong"
-                                        placeholder="Type wrong" rows="5"></textarea>
+
+                            <span class="wow fadeInDown" style="color: #333;"><b>HOW WOULD YOU RATE THIS COURSE IN
+                                    THE FOLLOWING FIELDS?</b></span>
+
+                            <!-- Knowledge -->
+                            <div class="form-group">
+                                <label for="{{ courseForm.interest.id_for_label }}" class="d-block"><b>Interest gained</b><span
+                                        style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ courseForm.interest }}
                                 </div>
+                                <div class="invalid-feedback">Please rate the interest developed.</div>
                             </div>
+
+                            <!-- Communication -->
+                            <div class="form-group">
+                                <label for="{{ courseForm.effectiveness.id_for_label }}"
+                                    class="d-block"><b>Effect on program</b><span style="color: red;">*</span>:</label>
+                                <div class="form-check form-check-inline justify-content-between gap">
+                                    {{ form.communication }}
+                                </div>
+                                <div class="invalid-feedback">Please rate the course's effect on the program being studied.</div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="{{ courseForm.improvement.id_for_label }}"><b>Additional
+                                        Improvements:</b></label>
+                                {{ courseForm.improvement }}
+                                <div class="invalid-feedback">Please provide any recommendations.</div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="button text-center">
-                                        <a href="{% url 'instructor'%}"><button type="submit" class="theme-btn">Send
-                                                Message</button></a>
+                                        <button type="submit" class="theme-btn">Submit Feedback</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
