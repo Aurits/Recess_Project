@@ -58,19 +58,19 @@ class InstructorForm(forms.ModelForm):
         }
 
 
-class CourseForm(forms.ModelForm):
-    required_css_class = 'required'
-    courseName = forms.CharField(widget=forms.TextInput)
+from django import forms
+from .models import Course
 
+
+class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['courseName', 'courseCode', 'courseDescription', 'effectiveness', 'interest', 'improvement']
-
         widgets = {
             'courseName': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'courseCode': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'courseDescription': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
             'effectiveness': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
             'interest': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'improvement': forms.Textarea(attrs={'class': 'form-control', 'required': True})
+            'improvement': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
         }

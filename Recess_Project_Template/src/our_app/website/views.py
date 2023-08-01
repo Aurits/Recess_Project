@@ -13,7 +13,8 @@ def home(request):
 
 
 def course(request):
-    return render(request, 'course.html')
+    form = CourseForm()
+    return render(request, 'course.html', {'courseForm':form} )
 
 
 def course_feedback(request):
