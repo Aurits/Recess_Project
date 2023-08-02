@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'recess_project',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Aurit',
         'HOST': 'localhost',
         'PORT': '3306',
     }

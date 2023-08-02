@@ -218,12 +218,12 @@
                   </div>
                 </div>
               </div>
-
               <form
                 action="{% url 'facility_feedback' %}"
                 method="post"
                 class="contact-form"
               >
+
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6">
