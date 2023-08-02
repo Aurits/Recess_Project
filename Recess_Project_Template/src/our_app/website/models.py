@@ -1,4 +1,3 @@
-
 from django.db import models
 
 
@@ -20,7 +19,17 @@ class InstructorFeedback(models.Model):
         return f"Feedback by {self.instructorName}"
 
 
-# models.py
+class Course(models.Model):
+    courseName = models.CharField(max_length=100)
+    courseCode = models.CharField(max_length=100)
+    courseDescription = models.CharField(max_length=1000)
+    effectiveness = models.IntegerField(
+        choices=[(20, 'Poor'), (40, 'Fair'), (60, 'Good'), (80, 'Very Good'), (100, 'Excellent')])
+    interest = models.IntegerField(
+        choices=[(20, 'Poor'), (40, 'Fair'), (60, 'Good'), (80, 'Very Good'), (100, 'Excellent')])
+    improvement = models.TextField()
+# Create the model class for the feedback form
+
 
 
 class FacilityFeedback(models.Model):

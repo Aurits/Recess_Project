@@ -3,21 +3,48 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, CourseForm
 from .forms import InstructorForm
 from .forms import FacilityForm
 from .models import InstructorFeedback
 from .models import FacilityFeedback
+from .models import InstructorFeedback, Course
+
 from django.shortcuts import render, redirect, get_object_or_404
-
-
 def home(request):
     return render(request, 'index.html')
 
 
 def course(request):
+
     return render(request, 'course.html')
 
+    form = CourseForm()
+    return render(request, 'course.html', {'courseForm': form})
+
+
+def course_feedback(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            # Save the form data to the database
+            form_data = form.cleaned_data
+            feedback = Course(
+                courseName=form_data['courseName'],
+                courseDescription=form_data['courseDescription'],
+                courseCode=form_data['courseCode'],
+                effectiveness=form_data['effectiveness'],
+                interest=form_data['interest'],
+                improvement=form_data['improvement'],
+
+            )
+            feedback.save()
+
+            return redirect('home')  # Redirect to a success page after successful form submission
+    else:
+        form = CourseForm()
+
+    return render(request, 'course.html', {'courseForm': form})
 
 def facility(request):
     return render(request, 'facility.html')
@@ -36,7 +63,17 @@ def dashboard(request):
 
 
 def courses(request):
+
     return render(request, 'dashboard/pages/courses.html')
+
+    course_items = Course.objects.all()
+
+    context = {
+        'course_items': course_items,
+    }
+
+    return render(request, 'dashboard/pages/courses.html', context)
+
 
 
 def facilities(request):
@@ -85,8 +122,8 @@ def signin(request):
                 messages.success(request, "You Have Been Logged In!")
                 return redirect('dashboard')
             else:
-                messages.success(
-                    request, "There Was An Error Logging In, Please Try Again...")
+                messages.success(request, "There Was An Error Logging In, Please Try Again...")
+
                 return redirect('home')
         else:
             return render(request, 'dashboard/pages/sign_in.html')
@@ -104,6 +141,7 @@ def signup(request):
             login(request, user)
             messages.success(
                 request, "You Have Successfully Registered! Welcome!")
+
             return redirect('dashboard')
     else:
         form = SignUpForm()
@@ -138,7 +176,6 @@ def instructor_feedback(request):
     return render(request, 'instructor.html', {'form': form})
 
 
-# views.py
 
 
 def facility_feedback(request):
@@ -177,3 +214,4 @@ def facility_feedback(request):
         form = FacilityForm()
 
     return render(request, 'facility.html', {'form': form})
+
