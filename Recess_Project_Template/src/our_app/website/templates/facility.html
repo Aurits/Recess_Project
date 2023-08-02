@@ -219,7 +219,8 @@
                 </div>
               </div>
 
-              <form action="assets/php/mail.php" class="contact-form">
+              <form method="POST" class="contact-form">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6">
                     <input
