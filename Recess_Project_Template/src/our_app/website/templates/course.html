@@ -137,10 +137,10 @@
                             </div>
                         </div>
 
-                       <form method="post" class="needs-validation" novalidate >
+                        <form method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
 
-                           <div class="form-group">
+                            <div class="form-group">
                                 <label for="{{ courseForm.courseName.id_for_label }}">Course Name<span
                                         style="color: red;">*</span>:</label>
                                 {{ courseForm.courseName }}
@@ -166,8 +166,8 @@
 
 
                             <div class="form-group">
-                                <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block"><b>Effect of the course</b><span
-                                        style="color: red;">*</span>:</label>
+                                <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block"><b>Effect of
+                                        the course</b><span style="color: red;">*</span>:</label>
                                 <div class="form-check form-check-inline justify-content-between gap">
                                     {{ courseForm.effectiveness }}
                                 </div>
@@ -176,8 +176,8 @@
 
 
                             <div class="form-group">
-                                <label for="{{ courseForm.interest.id_for_label }}"
-                                    class="d-block"><b>Interest</b><span style="color: red;">*</span>:</label>
+                                <label for="{{ courseForm.interest.id_for_label }}" class="d-block"><b>Interest</b><span
+                                        style="color: red;">*</span>:</label>
                                 <div class="form-check form-check-inline justify-content-between gap">
                                     {{ courseForm.interest }}
                                 </div>
@@ -185,13 +185,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="{{ courseForm.improvement.id_for_label }}"><b>Recommended Improvements:</b></label>
+                                <label for="{{ courseForm.improvement.id_for_label }}"><b>Recommended
+                                        Improvements:</b></label>
                                 {{ courseForm.improvement }}
                                 <div class="invalid-feedback">Please provide recommendations.</div>
                             </div>
                             <div class="row">
-                                    <br>
-                                    <br>
+                                <br>
+                                <br>
                             </div>
                             <div class="row">
                                 <div class="col-12">

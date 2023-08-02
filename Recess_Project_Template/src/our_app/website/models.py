@@ -28,7 +28,7 @@ class Course(models.Model):
     interest = models.IntegerField(
         choices=[(20, 'Poor'), (40, 'Fair'), (60, 'Good'), (80, 'Very Good'), (100, 'Excellent')])
     improvement = models.TextField()
-# Create the model class for the feedback form
+
 
 
 

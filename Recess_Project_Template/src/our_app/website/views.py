@@ -6,7 +6,6 @@ from django.contrib import messages
 from .forms import SignUpForm, CourseForm
 from .forms import InstructorForm
 from .forms import FacilityForm
-from .models import InstructorFeedback
 from .models import FacilityFeedback
 from .models import InstructorFeedback, Course
 
