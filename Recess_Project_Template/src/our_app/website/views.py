@@ -5,54 +5,38 @@ from django.contrib import messages
 from .forms import SignUpForm
 from .forms import InstructorForm
 from .models import InstructorFeedback
+from .models import StudentDetails
 from django.shortcuts import render, redirect, get_object_or_404
 
 
-
-def home(request):
-	return render(request, 'index.html')
-
-
 def course(request):
-	return render(request, 'course.html')
+    return render(request, 'course.html')
 
 
 def facility(request):
-	return render(request, 'facility.html')
+    return render(request, 'facility.html')
 
 
 def instructor(request):
-	return render(request, 'instructor.html')
-
+    return render(request, 'instructor.html')
 
 
 def dashboard(request):
-	if request.user.is_authenticated:
-		return render(request, 'dashboard/pages/dashboard.html')
-	else:
-		messages.success(request, "You Must Be Logged In...")
-		return redirect('home')
-	
+    students = StudentDetails.objects.all()
+    return render(request, 'dashboard/pages/dashboard.html', {'students': students})
 
 
 def courses(request):
-	return render(request, 'dashboard/pages/courses.html')
-
-
-
+    return render(request, 'dashboard/pages/courses.html')
 
 
 def facilities(request):
-	return render(request, 'dashboard/pages/facilities.html')
+    return render(request, 'dashboard/pages/facilities.html')
 
 
 def instructors(request):
     feedbacks = InstructorFeedback.objects.all()
     return render(request, 'dashboard/pages/instructors.html', {'feedbacks': feedbacks})
-
-
-
-from .models import InstructorFeedback
 
 
 def delete_instructor_feedback(request, feedback_id):
@@ -63,72 +47,58 @@ def delete_instructor_feedback(request, feedback_id):
     return render(request, 'dashboard/pages/delete_instructor_feedback.html', {'feedback': feedback})
 
 
-
-
 def profile(request):
-	if request.user.is_authenticated:
-		return render(request, 'dashboard/pages/profile.html')
-	else:
-		messages.success(request, "You Must Be Logged In...")
-		return redirect('sign_in')
-	
-	
-
+    if request.user.is_authenticated:
+        return render(request, 'dashboard/pages/profile.html')
+    else:
+        messages.success(request, "You Must Be Logged In...")
+        return redirect('sign_in')
 
 
 def signout(request):
-	logout(request)
-	messages.success(request, "You Have Been Logged Out...")
-	return redirect('home')
-
+    logout(request)
+    messages.success(request, "You Have Been Logged Out...")
+    return redirect('home')
 
 
 def signin(request):
-	if request.user.is_authenticated:
-		return render(request, 'dashboard/pages/dashboard.html')
-	else:
-		# Check to see if logging in
-		if request.method == 'POST':
-			username = request.POST['username']
-			password = request.POST['password']
-			# Authenticate
-			user = authenticate(request, username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.success(request, "You Have Been Logged In!")
-				return redirect('dashboard')
-			else:
-				messages.success(request, "There Was An Error Logging In, Please Try Again...")
-				return redirect('home')
-		else:
-			return render(request, 'dashboard/pages/sign_in.html')
-		
-
-	
-
-
+    if request.user.is_authenticated:
+        return render(request, 'dashboard/pages/dashboard.html')
+    else:
+        # Check to see if logging in
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            # Authenticate
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "You Have Been Logged In!")
+                return redirect('dashboard')
+            else:
+                messages.success(request, "There Was An Error Logging In, Please Try Again...")
+                return redirect('home')
+        else:
+            return render(request, 'dashboard/pages/sign_in.html')
 
 
 def signup(request):
-	if request.method == 'POST':
-		form = SignUpForm(request.POST)
-		if form.is_valid():
-			form.save()
-			# Authenticate and login
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password1']
-			user = authenticate(username=username, password=password)
-			login(request, user)
-			messages.success(request, "You Have Successfully Registered! Welcome!")
-			return redirect('dashboard')
-	else:
-		form = SignUpForm()
-		return render(request, 'dashboard/pages/sign_up.html', {'form':form})
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Authenticate and login
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, "You Have Successfully Registered! Welcome!")
+            return redirect('dashboard')
+    else:
+        form = SignUpForm()
+        return render(request, 'dashboard/pages/sign_up.html', {'form': form})
 
-	return render(request, 'dashboard/pages/sign_up.html', {'form':form})
-
-
-
+    return render(request, 'dashboard/pages/sign_up.html', {'form': form})
 
 
 def instructor_feedback(request):
@@ -155,3 +125,23 @@ def instructor_feedback(request):
 
     return render(request, 'instructor.html', {'form': form})
 
+
+def studentDetails(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        studentId = request.POST['studentId']
+        emailAddress = request.POST['emailAddress']
+        year_of_study = request.POST['year_of_study']
+
+        # Save data to the database
+        StudentDetails.objects.create(name=name, studentId=studentId, emailAddress=emailAddress,
+                                      year_of_study=year_of_study)
+
+        # Set a success message to display on the index.html template
+        success_message = "Thank you for signing up!"
+
+    else:
+        # No success message when the form is first loaded
+        success_message = None
+
+    return render(request, 'index.html', {'success_message': success_message})

@@ -79,3 +79,17 @@ class FacilityFeedback(models.Model):
 
     def __str__(self):
         return self.name
+
+# models.py
+#from django.db import models
+
+class StudentDetails(models.Model):
+    name = models.CharField(max_length=100)
+    studentId = models.CharField(max_length=20)
+    emailAddress = models.EmailField()
+    year_of_study = models.CharField(max_length=10)
+    def __str__(self):
+        return self.name
+
+
+
