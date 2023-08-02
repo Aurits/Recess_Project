@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, CourseForm
 from .forms import InstructorForm
+from .models import StudentDetails
 from .forms import FacilityForm
 from .models import FacilityFeedback
 from .models import InstructorFeedback, Course
@@ -20,6 +21,7 @@ def course(request):
 
     form = CourseForm()
     return render(request, 'course.html', {'courseForm': form})
+
 
 
 def course_feedback(request):
@@ -54,11 +56,11 @@ def instructor(request):
 
 
 def dashboard(request):
-    if request.user.is_authenticated:
-        return render(request, 'dashboard/pages/dashboard.html')
-    else:
-        messages.success(request, "You Must Be Logged In...")
-        return redirect('home')
+    students = StudentDetails.objects.all()
+    return render(request, 'dashboard/pages/dashboard.html', {'students': students})
+
+
+
 
 
 def courses(request):
@@ -72,7 +74,6 @@ def courses(request):
     }
 
     return render(request, 'dashboard/pages/courses.html', context)
-
 
 
 def facilities(request):
@@ -138,8 +139,8 @@ def signup(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            messages.success(
-                request, "You Have Successfully Registered! Welcome!")
+            messages.success(request, "You Have Successfully Registered! Welcome!")
+
 
             return redirect('dashboard')
     else:
@@ -174,6 +175,27 @@ def instructor_feedback(request):
 
     return render(request, 'instructor.html', {'form': form})
 
+
+
+def studentDetails(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        studentId = request.POST['studentId']
+        emailAddress = request.POST['emailAddress']
+        year_of_study = request.POST['year_of_study']
+
+        # Save data to the database
+        StudentDetails.objects.create(name=name, studentId=studentId, emailAddress=emailAddress,
+                                      year_of_study=year_of_study)
+
+        # Set a success message to display on the index.html template
+        success_message = "Thank you for signing up!"
+
+    else:
+        # No success message when the form is first loaded
+        success_message = None
+
+    return render(request, 'index.html', {'success_message': success_message})
 
 
 

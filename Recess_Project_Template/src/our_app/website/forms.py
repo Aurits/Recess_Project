@@ -76,6 +76,21 @@ class InstructorForm(forms.ModelForm):
         }
 
 
+from .models import StudentDetails
+
+class StudentDetailsForm(forms.ModelForm):
+    class Meta:
+        model = StudentDetails
+        fields = ['name', 'studentId', 'emailAddress', 'year_of_study']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'studentId': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'emailAddress': forms.EmailInput(attrs={'class': 'form-control', 'required': True}),
+            'year_of_study': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+        }
+
+
 
 class FacilityForm(forms.Form):
     # Choices for Facility Accessibility dropdown
