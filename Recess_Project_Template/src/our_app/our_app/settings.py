@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'groupS',
+=======
+        'NAME': 'recess_project',
+>>>>>>> 26031f45cca60e770da5b7015622c889dabdc028
         'USER': 'root',
         'PASSWORD': 'Aurit',
         'HOST': 'localhost',

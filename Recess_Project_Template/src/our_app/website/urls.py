@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
     path('', views.home, name='home'),
     path('course', views.course, name='course'),
+    path('course_feedback/', views.course_feedback, name='x'),
     path('facility', views.facility, name='facility'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('courses', views.courses, name='courses'),
@@ -15,5 +15,8 @@ urlpatterns = [
     path('signup', views.signup, name='sign_up'),
     path('profile', views.profile, name='profile'),
     path('instructor_feedback/', views.instructor_feedback, name='instructor'),
-    path('feedbacks/<int:feedback_id>/delete/', views.delete_instructor_feedback, name='delete_instructor_feedback'),
+    path('feedbacks/<int:feedback_id>/delete/',
+         views.delete_instructor_feedback, name='delete_instructor_feedback'),
+    path('facility_feedback/', views.facility_feedback, name='facility_feedback'),
+
 ]
