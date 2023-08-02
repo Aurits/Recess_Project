@@ -219,7 +219,12 @@
                 </div>
               </div>
 
-              <form action="assets/php/mail.php" class="contact-form">
+              <form
+                action="{% url 'facility_feedback' %}"
+                method="post"
+                class="contact-form"
+              >
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6">
                     <input
@@ -242,12 +247,12 @@
                     </div>
                     <br />
                     <div class="col-md-6">
-                      <label for="facility_accesibility"
-                        >Facility accesibility:</label
+                      <label for="facility_accessibility"
+                        >Facility accessibility:</label
                       ><br />
                       <select
-                        id="facility_accesibility"
-                        name="facility_accesibility"
+                        id="facility_accessibility"
+                        name="facility_accessibility"
                       >
                         <option value="">-- Select one --</option>
                         <option value="fully">Fully accessible</option>
@@ -256,7 +261,7 @@
                       </select>
                     </div>
                   </div>
-                
+
                   <div class="col-md-6">
                     <p>
                       Cleanliness and Hygiene:
@@ -264,35 +269,35 @@
                         <input
                           type="radio"
                           id="star5_cleanliness"
-                          name="Cleanliness"
+                          name="cleanliness"
                           value="very_good"
                         />
                         <label for="star5_cleanliness"></label>
                         <input
                           type="radio"
                           id="star4_cleanliness"
-                          name="Cleanliness"
+                          name="cleanliness"
                           value="good"
                         />
                         <label for="star4_cleanliness"></label>
                         <input
                           type="radio"
                           id="star3_cleanliness"
-                          name="Cleanliness"
+                          name="classleanliness"
                           value="fair"
                         />
                         <label for="star3_cleanliness"></label>
                         <input
                           type="radio"
                           id="star2_cleanliness"
-                          name="Cleanliness"
+                          name="cleanliness"
                           value="poor"
                         />
                         <label for="star2_cleanliness"></label>
                         <input
                           type="radio"
                           id="star1_cleanliness"
-                          name="Cleanliness"
+                          name="cleanliness"
                           value="very_poor"
                         />
                         <label for="star1_cleanliness"></label>
@@ -306,35 +311,35 @@
                         <input
                           type="radio"
                           id="star5_maintenance"
-                          name="Maintenance"
+                          name="maintenance"
                           value="very_good"
                         />
                         <label for="star5_maintenance"></label>
                         <input
                           type="radio"
                           id="star4_maintenance"
-                          name="Maintenance"
+                          name="maintenance"
                           value="good"
                         />
                         <label for="star4_maintenance"></label>
                         <input
                           type="radio"
                           id="star3_maintenance"
-                          name="Maintenance"
+                          name="maintenance"
                           value="fair"
                         />
                         <label for="star3_maintenance"></label>
                         <input
                           type="radio"
                           id="star2_maintenance"
-                          name="Maintenance"
+                          name="maintenance"
                           value="poor"
                         />
                         <label for="star2_maintenance"></label>
                         <input
                           type="radio"
                           id="star1_maintenance"
-                          name="Maintenance"
+                          name="maintenance"
                           value="very_poor"
                         />
                         <label for="star1_maintenance"></label>
@@ -348,35 +353,35 @@
                         <input
                           type="radio"
                           id="star5_safety"
-                          name="Safety"
+                          name="safety"
                           value="very_good"
                         />
                         <label for="star5_safety"></label>
                         <input
                           type="radio"
                           id="star4_safety"
-                          name="Safety"
+                          name="safety"
                           value="good"
                         />
                         <label for="star4_safety"></label>
                         <input
                           type="radio"
                           id="star3_safety"
-                          name="Safety"
+                          name="safety"
                           value="fair"
                         />
                         <label for="star3_safety"></label>
                         <input
                           type="radio"
                           id="star2_safety"
-                          name="Safety"
+                          name="safety"
                           value="poor"
                         />
                         <label for="star2_safety"></label>
                         <input
                           type="radio"
                           id="star1_safety"
-                          name="Safety"
+                          name="safety"
                           value="very_poor"
                         />
                         <label for="star1_safety"></label>

@@ -1,18 +1,24 @@
+# from .models import Feedback
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm, CourseForm
 from .forms import InstructorForm
+from .forms import FacilityForm
+from .models import InstructorFeedback
+from .models import FacilityFeedback
 from .models import InstructorFeedback, Course
+
 from django.shortcuts import render, redirect, get_object_or_404
-
-
 def home(request):
     return render(request, 'index.html')
 
 
 def course(request):
+
+    return render(request, 'course.html')
+
     form = CourseForm()
     return render(request, 'course.html', {'courseForm': form})
 
@@ -40,7 +46,6 @@ def course_feedback(request):
 
     return render(request, 'course.html', {'courseForm': form})
 
-
 def facility(request):
     return render(request, 'facility.html')
 
@@ -58,6 +63,9 @@ def dashboard(request):
 
 
 def courses(request):
+
+    return render(request, 'dashboard/pages/courses.html')
+
     course_items = Course.objects.all()
 
     context = {
@@ -67,6 +75,7 @@ def courses(request):
     return render(request, 'dashboard/pages/courses.html', context)
 
 
+
 def facilities(request):
     return render(request, 'dashboard/pages/facilities.html')
 
@@ -74,9 +83,6 @@ def facilities(request):
 def instructors(request):
     feedbacks = InstructorFeedback.objects.all()
     return render(request, 'dashboard/pages/instructors.html', {'feedbacks': feedbacks})
-
-
-from .models import InstructorFeedback
 
 
 def delete_instructor_feedback(request, feedback_id):
@@ -117,6 +123,7 @@ def signin(request):
                 return redirect('dashboard')
             else:
                 messages.success(request, "There Was An Error Logging In, Please Try Again...")
+
                 return redirect('home')
         else:
             return render(request, 'dashboard/pages/sign_in.html')
@@ -132,7 +139,9 @@ def signup(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            messages.success(request, "You Have Successfully Registered! Welcome!")
+            messages.success(
+                request, "You Have Successfully Registered! Welcome!")
+
             return redirect('dashboard')
     else:
         form = SignUpForm()
@@ -159,8 +168,50 @@ def instructor_feedback(request):
             )
             feedback.save()
 
-            return redirect('home')  # Redirect to a success page after successful form submission
+            # Redirect to a success page after successful form submission
+            return redirect('home')
     else:
         form = InstructorForm()
 
     return render(request, 'instructor.html', {'form': form})
+
+
+
+
+def facility_feedback(request):
+    if request.method == 'POST':
+        form = FacilityForm(request.POST)
+        if form.is_valid():
+            # Save the form data to the database
+            form_data = form.cleaned_data
+            name = form_data['name']
+            facility_college = form_data['facility_college']
+            facility_accessibility = form_data['facility_accessibility']
+            cleanliness = form_data['cleanliness']
+            maintenance = form_data['maintenance']
+            safety = form_data['safety']
+            resource_availability = form_data['resource_availability']
+            facility_rating = form_data['facility_rating']
+            comment = form_data['comment']
+
+            feedback = FacilityFeedback(
+                name=name,
+                facility_college=facility_college,
+                facility_accessibility=facility_accessibility,
+                cleanliness=cleanliness,
+                maintenance=maintenance,
+                safety=safety,
+                resource_availability=resource_availability,
+                facility_rating=facility_rating,
+                comment=comment,
+            )
+            feedback.save()
+
+            # Redirect to a success page or render a thank-you template
+            # Assuming you have a URL pattern named 'feedback_success' for the success page
+            return redirect('home')
+    else:
+        form = FacilityForm()
+
+    return render(request, 'facility.html', {'form': form})
+
