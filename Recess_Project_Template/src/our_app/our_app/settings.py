@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recess_one',
+        'NAME': 'recess_project',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
