@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm, CourseForm
@@ -13,12 +12,14 @@ def home(request):
     return render(request, 'index.html')
 
 
+
+
 def course(request):
-
     return render(request, 'course.html')
-
     form = CourseForm()
     return render(request, 'course.html', {'courseForm': form})
+
+
 
 
 
@@ -55,23 +56,20 @@ def instructor(request):
 
 def dashboard(request):
     students = StudentDetails.objects.all()
-    return render(request, 'dashboard/pages/dashboard.html', {'students': students})
+    return render(request, 'dashboard/pages/dashboard.html', {'students' : students})
 
 
 
 
 
 def courses(request):
-
     return render(request, 'dashboard/pages/courses.html')
-
     course_items = Course.objects.all()
-
     context = {
-        'course_items': course_items,
-    }
-
+        'course_items': course_items,}
     return render(request, 'dashboard/pages/courses.html', context)
+
+
 
 
 def facilities(request):
@@ -176,6 +174,7 @@ def instructor_feedback(request):
 
 
 def studentDetails(request):
+
     if request.method == 'POST':
         name = request.POST['name']
         studentId = request.POST['studentId']
@@ -190,7 +189,6 @@ def studentDetails(request):
         success_message = "Thank you for signing up!"
 
     else:
-        # No success message when the form is first loaded
         success_message = None
 
     return render(request, 'index.html', {'success_message': success_message})

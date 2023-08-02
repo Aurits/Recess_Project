@@ -19,6 +19,9 @@ class InstructorFeedback(models.Model):
         return f"Feedback by {self.instructorName}"
 
 
+
+
+
 class Course(models.Model):
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=100)
@@ -28,6 +31,7 @@ class Course(models.Model):
     interest = models.IntegerField(
         choices=[(20, 'Poor'), (40, 'Fair'), (60, 'Good'), (80, 'Very Good'), (100, 'Excellent')])
     improvement = models.TextField()
+
 
 
 
@@ -80,14 +84,16 @@ class FacilityFeedback(models.Model):
     def __str__(self):
         return self.name
 
-# models.py
-#from django.db import models
+
+
 
 class StudentDetails(models.Model):
     name = models.CharField(max_length=100)
     studentId = models.CharField(max_length=20)
     emailAddress = models.EmailField()
     year_of_study = models.CharField(max_length=10)
+
+
     def __str__(self):
         return self.name
 
