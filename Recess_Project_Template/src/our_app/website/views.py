@@ -103,7 +103,13 @@ def signout(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return render(request, 'dashboard/pages/dashboard.html')
+        items = Course.objects.all()
+        feed= InstructorFeedback.objects.all()
+        context = {
+            "courses": items,
+            "Feed": feed
+        }
+        return render(request, 'dashboard/pages/dashboard.html', context)
     else:
         # Check to see if logging in
         if request.method == 'POST':
