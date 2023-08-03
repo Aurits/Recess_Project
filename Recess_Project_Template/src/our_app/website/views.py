@@ -10,11 +10,10 @@ from .models import CourseFeedback
 from .forms import CourseFeedbackForm
 
 from django.shortcuts import render, redirect, get_object_or_404
+
+
 def home(request):
     return render(request, 'index.html')
-
-
-
 
 
 def course(request):
@@ -22,14 +21,11 @@ def course(request):
         form = CourseFeedbackForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('course')  
+            return redirect('course')
     else:
         form = CourseFeedbackForm()
 
-    return render(request, 'course.html', {'courseForm': form}) 
-
-
-
+    return render(request, 'course.html', {'courseForm': form})
 
 
 def instructor(request):
@@ -38,34 +34,27 @@ def instructor(request):
 
 def dashboard(request):
     students = StudentDetails.objects.all()
-    return render(request, 'dashboard/pages/dashboard.html', {'students' : students})
-
-
-
+    return render(request, 'dashboard/pages/dashboard.html', {'students': students})
 
 
 def courses(request):
     course_items = CourseFeedback.objects.all()
     context = {
-        'course_items': course_items,}
+        'course_items': course_items, }
     return render(request, 'dashboard/pages/courses.html', context)
-
 
 
 def delete_course_feedback(request, feedback_id):
     feedback = get_object_or_404(CourseFeedback, pk=feedback_id)
     if request.method == 'POST':
         feedback.delete()
-        return redirect('courses') 
+        return redirect('courses')
     return render(request, 'dashboard/pages/delete_course_feedback.html', {'feedback': feedback})
-
-
-
 
 
 def facilities(request):
     facilities = FacilityFeedback.objects.all()
-    return render(request, 'dashboard/pages/facilities.html',{'facilities':facilities})
+    return render(request, 'dashboard/pages/facilities.html', {'facilities': facilities})
 
 
 def instructors(request):
@@ -97,7 +86,18 @@ def signout(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return render(request, 'dashboard/pages/dashboard.html')
+        course_items = CourseFeedback.objects.all()
+        facilities = FacilityFeedback.objects.all()
+        instructors = InstructorFeedback.objects.all()
+        studentDetails = StudentDetails.objects.all()
+        context = {
+            'course_items': course_items,
+            'facilities': facilities,
+            'instructors': instructors,
+            'studentDetails': studentDetails,
+            }
+
+        return render(request, 'dashboard/pages/dashboard.html', context)
     else:
         # Check to see if logging in
         if request.method == 'POST':
@@ -128,7 +128,6 @@ def signup(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, "You Have Successfully Registered! Welcome!")
-
 
             return redirect('dashboard')
     else:
@@ -164,9 +163,7 @@ def instructor_feedback(request):
     return render(request, 'instructor.html', {'form': form})
 
 
-
 def studentDetails(request):
-
     if request.method == 'POST':
         name = request.POST['name']
         studentId = request.POST['studentId']
@@ -184,7 +181,6 @@ def studentDetails(request):
         success_message = None
 
     return render(request, 'index.html', {'success_message': success_message})
-
 
 
 def facility(request):
@@ -220,4 +216,3 @@ def facility(request):
         form = FacilityForm()
 
     return render(request, 'facility.html', {'form': form})
-

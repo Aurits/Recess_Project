@@ -19,11 +19,6 @@ class InstructorFeedback(models.Model):
         return f"Feedback by {self.instructorName}"
 
 
-
-
-
-
-
 class CourseFeedback(models.Model):
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=20)
@@ -34,10 +29,6 @@ class CourseFeedback(models.Model):
 
     def __str__(self):
         return f"Feedback for {self.courseName}"
-
-
-
-
 
 
 class FacilityFeedback(models.Model):
@@ -89,17 +80,11 @@ class FacilityFeedback(models.Model):
         return self.name
 
 
-
-
 class StudentDetails(models.Model):
     name = models.CharField(max_length=100)
     studentId = models.CharField(max_length=20)
     emailAddress = models.EmailField()
     year_of_study = models.CharField(max_length=10)
 
-
     def __str__(self):
         return self.name
-
-
-
