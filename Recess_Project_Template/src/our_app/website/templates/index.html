@@ -70,34 +70,30 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="{{ form.name.id_for_label }}">Name</label>
-                            <input class="form-control" id="name" name="name" type="text"
-                            {{ form.name }}
+                            <input class="form-control" id="name" name="name" type="text" {{ form.name }}
                                 placeholder="Enter your name..." aria-label="Enter your name..."
                                 data-sb-validations="required,name" />
                         </div>
 
                         <div class="form-group">
                             <label for="{{ form.studentId.id_for_label }}">studentId</label>
-                            <input class="form-control" id="studentId" name="studentId" type="text"
-                            {{ form.studentId }}
+                            <input class="form-control" id="studentId" name="studentId" type="text" {{ form.studentId }}
                                 placeholder="Enter your studentId..." aria-label="Enter your studentId..."
                                 data-sb-validations="required,contact" />
                         </div>
 
                         <div class="form-group">
                             <label for="{{ form.emailAddress.id_for_label }}">Email Address</label>
-                            <input class="form-control" id="emailAddress" name="emailAddress" type="email"
-                            {{ form.emailAddress }}
-                                placeholder="Enter email address..." aria-label="Enter email address..."
-                                data-sb-validations="required,email" />
+                            <input class="form-control" id="emailAddress" name="emailAddress" type="email" {{
+                                form.emailAddress }} placeholder="Enter email address..."
+                                aria-label="Enter email address..." data-sb-validations="required,email" />
                         </div>
 
                         <div class="form-group">
                             <label for="{{ form.year_of_study.id_for_label }}">year of study</label>
                             <input class="form-control" id="year_of_study" name="year_of_study" type="text"
-                                placeholder="Enter your year of study..." aria-label="Enter your year of study..."
-                            {{ form.year_of_study }}
-                                data-sb-validations="required,contact" />
+                                placeholder="Enter your year of study..." aria-label="Enter your year of study..." {{
+                                form.year_of_study }} data-sb-validations="required,contact" />
                         </div>
 
                         <div class="form-group m-5">

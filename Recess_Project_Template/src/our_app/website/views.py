@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, CourseForm
+from .forms import SignUpForm
 from .forms import InstructorForm
 from .models import StudentDetails
 from .forms import FacilityForm
 from .models import FacilityFeedback
-from .models import InstructorFeedback, Course
+from .models import InstructorFeedback
+from .models import CourseFeedback
+from .forms import CourseFeedbackForm
 
 from django.shortcuts import render, redirect, get_object_or_404
 def home(request):
@@ -14,40 +16,20 @@ def home(request):
 
 
 
+
 def course(request):
-    return render(request, 'course.html')
-    form = CourseForm()
-    return render(request, 'course.html', {'courseForm': form})
-
-
-
-
-
-def course_feedback(request):
     if request.method == 'POST':
-        form = CourseForm(request.POST)
+        form = CourseFeedbackForm(request.POST)
         if form.is_valid():
-            # Save the form data to the database
-            form_data = form.cleaned_data
-            feedback = Course(
-                courseName=form_data['courseName'],
-                courseDescription=form_data['courseDescription'],
-                courseCode=form_data['courseCode'],
-                effectiveness=form_data['effectiveness'],
-                interest=form_data['interest'],
-                improvement=form_data['improvement'],
-
-            )
-            feedback.save()
-
-            return redirect('home')  # Redirect to a success page after successful form submission
+            form.save()
+            return redirect('course')  
     else:
-        form = CourseForm()
+        form = CourseFeedbackForm()
 
-    return render(request, 'course.html', {'courseForm': form})
+    return render(request, 'course.html', {'courseForm': form}) 
 
-def facility(request):
-    return render(request, 'facility.html')
+
+
 
 
 def instructor(request):
@@ -63,17 +45,27 @@ def dashboard(request):
 
 
 def courses(request):
-    return render(request, 'dashboard/pages/courses.html')
-    course_items = Course.objects.all()
+    course_items = CourseFeedback.objects.all()
     context = {
         'course_items': course_items,}
     return render(request, 'dashboard/pages/courses.html', context)
 
 
 
+def delete_course_feedback(request, feedback_id):
+    feedback = get_object_or_404(CourseFeedback, pk=feedback_id)
+    if request.method == 'POST':
+        feedback.delete()
+        return redirect('courses') 
+    return render(request, 'dashboard/pages/delete_course_feedback.html', {'feedback': feedback})
+
+
+
+
 
 def facilities(request):
-    return render(request, 'dashboard/pages/facilities.html')
+    facilities = FacilityFeedback.objects.all()
+    return render(request, 'dashboard/pages/facilities.html',{'facilities':facilities})
 
 
 def instructors(request):
@@ -195,7 +187,7 @@ def studentDetails(request):
 
 
 
-def facility_feedback(request):
+def facility(request):
     if request.method == 'POST':
         form = FacilityForm(request.POST)
         if form.is_valid():
@@ -223,9 +215,6 @@ def facility_feedback(request):
                 comment=comment,
             )
             feedback.save()
-
-            # Redirect to a success page or render a thank-you template
-            # Assuming you have a URL pattern named 'feedback_success' for the success page
             return redirect('home')
     else:
         form = FacilityForm()

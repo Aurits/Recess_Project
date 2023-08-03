@@ -3,7 +3,9 @@ from .models import InstructorFeedback
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import InstructorFeedback, Course
+from .models import InstructorFeedback
+from .models import StudentDetails
+from .models import CourseFeedback
 
 
 class SignUpForm(UserCreationForm):
@@ -76,7 +78,9 @@ class InstructorForm(forms.ModelForm):
         }
 
 
-from .models import StudentDetails
+
+
+
 
 class StudentDetailsForm(forms.ModelForm):
     class Meta:
@@ -172,16 +176,17 @@ class FacilityForm(forms.Form):
 
 
 
-class CourseForm(forms.ModelForm):
+
+
+class CourseFeedbackForm(forms.ModelForm):
     class Meta:
-        model = Course
+        model = CourseFeedback
         fields = ['courseName', 'courseCode', 'courseDescription', 'effectiveness', 'interest', 'improvement']
         widgets = {
-            'courseName': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
-            'courseCode': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
-            'courseDescription': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
-            'effectiveness': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'interest': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'improvement': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
+            'courseName': forms.TextInput(attrs={'class': 'form-control m-3', 'required': True}),
+            'courseCode': forms.TextInput(attrs={'class': 'form-control m-3', 'required': True}),
+            'courseDescription': forms.Textarea(attrs={'class': 'form-control m-3', 'required': True}),
+            'effectiveness': forms.RadioSelect(attrs={'class': 'd-flex   m-3 '}, choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]),
+            'interest': forms.RadioSelect(attrs={'class': 'd-flex  m-3'}, choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]),
+            'improvement': forms.Textarea(attrs={'class': 'form-control m-3', 'required': True}),
         }
-
