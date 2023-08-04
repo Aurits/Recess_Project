@@ -97,6 +97,7 @@ def signin(request):
             'studentDetails': studentDetails,
             }
 
+
         return render(request, 'dashboard/pages/dashboard.html', context)
     else:
         # Check to see if logging in
