@@ -15,13 +15,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 def home(request):
     return render(request, 'index.html')
 
+def start(request):
+    return render(request, 'start.html')
+
+def thankyou(request):
+    return render(request, 'thankyou.html')
+
+
 
 def course(request):
     if request.method == 'POST':
         form = CourseFeedbackForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('course')
+            return redirect('instructor')
     else:
         form = CourseFeedbackForm()
 
@@ -34,7 +41,18 @@ def instructor(request):
 
 def dashboard(request):
     students = StudentDetails.objects.all()
-    return render(request, 'dashboard/pages/dashboard.html', {'students': students})
+    course_items = CourseFeedback.objects.all()
+    facilities = FacilityFeedback.objects.all()
+    instructors = InstructorFeedback.objects.all()
+    studentDetails = StudentDetails.objects.all()
+    context = {
+        'course_items': course_items,
+        'facilities': facilities,
+        'instructors': instructors,
+        'studentDetails': studentDetails,
+    }
+    return render(request, 'dashboard/pages/dashboard.html', {'students': students, **context})
+
 
 
 def courses(request):
@@ -86,6 +104,7 @@ def signout(request):
 
 def signin(request):
     if request.user.is_authenticated:
+        students = StudentDetails.objects.all()
         course_items = CourseFeedback.objects.all()
         facilities = FacilityFeedback.objects.all()
         instructors = InstructorFeedback.objects.all()
@@ -95,10 +114,10 @@ def signin(request):
             'facilities': facilities,
             'instructors': instructors,
             'studentDetails': studentDetails,
-            }
+        }
 
+        return render(request, 'dashboard/pages/dashboard.html', {'students': students, **context})
 
-        return render(request, 'dashboard/pages/dashboard.html', context)
     else:
         # Check to see if logging in
         if request.method == 'POST':
@@ -157,7 +176,7 @@ def instructor_feedback(request):
             feedback.save()
 
             # Redirect to a success page after successful form submission
-            return redirect('home')
+            return redirect('facility')
     else:
         form = InstructorForm()
 
@@ -212,7 +231,7 @@ def facility(request):
                 comment=comment,
             )
             feedback.save()
-            return redirect('home')
+            return redirect('thankyou')
     else:
         form = FacilityForm()
 

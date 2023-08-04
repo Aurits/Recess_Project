@@ -24,6 +24,57 @@
     <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+    <style>
+        /* Additional CSS styles for spacing */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .rating-label {
+            display: inline-block;
+            width: 50px;
+        }
+    </style>
+
+      <style>
+    /* Style for star icons */
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      display: inline-block;
+      position: relative;
+    }
+
+    .rating input {
+      display: none;
+    }
+
+    .rating label {
+      color: #ccc;
+      font-size: 30px;
+      padding: 0 2px;
+      cursor: pointer;
+    }
+
+    .rating label:before {
+      content: "\2605";
+    }
+
+    .rating input:checked~label:before,
+    .rating label:hover~label:before {
+      content: "\2605";
+      color: #ffdd00;
+    }
+    .col-md-6 input{
+  padding: 18px 25px;
+    border-radius: 30px;
+    border: 1px solid #F4EEFB;
+    margin-bottom: 25px;
+    width: 100%;
+    transition: all 0.3s ease-out 0s;
+}
+  </style>
 </head>
 
 <body>
@@ -76,12 +127,13 @@
                                     <a class="page-scroll" href="{% url 'course'%}">course</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="page-scroll " href="{% url 'facility' %}">facility</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
-                                </li>
+                                
                             </ul>
 
                         </div> <!-- navbar collapse -->
@@ -104,8 +156,7 @@
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" aria-current="page"><a
-                                            href="javascript:void(0)">Home</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System | Makerere University</a></li>
 
                                 </ol>
                             </nav>
@@ -127,84 +178,83 @@
                         <div class="row">
               <div class="col-xl-10 col-lg-8 mx-auto">
                 <div class="section-title1  mb-50">
-                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Hello! As a student,
+                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here,
                   </h2>
                   <br>
-                  <h5 class="wow fadeInDown">It's your right to evaluate your instructor in different aspects, so kindly
-                    take some little time to fill the form below, which is intended to provide us with feedback about
-                    your instructor of your choice according to the given fields.</h5>
-                  <p class="wow fadeInDown" data-wow-delay=".4s" style="color: #333">
-                    In doing this, it will help the institution to improve teaching and learning. Your response will be
-                    treated with utmost confidentiality. Respond without bias. Thank you.
-                  </p>
+                  
                 </div>
               </div>
             </div>
 
-                        <form method="post" class="needs-validation" novalidate>
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="{{ courseForm.courseName.id_for_label }}">Course Name<span
-                                            style="color: red;">*</span>:</label>
-                                    {{ courseForm.courseName }}
-                                    <div class="invalid-feedback">Please provide the Course's name.</div>
-                                </div>
+                       <form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" name="{{ courseForm.courseName.name }}" id="{{ courseForm.courseName.auto_id }}"
+                class="form-control rounded" placeholder="Course Name*" required />
+            <div class="invalid-feedback">Please provide the Course's name.</div>
+        </div>
 
-                                <div class="col-md-6">
-                                    <label for="{{ courseForm.courseCode.id_for_label }}">Course Code<span
-                                            style="color: red;">*</span>:</label>
-                                    {{ courseForm.courseCode }}
-                                    <div class="invalid-feedback">Please provide the Course code.</div>
-                                </div>
+        <div class="col-md-6">
+            <input type="text" name="{{ courseForm.courseCode.name }}" id="{{ courseForm.courseCode.auto_id }}"
+                class="form-control rounded" placeholder="Course Code*" required />
+            <div class="invalid-feedback">Please provide the Course code.</div>
+        </div>
 
-                                <div class="col-md-6">
-                                    <label for="{{ courseForm.courseDescription.id_for_label }}">Course Description<span
-                                            style="color: red;">*</span>:</label>
-                                    {{ courseForm.courseDescription }}
-                                    <div class="invalid-feedback">Please provide the course description.</div>
-                                </div>
-                                <br>
-                                <div class="col-md-12 row m-5">
+        <div class="col-md-6">
+            <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block"><b>Effect of the
+                    course</b><span style="color: red;">*</span>:</label>
+            <div class="rating">
+                <input type="radio" id="star5_effectiveness" name="{{ courseForm.effectiveness.name }}" value="5" required />
+                <label for="star5_effectiveness"></label>
+                <input type="radio" id="star4_effectiveness" name="{{ courseForm.effectiveness.name }}" value="4" />
+                <label for="star4_effectiveness"></label>
+                <input type="radio" id="star3_effectiveness" name="{{ courseForm.effectiveness.name }}" value="3" />
+                <label for="star3_effectiveness"></label>
+                <input type="radio" id="star2_effectiveness" name="{{ courseForm.effectiveness.name }}" value="2" />
+                <label for="star2_effectiveness"></label>
+                <input type="radio" id="star1_effectiveness" name="{{ courseForm.effectiveness.name }}" value="1" />
+                <label for="star1_effectiveness"></label>
+            </div>
+            <div class="invalid-feedback">Please rate the course effectiveness.</div>
+        </div>
 
-                                    <div class="col-md-6">
-                                        <label for="{{ courseForm.effectiveness.id_for_label }}"
-                                            class="d-block"><b>Effect of
-                                                the course</b><span style="color: red;">*</span>:</label>
-                                        <div class="form-check form-check-inline">
-                                            {{ courseForm.effectiveness }}
-                                        </div>
-                                        <div class="invalid-feedback">Please rate the course effectiveness.</div>
-                                    </div>
+        <div class="col-md-6">
+            <label for="{{ courseForm.interest.id_for_label }}" class="d-block"><b>Interest</b><span
+                    style="color: red;">*</span>:</label>
+            <div class="rating">
+                <input type="radio" id="star5_interest" name="{{ courseForm.interest.name }}" value="5" required />
+                <label for="star5_interest"></label>
+                <input type="radio" id="star4_interest" name="{{ courseForm.interest.name }}" value="4" />
+                <label for="star4_interest"></label>
+                <input type="radio" id="star3_interest" name="{{ courseForm.interest.name }}" value="3" />
+                <label for="star3_interest"></label>
+                <input type="radio" id="star2_interest" name="{{ courseForm.interest.name }}" value="2" />
+                <label for="star2_interest"></label>
+                <input type="radio" id="star1_interest" name="{{ courseForm.interest.name }}" value="1" />
+                <label for="star1_interest"></label>
+            </div>
+            <div class="invalid-feedback">Please rate the course interest.</div>
+        </div>
 
+        <div class="col-md-12 row m-5">
+            <div class="col-md-6">
+                <label for="{{ courseForm.qualitative_feedback.id_for_label }}"><b>Qualitative Feedback</b>:</label>
+                {{ courseForm.qualitative_feedback }}
+                <div class="invalid-feedback">Please provide qualitative feedback.</div>
+            </div>
+        </div>
+    </div>
 
-                                    <div class="col-md-6">
-                                        <label for="{{ courseForm.interest.id_for_label }}"
-                                            class="d-block"><b>Interest</b><span style="color: red;">*</span>:</label>
-                                        <div class="form-check form-check-inline">
-                                            {{ courseForm.interest }}
-                                        </div>
-                                        <div class="invalid-feedback">Please rate the course interest.</div>
-                                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="button text-center">
+                <button type="submit" class="theme-btn">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+</form>
 
-                                </div>
-
-                                <div class="">
-                                    <label for="{{ courseForm.improvement.id_for_label }}"><b>Recommended
-                                            Improvements:</b></label>
-                                    {{ courseForm.improvement }}
-                                    <div class="invalid-feedback">Please provide recommendations.</div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="button text-center">
-                                        <button type="submit" class="theme-btn">Submit Feedback</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
 
                     </div>
                 </div>
@@ -236,27 +286,6 @@
     </section>
 
 
-    <!-- ========================= subscribe-section start ========================= -->
-    <section class="subscribe-section pt-70 pb-70 img-bg"
-        style="background-image: url('{% static 'assets/img/bg/common-bg.svg' %}')">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-lg-6">
-                    <div class="section-title mb-30">
-                        <span class="text-white wow fadeInDown" data-wow-delay=".2s">Subscribe</span>
-                        <h2 class="text-white mb-40 wow fadeInUp" data-wow-delay=".4s">Subscribe Our Newsletter</h2>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                    <form action="#" class="subscribe-form wow fadeInRight" data-wow-delay=".4s">
-                        <input type="text" name="subs-email" id="subs-email" placeholder="Your Email">
-                        <button type="submit"><i class="lni lni-telegram-original"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ========================= subscribe-section end ========================= -->
 
     <!-- ========================= footer start ========================= -->
     <footer class="footer">

@@ -59,25 +59,48 @@ class SignUpForm(UserCreationForm):
 
 
 
+from django import forms
+from django.forms import RadioSelect
+
 class InstructorForm(forms.ModelForm):
     class Meta:
         model = InstructorFeedback
         fields = ['instructorName', 'department', 'courseUnit', 'knowledge', 'communication', 'teachingStyle',
                   'responsiveness', 'additional_comments']
-
-
         widgets = {
             'instructorName': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'department': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'courseUnit': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
-            'knowledge': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'communication': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'teachingStyle': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
-            'responsiveness': forms.RadioSelect(attrs={'class': 'd-flex', 'required': True}),
+            'knowledge': forms.RadioSelect(attrs={'class': 'rating d-flex', 'required': True}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
+            'communication': forms.RadioSelect(attrs={'class': 'rating d-flex', 'required': True}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
+            'teachingStyle': forms.RadioSelect(attrs={'class': 'rating d-flex', 'required': True}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
+            'responsiveness': forms.RadioSelect(attrs={'class': 'rating d-flex', 'required': True}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
             'additional_comments': forms.Textarea(attrs={'class': 'form-control', 'required': True}),
         }
-
-
 
 
 
@@ -99,18 +122,20 @@ class StudentDetailsForm(forms.ModelForm):
 class FacilityForm(forms.Form):
     # Choices for Facility Accessibility dropdown
     FACILITY_ACCESSIBILITY_CHOICES = [
-        ('fully', 'Fully accessible'),
-        ('partial', 'Partially accessible'),
-        ('not', 'Not accessible'),
+        (5, '5 - Excellent'),
+        (4, '4 - Very Good'),
+        (3, '3 - Good'),
+        (2, '2 - Fair'),
+        (1, '1 - Poor'),
     ]
 
     # Choices for Rating fields
     RATING_CHOICES = [
-        ('very_good', 'Very Good'),
-        ('good', 'Good'),
-        ('fair', 'Fair'),
-        ('poor', 'Poor'),
-        ('very_poor', 'Very Poor'),
+        (5, '5 - Very Good'),
+        (4, '4 - Good'),
+        (3, '3 - Fair'),
+        (2, '2 - Poor'),
+        (1, '1 - Very Poor'),
     ]
 
     # Facility name field with a maximum length of 100 characters
@@ -178,15 +203,29 @@ class FacilityForm(forms.Form):
 
 
 
+
+from django.forms import RadioSelect
+
 class CourseFeedbackForm(forms.ModelForm):
     class Meta:
         model = CourseFeedback
-        fields = ['courseName', 'courseCode', 'courseDescription', 'effectiveness', 'interest', 'improvement']
+        fields = ['courseName', 'courseCode', 'effectiveness', 'interest', 'qualitative_feedback']
         widgets = {
             'courseName': forms.TextInput(attrs={'class': 'form-control m-3', 'required': True}),
             'courseCode': forms.TextInput(attrs={'class': 'form-control m-3', 'required': True}),
-            'courseDescription': forms.Textarea(attrs={'class': 'form-control m-3', 'required': True}),
-            'effectiveness': forms.RadioSelect(attrs={'class': 'd-flex   m-3 '}, choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]),
-            'interest': forms.RadioSelect(attrs={'class': 'd-flex  m-3'}, choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')]),
-            'improvement': forms.Textarea(attrs={'class': 'form-control m-3', 'required': True}),
+            'effectiveness': forms.RadioSelect(attrs={'class': 'rating d-flex m-3'}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
+            'interest': forms.RadioSelect(attrs={'class': 'rating d-flex m-3'}, choices=[
+                (5, '5 - Excellent'),
+                (4, '4 - Very Good'),
+                (3, '3 - Good'),
+                (2, '2 - Fair'),
+                (1, '1 - Poor'),
+            ]),
+            'qualitative_feedback': forms.Textarea(attrs={'class': 'form-control m-3', 'required': True}),
         }

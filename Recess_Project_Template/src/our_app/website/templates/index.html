@@ -18,13 +18,35 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <style>
+    /* Style for the form inputs */
+    .form-control {
+        border-radius: 20px; /* Adjust the value as needed to make the border rounder */
+        padding: 10px; /* Add padding to create more spacing between the text and the border */
+    }
+
+    /* Style for the submit button */
+    .theme-btn {
+        border-radius: 20px; /* Make the button round */
+        padding: 12px 20px; /* Add padding to the button for better appearance */
+        background-color: #007bff; /* Change the background color as needed */
+        color: white; /* Change the text color as needed */
+        border: none; /* Remove the default border */
+    }
+
+    /* Optional: Add some margin to the form groups to space them out */
+    .form-group {
+        margin-bottom: 20px;
+    }
+</style>
+
 </head>
 
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">Group S</a>
+            <a class="navbar-brand" href="#page-top">Mak Feed</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -33,9 +55,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'x'%}">Course</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'facility'%}">Facility</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'instructor'%}">Instructor</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'sign_in'%}">ADMIN</a></li>
                 </ul>
                 <ul></ul>
@@ -47,10 +66,10 @@
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">Group S</h1>
+                    <h1 class="mx-auto my-0 text-uppercase">MAK FEEDBACK</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">A place where we assess our courses, lecturers, and
                         facilities for better learning</h2>
-                    <a class="btn btn-primary" href="{% url 'x'%}">Get Started</a>
+                    <a class="btn btn-primary" href="{% url 'start'%}">Get Started</a>
                 </div>
             </div>
         </div>
@@ -65,7 +84,7 @@
 
 
 
-                    <h2>provide your details in the space provided</h2>
+                    <h2>Student Details</h2>
                     <form method="post" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <div class="form-group">

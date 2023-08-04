@@ -109,12 +109,13 @@
                   <a class="page-scroll" href="{% url 'course'%}">course</a>
                 </li>
                 <li class="nav-item">
+                  <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
+                </li>
+                <li class="nav-item">
                   <a class="page-scroll" href="{% url 'facility' %}">facility</a>
                 </li>
 
-                <li class="nav-item">
-                  <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
-                </li>
+                
               </ul>
             </div>
             <!-- navbar collapse -->
@@ -140,9 +141,7 @@
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item" aria-current="page">
-                    <a href="javascript:void(0)">Home</a>
-                  </li>
+                  <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System | Makerere University</a></li>
                 </ol>
               </nav>
             </div>
@@ -164,16 +163,10 @@
             <div class="row">
               <div class="col-xl-10 col-lg-8 mx-auto">
                 <div class="section-title1  mb-50">
-                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Hello! As a student,
+                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here,
                   </h2>
                   <br>
-                  <h5 class="wow fadeInDown">It's your right to evaluate your instructor in different aspects, so kindly
-                    take some little time to fill the form below, which is intended to provide us with feedback about
-                    your instructor of your choice according to the given fields.</h5>
-                  <p class="wow fadeInDown" data-wow-delay=".4s" style="color: #333">
-                    In doing this, it will help the institution to improve teaching and learning. Your response will be
-                    treated with utmost confidentiality. Respond without bias. Thank you.
-                  </p>
+                  
                 </div>
               </div>
             </div>
@@ -350,32 +343,7 @@
     </div>
   </section>
 
-  <!-- ========================= subscribe-section start ========================= -->
-  <section class="subscribe-section pt-70 pb-70 img-bg" style="
-        background-image: url('{% static 'assets/img/bg/common-bg.svg' %}');
-      ">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-xl-6 col-lg-6">
-          <div class="section-title mb-30">
-            <span class="text-white wow fadeInDown" data-wow-delay=".2s">Subscribe</span>
-            <h2 class="text-white mb-40 wow fadeInUp" data-wow-delay=".4s">
-              Subscribe Our Newsletter
-            </h2>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6">
-          <form action="#" class="subscribe-form wow fadeInRight" data-wow-delay=".4s">
-            <input type="text" name="subs-email" id="subs-email" placeholder="Your Email" />
-            <button type="submit">
-              <i class="lni lni-telegram-original"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ========================= subscribe-section end ========================= -->
+
 
   <!-- ========================= footer start ========================= -->
   <footer class="footer">

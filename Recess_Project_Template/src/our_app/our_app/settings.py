@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 
 DATABASES = { 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'recess01',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'recess_project',
+        'USER': 'root',
+        'PASSWORD': 'Aurit',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
