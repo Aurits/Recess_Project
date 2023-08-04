@@ -74,14 +74,14 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { 
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recess_project',
-        'USER': 'root',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'recess01',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '',
     }
 }
 

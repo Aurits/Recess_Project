@@ -378,41 +378,52 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Code</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description
                       </th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Code</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                        Remark
-                      <th>
+                        Effectiveness
+                      </th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                        Improvement</th>
+                        Interest
+                      </th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                        Action</th>
-
-                      <th></th>
+                        Improvement
+                      </th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                        Action
+                      </th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="p-3">
+                    {% for item in course_items %}
                     <tr>
-                     {% for item in course_items %}
-                    <tr>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseName}}</p></td>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseCode }}</p></td>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.courseDescription }}</p></td>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.effectiveness }}</p></td>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.interest }}</p></td>
-                        <td><p class="text-sm font-weight-bold mb-0">{{ item.improvement }}</p></td>
-                    </tr>
-                    {% endfor %}
-
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ item.courseName }}</p>
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ item.courseCode }}</p>
+                      </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ item.courseDescription }}</p>
+                      </td>
+                      <td class="text-center">
+                        <p class="text-sm font-weight-bold mb-0">{{ item.effectiveness }}</p>
+                      </td>
+                      <td class="text-center">
+                        <p class="text-sm font-weight-bold mb-0">{{ item.interest }}</p>
+                      </td>
+                      <td class="text-center">
+                        <p class="text-sm font-weight-bold mb-0">{{ item.improvement }}</p>
+                      </td>
+                      <td class="text-center">
+                        <a href="{% url 'delete_course_feedback' item.id %}" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
+
               </div>
             </div>
           </div>

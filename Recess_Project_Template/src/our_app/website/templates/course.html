@@ -3,6 +3,8 @@
 <html class="no-js" lang="">
 
 <head>
+
+    <meta charset="utf-8">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Group S</title>
@@ -71,7 +73,7 @@
                                     <a class="page-scroll " href="{% url 'home'%}">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="page-scroll" href="{% url 'x'%}">course</a>
+                                    <a class="page-scroll" href="{% url 'course'%}">course</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="page-scroll " href="{% url 'facility' %}">facility</a>
@@ -123,76 +125,78 @@
                 <div class="col-xl-12">
                     <div class="contact-form-wrapper">
                         <div class="row">
-                            <div class="col-xl-10 col-lg-8 mx-auto">
-                                <div class="section-title1 text-center mb-50">
-                                    <span class="wow fadeInDown" data-wow-delay=".2s" style="color: #333;">Hello! As a
-                                        student, it's your right to evaluate your instructor in different aspects, so
-                                        kindly take some little time to fill the form below, which is intended to
-                                        provide us with feedback about your instructor of your choice according to the
-                                        given fields.<br>
-                                        In doing this, it will help the institution to improve teaching and learning.
-                                        Your response will be treated with utmost confidentiality. Respond without bias.
-                                        Thank you.</span>
-                                </div>
-                            </div>
-                        </div>
+              <div class="col-xl-10 col-lg-8 mx-auto">
+                <div class="section-title1  mb-50">
+                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Hello! As a student,
+                  </h2>
+                  <br>
+                  <h5 class="wow fadeInDown">It's your right to evaluate your instructor in different aspects, so kindly
+                    take some little time to fill the form below, which is intended to provide us with feedback about
+                    your instructor of your choice according to the given fields.</h5>
+                  <p class="wow fadeInDown" data-wow-delay=".4s" style="color: #333">
+                    In doing this, it will help the institution to improve teaching and learning. Your response will be
+                    treated with utmost confidentiality. Respond without bias. Thank you.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                       <form method="post" class="needs-validation" novalidate >
+                        <form method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
-
-                           <div class="form-group">
-                                <label for="{{ courseForm.courseName.id_for_label }}">Course Name<span
-                                        style="color: red;">*</span>:</label>
-                                {{ courseForm.courseName }}
-                                <div class="invalid-feedback">Please provide the Course's name.</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="{{ courseForm.courseCode.id_for_label }}">Course Code<span
-                                        style="color: red;">*</span>:</label>
-                                {{ courseForm.courseCode }}
-                                <div class="invalid-feedback">Please provide the Course code.</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="{{ courseForm.courseDescription.id_for_label }}">Course Description<span
-                                        style="color: red;">*</span>:</label>
-                                {{ courseForm.courseDescription }}
-                                <div class="invalid-feedback">Please provide the course description.</div>
-                            </div>
-
-                            <span class="wow fadeInDown" style="color: #333;"><b>HOW WOULD YOU RATE YOUR COURSE IN
-                                    THE FOLLOWING FIELDS?</b></span>
-
-
-                            <div class="form-group">
-                                <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block"><b>Effect of the course</b><span
-                                        style="color: red;">*</span>:</label>
-                                <div class="form-check form-check-inline justify-content-between gap">
-                                    {{ courseForm.effectiveness }}
-                                </div>
-                                <div class="invalid-feedback">Please rate the course effectiveness.</div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="{{ courseForm.interest.id_for_label }}"
-                                    class="d-block"><b>Interest</b><span style="color: red;">*</span>:</label>
-                                <div class="form-check form-check-inline justify-content-between gap">
-                                    {{ courseForm.interest }}
-                                </div>
-                                <div class="invalid-feedback">Please rate the course interest.</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="{{ courseForm.improvement.id_for_label }}"><b>Recommended Improvements:</b></label>
-                                {{ courseForm.improvement }}
-                                <div class="invalid-feedback">Please provide recommendations.</div>
-                            </div>
                             <div class="row">
-                                    <br>
-                                    <br>
+                                <div class="col-md-6">
+                                    <label for="{{ courseForm.courseName.id_for_label }}">Course Name<span
+                                            style="color: red;">*</span>:</label>
+                                    {{ courseForm.courseName }}
+                                    <div class="invalid-feedback">Please provide the Course's name.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="{{ courseForm.courseCode.id_for_label }}">Course Code<span
+                                            style="color: red;">*</span>:</label>
+                                    {{ courseForm.courseCode }}
+                                    <div class="invalid-feedback">Please provide the Course code.</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="{{ courseForm.courseDescription.id_for_label }}">Course Description<span
+                                            style="color: red;">*</span>:</label>
+                                    {{ courseForm.courseDescription }}
+                                    <div class="invalid-feedback">Please provide the course description.</div>
+                                </div>
+                                <br>
+                                <div class="col-md-12 row m-5">
+
+                                    <div class="col-md-6">
+                                        <label for="{{ courseForm.effectiveness.id_for_label }}"
+                                            class="d-block"><b>Effect of
+                                                the course</b><span style="color: red;">*</span>:</label>
+                                        <div class="form-check form-check-inline">
+                                            {{ courseForm.effectiveness }}
+                                        </div>
+                                        <div class="invalid-feedback">Please rate the course effectiveness.</div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <label for="{{ courseForm.interest.id_for_label }}"
+                                            class="d-block"><b>Interest</b><span style="color: red;">*</span>:</label>
+                                        <div class="form-check form-check-inline">
+                                            {{ courseForm.interest }}
+                                        </div>
+                                        <div class="invalid-feedback">Please rate the course interest.</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="">
+                                    <label for="{{ courseForm.improvement.id_for_label }}"><b>Recommended
+                                            Improvements:</b></label>
+                                    {{ courseForm.improvement }}
+                                    <div class="invalid-feedback">Please provide recommendations.</div>
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="button text-center">

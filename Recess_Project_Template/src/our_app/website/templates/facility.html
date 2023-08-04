@@ -1,78 +1,62 @@
 {% load static %}
 <!DOCTYPE html>
 <html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Group S</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="assets/img/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/img/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/img/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Group S</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- ========================= CSS here ========================= -->
-    <link
-      rel="stylesheet"
-      href="{% static 'assets/css/bootstrap-5.0.0-beta1.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.2.0.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-    <style>
-      /* Style for star icons */
-      .rating {
-        unicode-bidi: bidi-override;
-        direction: rtl;
-        display: inline-block;
-        position: relative;
-      }
+  <!-- ========================= CSS here ========================= -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.0.0-beta1.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/LineIcons.2.0.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 
-      .rating input {
-        display: none;
-      }
+  <style>
+    /* Style for star icons */
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      display: inline-block;
+      position: relative;
+    }
 
-      .rating label {
-        color: #ccc;
-        font-size: 30px;
-        padding: 0 2px;
-        cursor: pointer;
-      }
+    .rating input {
+      display: none;
+    }
 
-      .rating label:before {
-        content: "\2605";
-      }
+    .rating label {
+      color: #ccc;
+      font-size: 30px;
+      padding: 0 2px;
+      cursor: pointer;
+    }
 
-      .rating input:checked ~ label:before,
-      .rating label:hover ~ label:before {
-        content: "\2605";
-        color: #ffdd00;
-      }
-    </style>
-  </head>
+    .rating label:before {
+      content: "\2605";
+    }
 
-  <body>
-    <!--[if lte IE 9]>
+    .rating input:checked~label:before,
+    .rating label:hover~label:before {
+      content: "\2605";
+      color: #ffdd00;
+    }
+  </style>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -80,175 +64,138 @@
       </p>
     <![endif]-->
 
-    <!-- ========================= preloader start ========================= -->
-    <div class="preloader">
-      <div class="loader">
-        <div class="ytp-spinner">
-          <div class="ytp-spinner-container">
-            <div class="ytp-spinner-rotator">
-              <div class="ytp-spinner-left">
-                <div class="ytp-spinner-circle"></div>
-              </div>
-              <div class="ytp-spinner-right">
-                <div class="ytp-spinner-circle"></div>
-              </div>
+  <!-- ========================= preloader start ========================= -->
+  <div class="preloader">
+    <div class="loader">
+      <div class="ytp-spinner">
+        <div class="ytp-spinner-container">
+          <div class="ytp-spinner-rotator">
+            <div class="ytp-spinner-left">
+              <div class="ytp-spinner-circle"></div>
+            </div>
+            <div class="ytp-spinner-right">
+              <div class="ytp-spinner-circle"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- preloader end -->
+  </div>
+  <!-- preloader end -->
 
-    <!-- ========================= header start ========================= -->
-    <header class="header navbar-area">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="#">
-                <img
-                  src="{% static 'assets/img/logo.png' %}"
-                  width="45px"
-                  height="50px"
-                  alt="logo"
-                />
-              </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-                <span class="toggler-icon"></span>
-              </button>
+  <!-- ========================= header start ========================= -->
+  <header class="header navbar-area">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'assets/img/logo.png' %}" width="45px" height="50px" alt="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+            </button>
 
-              <div
-                class="collapse navbar-collapse sub-menu-bar"
-                id="navbarSupportedContent"
-              >
-                <ul id="nav" class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                    <a class="page-scroll" href="{% url 'home'%}">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="{% url 'course'%}">course</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="page-scroll" href="{% url 'facility' %}"
-                      >facility</a
-                    >
-                  </li>
+            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+              <ul id="nav" class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="page-scroll" href="{% url 'home'%}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="{% url 'course'%}">course</a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="{% url 'facility' %}">facility</a>
+                </li>
 
-                  <li class="nav-item">
-                    <a class="page-scroll" href="{% url 'instructor' %}"
-                      >instructor</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <!-- navbar collapse -->
-            </nav>
-            <!-- navbar -->
-          </div>
+                <li class="nav-item">
+                  <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
+                </li>
+              </ul>
+            </div>
+            <!-- navbar collapse -->
+          </nav>
+          <!-- navbar -->
         </div>
-        <!-- row -->
       </div>
-      <!-- container -->
-    </header>
-    <!-- ========================= header end ========================= -->
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </header>
+  <!-- ========================= header end ========================= -->
 
-    <!-- ========================= page-banner-section start ========================= -->
-    <section
-      class="page-banner-section pt-75 pb-75 img-bg"
-      style="
+  <!-- ========================= page-banner-section start ========================= -->
+  <section class="page-banner-section pt-75 pb-75 img-bg" style="
         background-image: url('{% static 'assets/img/bg/common-bg.svg' %}');
-      "
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="banner-content">
-              <h2 class="text-white">Facility Feedback Form</h2>
-              <div class="page-breadcrumb">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page">
-                      <a href="javascript:void(0)">Home</a>
-                    </li>
-                  </ol>
-                </nav>
-              </div>
+      ">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="banner-content">
+            <h2 class="text-white">Facility Feedback Form</h2>
+            <div class="page-breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item" aria-current="page">
+                    <a href="javascript:void(0)">Home</a>
+                  </li>
+                </ol>
+              </nav>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- ========================= page-banner-section end ========================= -->
+    </div>
+  </section>
+  <!-- ========================= page-banner-section end ========================= -->
 
-    <!-- ========================= contact-section start ========================= -->
+  <!-- ========================= contact-section start ========================= -->
 
-    <!-- ========================= contact-section start ========================= -->
-    <section class="contact-section pt-130">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">
-            <div class="contact-form-wrapper">
-              <div class="row">
-                <div class="col-xl-10 col-lg-8 mx-auto">
-                  <div class="section-title1 text-center mb-50">
-                    <span
-                      class="wow fadeInDown"
-                      data-wow-delay=".2s"
-                      style="color: #333"
-                      >Hello! As a student, it's your right to evaluate your
-                      instructor in different aspects, so kindly take some
-                      little time to fill the form below, which is intended to
-                      provide us with feedback about your instructor of your
-                      choice according to the given fields.<br />
-                      In doing this, it will help the institution to improve
-                      teaching and learning. Your response will be treated with
-                      utmost confidentiality. Respond without bias. Thank
-                      you.</span
-                    >
-                  </div>
+  <!-- ========================= contact-section start ========================= -->
+  <section class="contact-section pt-130">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="contact-form-wrapper">
+            <div class="row">
+              <div class="col-xl-10 col-lg-8 mx-auto">
+                <div class="section-title1  mb-50">
+                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Hello! As a student,
+                  </h2>
+                  <br>
+                  <h5 class="wow fadeInDown">It's your right to evaluate your instructor in different aspects, so kindly
+                    take some little time to fill the form below, which is intended to provide us with feedback about
+                    your instructor of your choice according to the given fields.</h5>
+                  <p class="wow fadeInDown" data-wow-delay=".4s" style="color: #333">
+                    In doing this, it will help the institution to improve teaching and learning. Your response will be
+                    treated with utmost confidentiality. Respond without bias. Thank you.
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <form action="assets/php/mail.php" class="contact-form">
+            <form action="{% url 'facility' %}" method="post" class="contact-form">
+
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" name="name" id="name" placeholder="Facility name" required />
+                </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Facility name"
-                      required
-                    />
+                    <input type="text" name="facility_college" id="" placeholder="College of facility" required />
                   </div>
+                  <br />
+
+
                   <div class="row">
-                    <div class="col-md-6">
-                      <input
-                        type="text"
-                        name="facility_college"
-                        id="email"
-                        placeholder="College of facility"
-                        required
-                      />
-                    </div>
-                    <br />
-                    <div class="col-md-6">
-                      <label for="facility_accesibility"
-                        >Facility accesibility:</label
-                      ><br />
-                      <select
-                        id="facility_accesibility"
-                        name="facility_accesibility"
-                      >
+                    <div class="col-md-6 mb-3">
+                      <label for="facility_accessibility">Facility accessibility:</label>
+                      <select class="form-control" id="facility_accessibility" name="facility_accessibility">
                         <option value="">-- Select one --</option>
                         <option value="fully">Fully accessible</option>
                         <option value="partial">Partially accessible</option>
@@ -256,375 +203,224 @@
                       </select>
                     </div>
                   </div>
-                
-                  <div class="col-md-6">
-                    <p>
-                      Cleanliness and Hygiene:
-                      <span class="rating">
-                        <input
-                          type="radio"
-                          id="star5_cleanliness"
-                          name="Cleanliness"
-                          value="very_good"
-                        />
-                        <label for="star5_cleanliness"></label>
-                        <input
-                          type="radio"
-                          id="star4_cleanliness"
-                          name="Cleanliness"
-                          value="good"
-                        />
-                        <label for="star4_cleanliness"></label>
-                        <input
-                          type="radio"
-                          id="star3_cleanliness"
-                          name="Cleanliness"
-                          value="fair"
-                        />
-                        <label for="star3_cleanliness"></label>
-                        <input
-                          type="radio"
-                          id="star2_cleanliness"
-                          name="Cleanliness"
-                          value="poor"
-                        />
-                        <label for="star2_cleanliness"></label>
-                        <input
-                          type="radio"
-                          id="star1_cleanliness"
-                          name="Cleanliness"
-                          value="very_poor"
-                        />
-                        <label for="star1_cleanliness"></label>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p>
-                      Maintenance:
-                      <span class="rating">
-                        <input
-                          type="radio"
-                          id="star5_maintenance"
-                          name="Maintenance"
-                          value="very_good"
-                        />
-                        <label for="star5_maintenance"></label>
-                        <input
-                          type="radio"
-                          id="star4_maintenance"
-                          name="Maintenance"
-                          value="good"
-                        />
-                        <label for="star4_maintenance"></label>
-                        <input
-                          type="radio"
-                          id="star3_maintenance"
-                          name="Maintenance"
-                          value="fair"
-                        />
-                        <label for="star3_maintenance"></label>
-                        <input
-                          type="radio"
-                          id="star2_maintenance"
-                          name="Maintenance"
-                          value="poor"
-                        />
-                        <label for="star2_maintenance"></label>
-                        <input
-                          type="radio"
-                          id="star1_maintenance"
-                          name="Maintenance"
-                          value="very_poor"
-                        />
-                        <label for="star1_maintenance"></label>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p>
-                      Safety and Security:
-                      <span class="rating">
-                        <input
-                          type="radio"
-                          id="star5_safety"
-                          name="Safety"
-                          value="very_good"
-                        />
-                        <label for="star5_safety"></label>
-                        <input
-                          type="radio"
-                          id="star4_safety"
-                          name="Safety"
-                          value="good"
-                        />
-                        <label for="star4_safety"></label>
-                        <input
-                          type="radio"
-                          id="star3_safety"
-                          name="Safety"
-                          value="fair"
-                        />
-                        <label for="star3_safety"></label>
-                        <input
-                          type="radio"
-                          id="star2_safety"
-                          name="Safety"
-                          value="poor"
-                        />
-                        <label for="star2_safety"></label>
-                        <input
-                          type="radio"
-                          id="star1_safety"
-                          name="Safety"
-                          value="very_poor"
-                        />
-                        <label for="star1_safety"></label>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p>
-                      Resource Availability:
-                      <span class="rating">
-                        <input
-                          type="radio"
-                          id="star5_resource"
-                          name="resource_availability"
-                          value="very_good"
-                        />
-                        <label for="star5_resource"></label>
-                        <input
-                          type="radio"
-                          id="star4_resource"
-                          name="resource_availability"
-                          value="good"
-                        />
-                        <label for="star4_resource"></label>
-                        <input
-                          type="radio"
-                          id="star3_resource"
-                          name="resource_availability"
-                          value="fair"
-                        />
-                        <label for="star3_resource"></label>
-                        <input
-                          type="radio"
-                          id="star2_resource"
-                          name="resource_availability"
-                          value="poor"
-                        />
-                        <label for="star2_resource"></label>
-                        <input
-                          type="radio"
-                          id="star1_resource"
-                          name="resource_availability"
-                          value="very_poor"
-                        />
-                        <label for="star1_resource"></label>
-                      </span>
-                    </p>
-                  </div>
 
-                  <div class="col-md-6">
-                    <p>
-                      Overall facility rating:
-                      <span class="rating">
-                        <input
-                          type="radio"
-                          id="star5_overall"
-                          name="facility_rating"
-                          value="very_good"
-                        />
-                        <label for="star5_overall"></label>
-                        <input
-                          type="radio"
-                          id="star4_overall"
-                          name="facility_rating"
-                          value="good"
-                        />
-                        <label for="star4_overall"></label>
-                        <input
-                          type="radio"
-                          id="star3_overall"
-                          name="facility_rating"
-                          value="fair"
-                        />
-                        <label for="star3_overall"></label>
-                        <input
-                          type="radio"
-                          id="star2_overall"
-                          name="facility_rating"
-                          value="poor"
-                        />
-                        <label for="star2_overall"></label>
-                        <input
-                          type="radio"
-                          id="star1_overall"
-                          name="facility_rating"
-                          value="very_poor"
-                        />
-                        <label for="star1_overall"></label>
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <p>
+                        Cleanliness and Hygiene:
+                        <span class="rating">
+                          <input type="radio" id="star5_cleanliness" name="cleanliness" value="very_good" />
+                          <label for="star5_cleanliness"></label>
+                          <input type="radio" id="star4_cleanliness" name="cleanliness" value="good" />
+                          <label for="star4_cleanliness"></label>
+                          <input type="radio" id="star3_cleanliness" name="classleanliness" value="fair" />
+                          <label for="star3_cleanliness"></label>
+                          <input type="radio" id="star2_cleanliness" name="cleanliness" value="poor" />
+                          <label for="star2_cleanliness"></label>
+                          <input type="radio" id="star1_cleanliness" name="cleanliness" value="very_poor" />
+                          <label for="star1_cleanliness"></label>
+                        </span>
+                      </p>
+                    </div>
 
-                <div class="row">
-                  <div class="col-12">
-                    <textarea
-                      name="comment"
-                      id="message"
-                      placeholder="Please provide any additional comments or suggestions about our college facilities."
-                      rows="5"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="button text-center">
-                      <button type="submit" class="theme-btn">Submit</button>
+                    <div class="col-md-6 mb-3">
+                      <p>
+                        Maintenance:
+                        <span class="rating">
+                          <input type="radio" id="star5_maintenance" name="maintenance" value="very_good" />
+                          <label for="star5_maintenance"></label>
+                          <input type="radio" id="star4_maintenance" name="maintenance" value="good" />
+                          <label for="star4_maintenance"></label>
+                          <input type="radio" id="star3_maintenance" name="maintenance" value="fair" />
+                          <label for="star3_maintenance"></label>
+                          <input type="radio" id="star2_maintenance" name="maintenance" value="poor" />
+                          <label for="star2_maintenance"></label>
+                          <input type="radio" id="star1_maintenance" name="maintenance" value="very_poor" />
+                          <label for="star1_maintenance"></label>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <p>
+                        Safety and Security:
+                        <span class="rating">
+                          <input type="radio" id="star5_safety" name="safety" value="very_good" />
+                          <label for="star5_safety"></label>
+                          <input type="radio" id="star4_safety" name="safety" value="good" />
+                          <label for="star4_safety"></label>
+                          <input type="radio" id="star3_safety" name="safety" value="fair" />
+                          <label for="star3_safety"></label>
+                          <input type="radio" id="star2_safety" name="safety" value="poor" />
+                          <label for="star2_safety"></label>
+                          <input type="radio" id="star1_safety" name="safety" value="very_poor" />
+                          <label for="star1_safety"></label>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <p>
+                        Resource Availability:
+                        <span class="rating">
+                          <input type="radio" id="star5_resource" name="resource_availability" value="very_good" />
+                          <label for="star5_resource"></label>
+                          <input type="radio" id="star4_resource" name="resource_availability" value="good" />
+                          <label for="star4_resource"></label>
+                          <input type="radio" id="star3_resource" name="resource_availability" value="fair" />
+                          <label for="star3_resource"></label>
+                          <input type="radio" id="star2_resource" name="resource_availability" value="poor" />
+                          <label for="star2_resource"></label>
+                          <input type="radio" id="star1_resource" name="resource_availability" value="very_poor" />
+                          <label for="star1_resource"></label>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                      <p>
+                        Overall facility rating:
+                        <span class="rating">
+                          <input type="radio" id="star5_overall" name="facility_rating" value="very_good" />
+                          <label for="star5_overall"></label>
+                          <input type="radio" id="star4_overall" name="facility_rating" value="good" />
+                          <label for="star4_overall"></label>
+                          <input type="radio" id="star3_overall" name="facility_rating" value="fair" />
+                          <label for="star3_overall"></label>
+                          <input type="radio" id="star2_overall" name="facility_rating" value="poor" />
+                          <label for="star2_overall"></label>
+                          <input type="radio" id="star1_overall" name="facility_rating" value="very_poor" />
+                          <label for="star1_overall"></label>
+                        </span>
+                      </p>
                     </div>
                   </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========================= contact-section end ========================= -->
-    <!-- ========================= contact-section end ========================= -->
 
-    <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-5 col-lg-7">
-            <div class="section-title mb-60">
-              <h2
-                class="text-white wow fadeInUp"
-                data-wow-delay=".4s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.4s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Thank you for participting in this exercise of rating your
-                facilities.
-              </h2>
-              <p
-                class="text-white wow fadeInUp"
-                data-wow-delay=".6s"
-                style="
-                  visibility: visible;
-                  animation-delay: 0.6s;
-                  animation-name: fadeInUp;
-                "
-              >
-                Your Feedback helps us all.
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-7 col-lg-5">
-            <div class="contact-btn text-start text-lg-end"></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ========================= subscribe-section start ========================= -->
-    <section
-      class="subscribe-section pt-70 pb-70 img-bg"
-      style="
-        background-image: url('{% static 'assets/img/bg/common-bg.svg' %}');
-      "
-    >
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-6 col-lg-6">
-            <div class="section-title mb-30">
-              <span class="text-white wow fadeInDown" data-wow-delay=".2s"
-                >Subscribe</span
-              >
-              <h2 class="text-white mb-40 wow fadeInUp" data-wow-delay=".4s">
-                Subscribe Our Newsletter
-              </h2>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <form
-              action="#"
-              class="subscribe-form wow fadeInRight"
-              data-wow-delay=".4s"
-            >
-              <input
-                type="text"
-                name="subs-email"
-                id="subs-email"
-                placeholder="Your Email"
-              />
-              <button type="submit">
-                <i class="lni lni-telegram-original"></i>
-              </button>
+
+                  <div class="row">
+                    <div class="col-12">
+                      <textarea name="comment" id="message"
+                        placeholder="Please provide any additional comments or suggestions about our college facilities."
+                        rows="5"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="button text-center">
+                        <button type="submit" class="theme-btn">Submit</button>
+                      </div>
+                    </div>
+                  </div>
             </form>
           </div>
         </div>
       </div>
-    </section>
-    <!-- ========================= subscribe-section end ========================= -->
+    </div>
+  </section>
+  <!-- ========================= contact-section end ========================= -->
+  <!-- ========================= contact-section end ========================= -->
 
-    <!-- ========================= footer start ========================= -->
-    <footer class="footer">
-      <div class="container text-center">
-        <div class="copyright-area">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="footer-social-links">
-                <ul class="d-flex">
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="lni lni-facebook-filled"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="lni lni-twitter-filled"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="lni lni-linkedin-original"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="lni lni-instagram-filled"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
+  <section id="contact" class="contact-section cta-bg img-bg pt-110 pb-100">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-5 col-lg-7">
+          <div class="section-title mb-60">
+            <h2 class="text-white wow fadeInUp" data-wow-delay=".4s" style="
+                  visibility: visible;
+                  animation-delay: 0.4s;
+                  animation-name: fadeInUp;
+                ">
+              Thank you for participting in this exercise of rating your
+              facilities.
+            </h2>
+            <p class="text-white wow fadeInUp" data-wow-delay=".6s" style="
+                  visibility: visible;
+                  animation-delay: 0.6s;
+                  animation-name: fadeInUp;
+                ">
+              Your Feedback helps us all.
+            </p>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-5">
+          <div class="contact-btn text-start text-lg-end"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= subscribe-section start ========================= -->
+  <section class="subscribe-section pt-70 pb-70 img-bg" style="
+        background-image: url('{% static 'assets/img/bg/common-bg.svg' %}');
+      ">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-6 col-lg-6">
+          <div class="section-title mb-30">
+            <span class="text-white wow fadeInDown" data-wow-delay=".2s">Subscribe</span>
+            <h2 class="text-white mb-40 wow fadeInUp" data-wow-delay=".4s">
+              Subscribe Our Newsletter
+            </h2>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <form action="#" class="subscribe-form wow fadeInRight" data-wow-delay=".4s">
+            <input type="text" name="subs-email" id="subs-email" placeholder="Your Email" />
+            <button type="submit">
+              <i class="lni lni-telegram-original"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ========================= subscribe-section end ========================= -->
+
+  <!-- ========================= footer start ========================= -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="copyright-area">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="footer-social-links">
+              <ul class="d-flex">
+                <li>
+                  <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- ========================= footer end ========================= -->
+    </div>
+  </footer>
+  <!-- ========================= footer end ========================= -->
 
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top">
-      <i class="lni lni-arrow-up"></i>
-    </a>
+  <!-- ========================= scroll-top ========================= -->
+  <a href="#" class="scroll-top">
+    <i class="lni lni-arrow-up"></i>
+  </a>
 
-    <!-- ========================= JS here ========================= -->
-    <script src="{% static 'assets/js/bootstrap.bundle-5.0.0-beta1.min.js' %}"></script>
-    <script src="{% static 'assets/js/contact-form.js' %}"></script>
-    <script src="{% static 'assets/js/count-up.min.js' %}"></script>
-    <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
-    <script src="{% static 'assets/js/isotope.min.js' %}"></script>
-    <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'assets/js/wow.min.js' %}"></script>
-    <script src="{% static 'assets/js/imagesloaded.min.js' %}"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
-  </body>
+  <!-- ========================= JS here ========================= -->
+  <script src="{% static 'assets/js/bootstrap.bundle-5.0.0-beta1.min.js' %}"></script>
+  <script src="{% static 'assets/js/contact-form.js' %}"></script>
+  <script src="{% static 'assets/js/count-up.min.js' %}"></script>
+  <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+  <script src="{% static 'assets/js/isotope.min.js' %}"></script>
+  <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/js/wow.min.js' %}"></script>
+  <script src="{% static 'assets/js/imagesloaded.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
 </html>
