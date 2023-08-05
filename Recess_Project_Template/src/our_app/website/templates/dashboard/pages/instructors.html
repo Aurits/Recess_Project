@@ -377,9 +377,6 @@
 
                 <canvas id="instructorChart" width="400" height="400"></canvas>
 
-
-
-
               </div>
             </div>
           </div>
@@ -403,34 +400,35 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Dept</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Unit
                       </th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Knowledge</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Communication</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Teaching</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Responsiveness</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Comments</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="p-3">
                     {% for feedback in feedbacks %}
                     <tr>
-                      <td>{{ feedback.instructorName }}</td>
-                      <td>{{ feedback.department }}</td>
-                      <td>{{ feedback.courseUnit }}</td>
-                      <td>{{ feedback.get_knowledge_display }}</td>
-                      <td>{{ feedback.get_communication_display }}</td>
-                      <td>{{ feedback.get_teachingStyle_display }}</td>
-                      <td>{{ feedback.get_responsiveness_display }}</td>
-                      <td>{{ feedback.additional_comments }}</td>
-                      <td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.instructorName }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.department }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.courseUnit }}</p></td>
+
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.get_knowledge_display }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.get_communication_display }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.get_teachingStyle_display }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.get_responsiveness_display }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ feedback.additional_comments }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">
                         <a href="{% url 'delete_instructor_feedback' feedback.id %}"
-                          class="btn btn-danger btn-sm">Delete</a>
+                          class="btn btn-danger btn-sm">Delete</a></p>
                       </td>
                     </tr>
                     {% endfor %}

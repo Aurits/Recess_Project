@@ -423,32 +423,32 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Safety and Security
                       </th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Overall Rating
                       </th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                         Comment
                       </th>
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="p-3">
                     {% for facility in facilities %}
-                    <tr>
-                      <td>{{ facility.name }}</td>
-                      <td>{{ facility.facility_college }}</td>
-                      <td>{{ facility.facility_accessibility }}</td>
-                      <td>{{ facility.resource_availability }}</td>
-                      <td>{{ facility.cleanliness }}</td>
-                      <td>{{ facility.maintenance }}</td>
-                      <td>{{ facility.safety }}</td>
-                      <td>{{ facility.facility_rating }}</td>
-                      <td>{{ facility.comment }}</td>
-                      <td>
+                    <tr class="pl-3">
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.name }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.facility_college }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.facility_accessibility }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.resource_availability }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.cleanliness }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.maintenance }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.safety }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.facility_rating }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ facility.comment }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">
                         <form action="{% url 'delete_facility_feedback' facility.id %}" method="post">
                           {% csrf_token %}
                           <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        </form></p>
                       </td>
                     </tr>
                     {% endfor %}

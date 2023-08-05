@@ -568,28 +568,28 @@
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive">
-                <table class="table align-items-center mb-0">
+             <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
+                      <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
                       </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Year</th>
                     </tr>
                   </thead>
 
 
-                  <tbody>
+                  <tbody class="p-3">
                     {% for student in students %}
                     <tr>
-                      <td>{{ student.name }}</td>
-                      <td>{{ student.studentId }}</td>
-                      <td>{{ student.emailAddress }}</td>
-                      <td>{{ student.year_of_study }}</td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ student.name }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ student.studentId }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ student.emailAddress }}</p></td>
+                      <td><p class="text-sm font-weight-bold mb-0">{{ student.year_of_study }}</p></td>
                     </tr>
                     {% endfor %}
 
