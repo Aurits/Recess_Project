@@ -10,6 +10,11 @@ from .models import CourseFeedback
 from .forms import CourseFeedbackForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Avg
+from django.core.paginator import Paginator
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
+from reportlab.lib import colors
 
 
 
@@ -87,6 +92,16 @@ def dashboard(request):
     avg_facility_safety = FacilityFeedback.objects.aggregate(Avg('safety'))['safety__avg']
     avg_facility_resource_availability = FacilityFeedback.objects.aggregate(Avg('resource_availability'))['resource_availability__avg']
     avg_facility_rating = FacilityFeedback.objects.aggregate(Avg('facility_rating'))['facility_rating__avg']
+    # Number of items to show per page
+    items_per_page = 10
+
+    paginator = Paginator(students, items_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page_number = request.GET.get('page')
+
+    # Get the corresponding page from the paginator
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'course_items': course_items,
@@ -125,6 +140,7 @@ def dashboard(request):
         'avg_facility_safety': avg_facility_safety,
         'avg_facility_resource_availability': avg_facility_resource_availability,
         'avg_facility_rating': avg_facility_rating,
+        'page_obj': page_obj,
     }
 
     return render(request, 'dashboard/pages/dashboard.html', context)
@@ -136,10 +152,21 @@ def courses(request):
     course_items = CourseFeedback.objects.all()
     course_ratings = list(CourseFeedback.objects.values_list('effectiveness', flat=True))
     course_rating_counts = [course_ratings.count(rating) for rating in range(1, 6)]
+        # Number of items to show per page
+    items_per_page = 10
+
+    paginator = Paginator(course_items, items_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page_number = request.GET.get('page')
+
+    # Get the corresponding page from the paginator
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'course_items': course_items,
-        'course_rating_counts': course_rating_counts, }
+        'course_rating_counts': course_rating_counts,
+        'page_obj': page_obj, }
     return render(request, 'dashboard/pages/courses.html', context)
 
 
@@ -155,10 +182,21 @@ def facilities(request):
     facilities = FacilityFeedback.objects.all()
     facility_ratings = list(FacilityFeedback.objects.values_list('facility_rating', flat=True))
     facility_rating_counts = [facility_ratings.count(rating) for rating in range(1, 6)]
+            # Number of items to show per page
+    items_per_page = 10
+
+    paginator = Paginator(facilities, items_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page_number = request.GET.get('page')
+
+    # Get the corresponding page from the paginator
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'facilities': facilities,
         'facility_rating_counts': facility_rating_counts,
+        'page_obj': page_obj,
     }
     return render(request, 'dashboard/pages/facilities.html', context)
 
@@ -170,11 +208,22 @@ def instructors(request):
     
     # Prepare the rating labels to be passed to the template
     rating_labels = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+            # Number of items to show per page
+    items_per_page = 10
+
+    paginator = Paginator(feedbacks, items_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page_number = request.GET.get('page')
+
+    # Get the corresponding page from the paginator
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'feedbacks': feedbacks,
         'instructor_rating_counts': instructor_rating_counts,
         'rating_labels': rating_labels,
+        'page_obj': page_obj,
     }
     return render(request, 'dashboard/pages/instructors.html', context)
 
@@ -399,3 +448,109 @@ def delete_facility_feedback(request, feedback_id):
         feedback = FacilityFeedback.objects.get(pk=feedback_id)
         feedback.delete()
     return redirect('facilities')
+
+
+
+
+
+#GENERATE THE REPORTS
+
+
+def generate_course_feedback_pdf(request):
+    data = CourseFeedback.objects.all()
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="course_feedback.pdf"'
+
+    doc = SimpleDocTemplate(response, pagesize=letter)
+    elements = []
+
+    # Define table headers and data
+    table_data = [['Course', 'Effectiveness', 'Interest', 'Feedback']]
+    for item in data:
+        table_data.append([item.courseName, item.get_effectiveness_display(), item.get_interest_display(), item.qualitative_feedback])
+
+    # Create the table and set styles
+    table = Table(table_data, colWidths=[150, 100, 100, 250], repeatRows=1)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+
+    elements.append(Paragraph("Course Feedback", style=None))
+    elements.append(table)
+
+    doc.build(elements)
+
+    return response
+
+def generate_facility_feedback_pdf(request):
+    data = FacilityFeedback.objects.all()
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="facility_feedback.pdf"'
+
+    doc = SimpleDocTemplate(response, pagesize=letter)
+    elements = []
+
+    # Define table headers and data
+    table_data = [['Facility', 'Rating', 'Comment']]
+    for item in data:
+        table_data.append([item.name, item.facility_rating, item.comment])
+
+    # Create the table and set styles
+    table = Table(table_data, colWidths=[150, 100, 250], repeatRows=1)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+
+    elements.append(Paragraph("Facility Feedback", style=None))
+    elements.append(table)
+
+    doc.build(elements)
+
+    return response
+
+def generate_instructor_feedback_pdf(request):
+    data = InstructorFeedback.objects.all()
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="instructor_feedback.pdf"'
+
+    doc = SimpleDocTemplate(response, pagesize=letter)
+    elements = []
+
+    # Define table headers and data
+    table_data = [['Instructor', 'Knowledge', 'Communication', 'Teaching Style', 'Responsiveness', 'Feedback']]
+    for item in data:
+        table_data.append([item.instructorName, item.get_knowledge_display(), item.get_communication_display(), item.get_teachingStyle_display(), item.get_responsiveness_display(), item.additional_comments])
+
+    # Create the table and set styles
+    table = Table(table_data, colWidths=[150, 100, 100, 100, 100, 250], repeatRows=1)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ]))
+
+    elements.append(Paragraph("Instructor Feedback", style=None))
+    elements.append(table)
+
+    doc.build(elements)
+
+    return response

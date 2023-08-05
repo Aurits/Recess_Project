@@ -406,7 +406,9 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+
+                    <a href="{% url 'generate_course_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -428,7 +430,8 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{% url 'generate_instructor_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -450,7 +453,8 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{% url 'generate_facility_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -472,7 +476,7 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="#"><i class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -520,7 +524,7 @@
                     </div>
                     <h4 class="font-weight-bolder">{{studentDetails.count}}</h4>
                     <div class="progress w-75">
-                      <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="{{studentDetails.count}}"
+                      <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="{{students.count}}"
                         aria-valuemin="0" aria-valuemax="1000"></div>
                     </div>
                   </div>
@@ -594,6 +598,37 @@
 
 
                 </table>
+
+                <!-- Add the pagination links at the bottom of the table -->
+                <div class="container w-100">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <!-- Add the pagination links at the bottom of the table -->
+                      <div class="pagination-container" style="margin-top: 20px; margin-bottom: 20px;">
+                        <div class="pagination">
+                          <span class="step-links">
+                            {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
               </div>
             </div>
           </div>
@@ -761,19 +796,22 @@
   <script src="{% static 'asset/js/plugins/perfect-scrollbar.min.js' %}"></script>
   <script src="{% static 'asset/js/plugins/smooth-scrollbar.min.js' %}"></script>
   <script src="{% static 'asset/js/plugins/chartjs.min.js' %}"></script>
+
   <script>
     var instructorData = {
       labels: ["Knowledge", "Communication", "Teaching Style", "Responsiveness"],
-      datasets: [{
-        label: "Poor",
-        tension: 0.4,
-        borderWidth: 0,
-        borderRadius: 4,
-        borderSkipped: false,
-        backgroundColor: "rgba(255, 99, 132, 0.8)",
-        data: [{{ poor_knowledge }}, {{ poor_communication }}, {{ poor_teaching_style }}, { { poor_responsiveness } }],
-    maxBarThickness: 6
-        }, {
+      datasets: [
+        {
+          label: "Poor",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 99, 132, 0.8)",
+          data: [{{ poor_knowledge }}, {{ poor_communication }}, {{ poor_teaching_style }}, { { poor_responsiveness } }],
+    maxBarThickness: 6,
+      },
+    {
       label: "Fair",
         tension: 0.4,
           borderWidth: 0,
@@ -781,8 +819,9 @@
               borderSkipped: false,
                 backgroundColor: "rgba(255, 159, 64, 0.8)",
                   data: [{{ fair_knowledge }}, { { fair_communication } }, { { fair_teaching_style } }, { { fair_responsiveness } }],
-    maxBarThickness: 6
-        }, {
+    maxBarThickness: 6,
+      },
+    {
       label: "Good",
         tension: 0.4,
           borderWidth: 0,
@@ -790,8 +829,9 @@
               borderSkipped: false,
                 backgroundColor: "rgba(55, 158, 95, 0.8)",
                   data: [{{ good_knowledge }}, { { good_communication } }, { { good_teaching_style } }, { { good_responsiveness } }],
-    maxBarThickness: 6
-        }, {
+    maxBarThickness: 6,
+      },
+    {
       label: "Very Good",
         tension: 0.4,
           borderWidth: 0,
@@ -799,8 +839,9 @@
               borderSkipped: false,
                 backgroundColor: "rgba(54, 162, 235, 0.8)",
                   data: [{{ very_good_knowledge }}, { { very_good_communication } }, { { very_good_teaching_style } }, { { very_good_responsiveness } }],
-    maxBarThickness: 6
-        }, {
+    maxBarThickness: 6,
+      },
+    {
       label: "Excellent",
         tension: 0.4,
           borderWidth: 0,
@@ -808,9 +849,10 @@
               borderSkipped: false,
                 backgroundColor: "rgba(75, 192, 192, 0.8)",
                   data: [{{ excellent_knowledge }}, { { excellent_communication } }, { { excellent_teaching_style } }, { { excellent_responsiveness } }],
-    maxBarThickness: 6
-        }],
-    };
+    maxBarThickness: 6,
+      },
+    ],
+  };
 
     var instructorOptions = {
       responsive: true,
@@ -818,7 +860,7 @@
       plugins: {
         legend: {
           display: true,
-        }
+        },
       },
       interaction: {
         intersect: false,
@@ -831,7 +873,7 @@
             display: true,
             drawOnChartArea: true,
             drawTicks: false,
-            borderDash: [5, 5]
+            borderDash: [5, 5],
           },
           ticks: {
             display: true,
@@ -841,9 +883,9 @@
               size: 11,
               family: "Open Sans",
               style: 'normal',
-              lineHeight: 2
+              lineHeight: 2,
             },
-          }
+          },
         },
         x: {
           grid: {
@@ -851,7 +893,7 @@
             display: true,
             drawOnChartArea: true,
             drawTicks: false,
-            borderDash: [5, 5]
+            borderDash: [5, 5],
           },
           ticks: {
             display: true,
@@ -861,9 +903,9 @@
               size: 11,
               family: "Open Sans",
               style: 'normal',
-              lineHeight: 2
+              lineHeight: 2,
             },
-          }
+          },
         },
       },
     };
@@ -875,16 +917,7 @@
     });
   </script>
 
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar'))
-    {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
+
 
   <script>
     var ratingsData = {
@@ -895,17 +928,17 @@
         backgroundColor: "rgba(255, 99, 132, 0.2)", // Light Red
         fill: true,
         data: [
-          {{ avg_course_effectiveness|default: 0
+          {{ avg_course_effectiveness|default: "0"
       }},
-      {{ avg_course_interest|default: 0 }},
+      {{ avg_course_interest|default: "0" }},
     0, // Placeholder for Instructor Ratings
       0, // Placeholder for Instructor Ratings
       0, // Placeholder for Instructor Ratings
       0, // Placeholder for Instructor Ratings
       0, // Placeholder for Facility Ratings
-            ],
+      ],
     maxBarThickness: 30
-        },
+    },
     {
       label: "Instructor Ratings",
         borderColor: "rgba(54, 162, 235, 1)", // Blue
@@ -914,14 +947,14 @@
               data: [
                 0, // Placeholder for Course Ratings
                 0, // Placeholder for Course Ratings
-                {{ avg_instructor_knowledge|default: 0 }},
-    { { avg_instructor_communication |default: 0 } },
-    { { avg_instructor_teaching_style |default: 0 } },
-    { { avg_instructor_responsiveness |default: 0 } },
+                {{ avg_instructor_knowledge|default: "0" }},
+    { { avg_instructor_communication |default: "0" } },
+    { { avg_instructor_teaching_style |default: "0" } },
+    { { avg_instructor_responsiveness |default: "0" } },
     0, // Placeholder for Facility Ratings
-            ],
+      ],
     maxBarThickness: 30
-        },
+    },
     {
       label: "Facility Ratings",
         borderColor: "rgba(75, 192, 192, 1)", // Teal
@@ -934,16 +967,16 @@
                 0, // Placeholder for Instructor Ratings
                 0, // Placeholder for Instructor Ratings
                 0, // Placeholder for Instructor Ratings
-                {{ avg_facility_accessibility|default: 0 }},
-    { { avg_facility_cleanliness |default: 0 } },
-    { { avg_facility_maintenance |default: 0 } },
-    { { avg_facility_safety |default: 0 } },
-    { { avg_facility_resource_availability |default: 0 } },
-    { { avg_facility_rating |default: 0 } }
-            ],
+                {{ avg_facility_accessibility|default: "0" }},
+    { { avg_facility_cleanliness |default: "0" } },
+    { { avg_facility_maintenance |default: "0" } },
+    { { avg_facility_safety |default: "0" } },
+    { { avg_facility_resource_availability |default: "0" } },
+    { { avg_facility_rating |default: "0" } }
+      ],
     maxBarThickness: 30
-        }],
-    };
+    }],
+  };
 
     var ratingsOptions = {
       responsive: true,
@@ -969,6 +1002,16 @@
   </script>
 
 
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar'))
+    {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

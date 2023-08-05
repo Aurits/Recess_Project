@@ -22,6 +22,10 @@ urlpatterns = [
          views.delete_course_feedback, name='delete_course_feedback'),
     path('facilities/<int:feedback_id>/delete/', views.delete_facility_feedback, name='delete_facility_feedback'),
     path('facility', views.facility, name='facility'),
+    # Your other URL patterns
+    path('generate_course_feedback_pdf/', views.generate_course_feedback_pdf, name='generate_course_feedback_pdf'),
+    path('generate_facility_feedback_pdf/', views.generate_facility_feedback_pdf, name='generate_facility_feedback_pdf'),
+    path('generate_instructor_feedback_pdf/', views.generate_instructor_feedback_pdf, name='generate_instructor_feedback_pdf'),
 
 ]
 

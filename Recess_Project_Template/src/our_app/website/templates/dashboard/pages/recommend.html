@@ -23,6 +23,12 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+  <!-- Add jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -406,7 +412,8 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{% url 'generate_course_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -428,7 +435,8 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{% url 'generate_instructor_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -450,7 +458,8 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    <a href="{% url 'generate_facility_feedback_pdf' %}"><i
+                        class="ni ni-cloud-download-95 text-lg opacity-10" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -481,13 +490,105 @@
         </div>
       </div>
       <div class="row mt-4">
-
-
-
-
-
-
+        <div class="container-fluid">
+          <ul class="nav nav-pills">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Courses</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="showContent('courses')">(AI) Analysis</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Instructors</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="showContent('instructors')">(AI) Analysis</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Facilities</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="showContent('facilities')">(AI) Analysis</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <div class="row mt-4">
+        <div class="container-fluid">
+          <div id="coursesContent" style="display: none;">
+            <table class="table caption-top">
+              <caption>Quick Insights - Courses</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div id="instructorsContent" style="display: none;">
+            <table class="table caption-top">
+              <caption>Quick Insights - Instructors</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div id="facilitiesContent" style="display: none;">
+            <table class="table caption-top">
+              <caption>Quick Insights - Facilities</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
       <div class="row my-4">
 
         <div class="col-lg-4 col-md-6">
@@ -663,6 +764,22 @@
         damping: '0.5'
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+
+  <script>
+    function showContent(contentType)
+    {
+      console.log("showContent called with: " + contentType);
+
+      // Hide all content divs
+      $("#coursesContent").hide();
+      $("#instructorsContent").hide();
+      $("#facilitiesContent").hide();
+
+      // Show the selected content div
+      $("#" + contentType + "Content").show();
     }
   </script>
 
