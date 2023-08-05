@@ -144,6 +144,32 @@
             <span class="nav-link-text ms-1">Facilities</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link  " href="{% url 'recommend'%}">
+            <div
+              class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>office</title>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <g transform="translate(1716.000000, 291.000000)">
+                      <g id="office" transform="translate(153.000000, 2.000000)">
+                        <path class="color-background opacity-6"
+                          d="M12.25,17.5 L8.75,17.5 L8.75,1.75 C8.75,0.78225 9.53225,0 10.5,0 L31.5,0 C32.46775,0 33.25,0.78225 33.25,1.75 L33.25,12.25 L29.75,12.25 L29.75,3.5 L12.25,3.5 L12.25,17.5 Z">
+                        </path>
+                        <path class="color-background"
+                          d="M40.25,14 L24.5,14 C23.53225,14 22.75,14.78225 22.75,15.75 L22.75,38.5 L19.25,38.5 L19.25,22.75 C19.25,21.78225 18.46775,21 17.5,21 L1.75,21 C0.78225,21 0,21.78225 0,22.75 L0,40.25 C0,41.21775 0.78225,42 1.75,42 L40.25,42 C41.21775,42 42,41.21775 42,40.25 L42,15.75 C42,14.78225 41.21775,14 40.25,14 Z M12.25,36.75 L7,36.75 L7,33.25 L12.25,33.25 L12.25,36.75 Z M12.25,29.75 L7,29.75 L7,26.25 L12.25,26.25 L12.25,29.75 Z M35,36.75 L29.75,36.75 L29.75,33.25 L35,33.25 L35,36.75 Z M35,29.75 L29.75,29.75 L29.75,26.25 L35,26.25 L35,29.75 Z M35,22.75 L29.75,22.75 L29.75,19.25 L35,19.25 L35,22.75 Z">
+                        </path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <span class="nav-link-text ms-1">Recommendations</span>
+          </a>
+        </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
@@ -439,8 +465,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Students</p>
                     <h5 class="font-weight-bolder mb-0">
-                      {{studentDetails.count}}
-                      <span class="text-success text-sm font-weight-bolder">received responses</span>
+                      {{students.count}}
+                      <span class="text-success text-sm font-weight-bolder">registered</span>
                     </h5>
                   </div>
                 </div>
@@ -460,7 +486,8 @@
             <div class="card-body p-3">
               <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
                 <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+
+                  <canvas id="instructorFeedbackChart" class="chart-canvas" height="170"></canvas>
                 </div>
               </div>
               <h6 class="ms-2 mt-4 mb-0"> Active Students </h6>
@@ -509,12 +536,11 @@
               <h6>Performance Graph</h6>
               <p class="text-sm">
                 <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
               </p>
             </div>
             <div class="card-body p-3">
               <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                <canvas id="ratingsChart" class="chart-canvas" height="300"></canvas>
               </div>
             </div>
           </div>
@@ -726,6 +752,9 @@
       </div>
     </div>
   </div>
+  <!-- Include Chart.js CSS and JS libraries -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!--   Core JS Files   -->
   <script src="{% static 'asset/js/core/popper.min.js' %}"></script>
   <script src="{% static 'asset/js/core/bootstrap.min.js' %}"></script>
@@ -733,175 +762,119 @@
   <script src="{% static 'asset/js/plugins/smooth-scrollbar.min.js' %}"></script>
   <script src="{% static 'asset/js/plugins/chartjs.min.js' %}"></script>
   <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
+    var instructorData = {
+      labels: ["Knowledge", "Communication", "Teaching Style", "Responsiveness"],
+      datasets: [{
+        label: "Poor",
+        tension: 0.4,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(255, 99, 132, 0.8)",
+        data: [{{ poor_knowledge }}, {{ poor_communication }}, {{ poor_teaching_style }}, { { poor_responsiveness } }],
+    maxBarThickness: 6
+        }, {
+      label: "Fair",
+        tension: 0.4,
+          borderWidth: 0,
+            borderRadius: 4,
+              borderSkipped: false,
+                backgroundColor: "rgba(255, 159, 64, 0.8)",
+                  data: [{{ fair_knowledge }}, { { fair_communication } }, { { fair_teaching_style } }, { { fair_responsiveness } }],
+    maxBarThickness: 6
+        }, {
+      label: "Good",
+        tension: 0.4,
+          borderWidth: 0,
+            borderRadius: 4,
+              borderSkipped: false,
+                backgroundColor: "rgba(55, 158, 95, 0.8)",
+                  data: [{{ good_knowledge }}, { { good_communication } }, { { good_teaching_style } }, { { good_responsiveness } }],
+    maxBarThickness: 6
+        }, {
+      label: "Very Good",
+        tension: 0.4,
+          borderWidth: 0,
+            borderRadius: 4,
+              borderSkipped: false,
+                backgroundColor: "rgba(54, 162, 235, 0.8)",
+                  data: [{{ very_good_knowledge }}, { { very_good_communication } }, { { very_good_teaching_style } }, { { very_good_responsiveness } }],
+    maxBarThickness: 6
+        }, {
+      label: "Excellent",
+        tension: 0.4,
+          borderWidth: 0,
+            borderRadius: 4,
+              borderSkipped: false,
+                backgroundColor: "rgba(75, 192, 192, 0.8)",
+                  data: [{{ excellent_knowledge }}, { { excellent_communication } }, { { excellent_teaching_style } }, { { excellent_responsiveness } }],
+    maxBarThickness: 6
+        }],
+    };
 
-    new Chart(ctx, {
+    var instructorOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            padding: 10,
+            color: '#b2b9bf',
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#b2b9bf',
+            padding: 20,
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    };
+
+    var instructorChart = new Chart(document.getElementById('instructorFeedbackChart'), {
       type: "bar",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          maxBarThickness: 6
-        },],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 15,
-              font: {
-                size: 14,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false
-            },
-            ticks: {
-              display: false
-            },
-          },
-        },
-      },
-    });
-
-
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#cb0c9f",
-          borderWidth: 3,
-          backgroundColor: gradientStroke1,
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
-
-        },
-        {
-          label: "Websites",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#3A416F",
-          borderWidth: 3,
-          backgroundColor: gradientStroke2,
-          fill: true,
-          data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-          maxBarThickness: 6
-        },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#b2b9bf',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#b2b9bf',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
+      data: instructorData,
+      options: instructorOptions,
     });
   </script>
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar'))
@@ -912,6 +885,90 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+  <script>
+    var ratingsData = {
+      labels: ["Course Effectiveness", "Course Interest", "Instructor Knowledge", "Instructor Communication", "Instructor Teaching Style", "Instructor Responsiveness", "Facility Accessibility", "Facility Cleanliness", "Facility Maintenance", "Facility Safety", "Facility Resource Availability", "Facility Rating"],
+      datasets: [{
+        label: "Course Ratings",
+        borderColor: "rgba(255, 99, 132, 1)", // Red
+        backgroundColor: "rgba(255, 99, 132, 0.2)", // Light Red
+        fill: true,
+        data: [
+          {{ avg_course_effectiveness|default: 0
+      }},
+      {{ avg_course_interest|default: 0 }},
+    0, // Placeholder for Instructor Ratings
+      0, // Placeholder for Instructor Ratings
+      0, // Placeholder for Instructor Ratings
+      0, // Placeholder for Instructor Ratings
+      0, // Placeholder for Facility Ratings
+            ],
+    maxBarThickness: 30
+        },
+    {
+      label: "Instructor Ratings",
+        borderColor: "rgba(54, 162, 235, 1)", // Blue
+          backgroundColor: "rgba(54, 162, 235, 0.2)", // Light Blue
+            fill: true,
+              data: [
+                0, // Placeholder for Course Ratings
+                0, // Placeholder for Course Ratings
+                {{ avg_instructor_knowledge|default: 0 }},
+    { { avg_instructor_communication |default: 0 } },
+    { { avg_instructor_teaching_style |default: 0 } },
+    { { avg_instructor_responsiveness |default: 0 } },
+    0, // Placeholder for Facility Ratings
+            ],
+    maxBarThickness: 30
+        },
+    {
+      label: "Facility Ratings",
+        borderColor: "rgba(75, 192, 192, 1)", // Teal
+          backgroundColor: "rgba(75, 192, 192, 0.2)", // Light Teal
+            fill: true,
+              data: [
+                0, // Placeholder for Course Ratings
+                0, // Placeholder for Course Ratings
+                0, // Placeholder for Instructor Ratings
+                0, // Placeholder for Instructor Ratings
+                0, // Placeholder for Instructor Ratings
+                0, // Placeholder for Instructor Ratings
+                {{ avg_facility_accessibility|default: 0 }},
+    { { avg_facility_cleanliness |default: 0 } },
+    { { avg_facility_maintenance |default: 0 } },
+    { { avg_facility_safety |default: 0 } },
+    { { avg_facility_resource_availability |default: 0 } },
+    { { avg_facility_rating |default: 0 } }
+            ],
+    maxBarThickness: 30
+        }],
+    };
+
+    var ratingsOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true, // Show the legend for category labels
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          suggestedMax: 5,
+        }
+      },
+    };
+
+    var ratingsChart = new Chart(document.getElementById('ratingsChart'), {
+      type: "line",
+      data: ratingsData,
+      options: ratingsOptions,
+    });
+  </script>
+
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

@@ -365,6 +365,26 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+      <div class="col-lg-6col-md-6">
+        <div class="card h-100">
+          <div class="card-header pb-0">
+            <h6>Chart</h6>
+
+          </div>
+          <div class="card-body p-3">
+            <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+              <div class="chart">
+
+                <canvas id="instructorChart" width="400" height="400"></canvas>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-12">
@@ -514,11 +534,64 @@
       </div>
     </div>
   </div>
+
+  <!-- Include Chart.js CSS and JS libraries -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <!--   Core JS Files   -->
   <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
   <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
   <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
   <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+
+  <!-- Add this script in your HTML template -->
+  <script>
+    var instructorData = {
+      labels: [
+        {% for label in rating_labels %}
+    "{{ label }}",
+      {% endfor %}
+        ],
+    datasets: [{
+      data: [
+        {% for rating_count in instructor_rating_counts %}
+                    {{ rating_count }},
+    {% endfor %}
+    ],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.8)', // Red
+        'rgba(255, 159, 64, 0.8)', // Orange
+        'rgba(55, 158, 95, 0.8)',  // Green
+        'rgba(54, 162, 235, 0.8)', // Blue
+        'rgba(75, 192, 192, 0.8)', // Teal
+      ],
+        borderWidth: 0
+        }]
+    };
+
+    var instructorOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+        }
+      }
+    };
+
+    var instructorChart = new Chart(document.getElementById('instructorChart'), {
+      type: 'pie',
+      data: instructorData,
+      options: instructorOptions
+    });
+  </script>
+
+
+
+
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar'))
