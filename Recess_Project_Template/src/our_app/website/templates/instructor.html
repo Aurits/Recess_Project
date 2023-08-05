@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Group S</title>
+    <title>Mak Feedback</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,51 +28,47 @@
         .form-group {
             margin-bottom: 20px;
         }
-
-        .rating-label {
-            display: inline-block;
-            width: 50px;
-        }
     </style>
 
-      <style>
-    /* Style for star icons */
-    .rating {
-      unicode-bidi: bidi-override;
-      direction: rtl;
-      display: inline-block;
-      position: relative;
-    }
+    <style>
+        /* Style for star icons */
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            display: inline-block;
+            position: relative;
+        }
 
-    .rating input {
-      display: none;
-    }
+        .rating input {
+            display: none;
+        }
 
-    .rating label {
-      color: #ccc;
-      font-size: 30px;
-      padding: 0 2px;
-      cursor: pointer;
-    }
+        .rating label {
+            color: #ccc;
+            font-size: 30px;
+            padding: 0 2px;
+            cursor: pointer;
+        }
 
-    .rating label:before {
-      content: "\2605";
-    }
+        .rating label:before {
+            content: "\2605";
+        }
 
-    .rating input:checked~label:before,
-    .rating label:hover~label:before {
-      content: "\2605";
-      color: #ffdd00;
-    }
-    .form-group input{
-  padding: 18px 25px;
-    border-radius: 30px;
-    border: 1px solid #F4EEFB;
-    margin-bottom: 25px;
-    width: 100%;
-    transition: all 0.3s ease-out 0s;
-}
-  </style>
+        .rating input:checked~label:before,
+        .rating label:hover~label:before {
+            content: "\2605";
+            color: #ffdd00;
+        }
+
+        .form-group input {
+            padding: 18px 25px;
+            border-radius: 30px;
+            border: 1px solid #F4EEFB;
+            margin-bottom: 25px;
+            width: 100%;
+            transition: all 0.3s ease-out 0s;
+        }
+    </style>
 
 
 </head>
@@ -126,14 +122,14 @@
                                 <li class="nav-item">
                                     <a class="page-scroll" href="{% url 'course'%}">course</a>
                                 </li>
-                                 <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="page-scroll" href="{% url 'instructor' %}">instructor</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="page-scroll " href="{% url 'facility' %}">facility</a>
                                 </li>
 
-                               
+
                             </ul>
 
                         </div> <!-- navbar collapse -->
@@ -156,7 +152,8 @@
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System | Makerere University</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback
+                                            Collection System | Makerere University</a></li>
 
                                 </ol>
                             </nav>
@@ -176,118 +173,153 @@
                     <div class="contact-form-wrapper"
                         style="background-color: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
                         <div class="row">
-              <div class="col-xl-10 col-lg-8 mx-auto">
-                <div class="section-title1  mb-50">
-                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here,
-                  </h2>
-                  <br>
-                  
-                </div>
-              </div>
-            </div>
+                            <div class="col-xl-10 col-lg-8 mx-auto">
+                                <div class="section-title1  mb-50">
+                                    <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill
+                                        here
+                                    </h2>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
 
 
-                       <form method="post" class="needs-validation" novalidate>
-    {% csrf_token %}
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="container row text-center">
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="{{ form.instructorName.name }}"
+                                        id="{{ form.instructorName.auto_id }}" class="form-control rounded"
+                                        placeholder="Instructor Name" required />
+                                    <div class="invalid-feedback">Please provide the instructor's name.</div>
+                                </div>
 
-    <div class="form-group">
-        <input type="text" name="{{ form.instructorName.name }}" id="{{ form.instructorName.auto_id }}" class="form-control rounded" placeholder="Instructor Name*" required />
-        <div class="invalid-feedback">Please provide the instructor's name.</div>
-    </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="{{ form.department.name }}"
+                                        id="{{ form.department.auto_id }}" class="form-control rounded"
+                                        placeholder="Department" required />
+                                    <div class="invalid-feedback">Please provide the department name.</div>
+                                </div>
 
-    <div class="form-group">
-        <input type="text" name="{{ form.department.name }}" id="{{ form.department.auto_id }}" class="form-control rounded" placeholder="Department*" required />
-        <div class="invalid-feedback">Please provide the department name.</div>
-    </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" name="{{ form.courseUnit.name }}"
+                                        id="{{ form.courseUnit.auto_id }}" class="form-control rounded"
+                                        placeholder="Course Unit" required />
+                                    <div class="invalid-feedback">Please provide the course unit.</div>
+                                </div>
 
-    <div class="form-group">
-        <input type="text" name="{{ form.courseUnit.name }}" id="{{ form.courseUnit.auto_id }}" class="form-control rounded" placeholder="Course Unit*" required />
-        <div class="invalid-feedback">Please provide the course unit.</div>
-    </div>
+                                <span class="wow fadeInDown mb-5" style="color: #333;">HOW WOULD YOU RATE YOUR
+                                    INSTRUCTOR IN THE FOLLOWING?</span>
 
-    <span class="wow fadeInDown" style="color: #333;"><b>HOW WOULD YOU RATE YOUR INSTRUCTOR IN THE FOLLOWING FIELDS?</b></span>
+                                <!-- Knowledge -->
+                                <div class="form-group col-md-6 mt-3">
+                                    <div class="rating">
+                                        <p>Knowledge<span></span></p>
+                                        <input type="radio" id="star5_knowledge" name="{{ form.knowledge.name }}"
+                                            value="5" required />
+                                        <label for="star5_knowledge"></label>
+                                        <input type="radio" id="star4_knowledge" name="{{ form.knowledge.name }}"
+                                            value="4" />
+                                        <label for="star4_knowledge"></label>
+                                        <input type="radio" id="star3_knowledge" name="{{ form.knowledge.name }}"
+                                            value="3" />
+                                        <label for="star3_knowledge"></label>
+                                        <input type="radio" id="star2_knowledge" name="{{ form.knowledge.name }}"
+                                            value="2" />
+                                        <label for="star2_knowledge"></label>
+                                        <input type="radio" id="star1_knowledge" name="{{ form.knowledge.name }}"
+                                            value="1" />
+                                        <label for="star1_knowledge"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the instructor's knowledge.</div>
+                                </div>
 
-    <!-- Knowledge -->
-    <div class="form-group">
-        <div class="rating">
-            <input type="radio" id="star5_knowledge" name="{{ form.knowledge.name }}" value="5" required />
-            <label for="star5_knowledge"></label>
-            <input type="radio" id="star4_knowledge" name="{{ form.knowledge.name }}" value="4" />
-            <label for="star4_knowledge"></label>
-            <input type="radio" id="star3_knowledge" name="{{ form.knowledge.name }}" value="3" />
-            <label for="star3_knowledge"></label>
-            <input type="radio" id="star2_knowledge" name="{{ form.knowledge.name }}" value="2" />
-            <label for="star2_knowledge"></label>
-            <input type="radio" id="star1_knowledge" name="{{ form.knowledge.name }}" value="1" />
-            <label for="star1_knowledge"></label>
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's knowledge.</div>
-    </div>
+                                <!-- Communication -->
+                                <div class="form-group col-md-6 mt-3">
+                                    <div class="rating">
+                                        <p>Communication<span></span></p>
+                                        <input type="radio" id="star5_communication"
+                                            name="{{ form.communication.name }}" value="5" required />
+                                        <label for="star5_communication"></label>
+                                        <input type="radio" id="star4_communication"
+                                            name="{{ form.communication.name }}" value="4" />
+                                        <label for="star4_communication"></label>
+                                        <input type="radio" id="star3_communication"
+                                            name="{{ form.communication.name }}" value="3" />
+                                        <label for="star3_communication"></label>
+                                        <input type="radio" id="star2_communication"
+                                            name="{{ form.communication.name }}" value="2" />
+                                        <label for="star2_communication"></label>
+                                        <input type="radio" id="star1_communication"
+                                            name="{{ form.communication.name }}" value="1" />
+                                        <label for="star1_communication"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the instructor's communication.</div>
+                                </div>
 
-    <!-- Communication -->
-    <div class="form-group">
-        <div class="rating">
-            <input type="radio" id="star5_communication" name="{{ form.communication.name }}" value="5" required />
-            <label for="star5_communication"></label>
-            <input type="radio" id="star4_communication" name="{{ form.communication.name }}" value="4" />
-            <label for="star4_communication"></label>
-            <input type="radio" id="star3_communication" name="{{ form.communication.name }}" value="3" />
-            <label for="star3_communication"></label>
-            <input type="radio" id="star2_communication" name="{{ form.communication.name }}" value="2" />
-            <label for="star2_communication"></label>
-            <input type="radio" id="star1_communication" name="{{ form.communication.name }}" value="1" />
-            <label for="star1_communication"></label>
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's communication.</div>
-    </div>
+                                <!-- Teaching Style -->
+                                <div class="form-group col-md-6 mt-3">
+                                    <div class="rating">
+                                        <p>Teaching style<span></span></p>
+                                        <input type="radio" id="star5_teachingStyle"
+                                            name="{{ form.teachingStyle.name }}" value="5" required />
+                                        <label for="star5_teachingStyle"></label>
+                                        <input type="radio" id="star4_teachingStyle"
+                                            name="{{ form.teachingStyle.name }}" value="4" />
+                                        <label for="star4_teachingStyle"></label>
+                                        <input type="radio" id="star3_teachingStyle"
+                                            name="{{ form.teachingStyle.name }}" value="3" />
+                                        <label for="star3_teachingStyle"></label>
+                                        <input type="radio" id="star2_teachingStyle"
+                                            name="{{ form.teachingStyle.name }}" value="2" />
+                                        <label for="star2_teachingStyle"></label>
+                                        <input type="radio" id="star1_teachingStyle"
+                                            name="{{ form.teachingStyle.name }}" value="1" />
+                                        <label for="star1_teachingStyle"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the instructor's teaching style.</div>
+                                </div>
 
-    <!-- Teaching Style -->
-    <div class="form-group">
-        <div class="rating">
-            <input type="radio" id="star5_teachingStyle" name="{{ form.teachingStyle.name }}" value="5" required />
-            <label for="star5_teachingStyle"></label>
-            <input type="radio" id="star4_teachingStyle" name="{{ form.teachingStyle.name }}" value="4" />
-            <label for="star4_teachingStyle"></label>
-            <input type="radio" id="star3_teachingStyle" name="{{ form.teachingStyle.name }}" value="3" />
-            <label for="star3_teachingStyle"></label>
-            <input type="radio" id="star2_teachingStyle" name="{{ form.teachingStyle.name }}" value="2" />
-            <label for="star2_teachingStyle"></label>
-            <input type="radio" id="star1_teachingStyle" name="{{ form.teachingStyle.name }}" value="1" />
-            <label for="star1_teachingStyle"></label>
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's teaching style.</div>
-    </div>
+                                <!-- Responsiveness -->
+                                <div class="form-group col-md-6 mt-3">
+                                    <div class="rating">
+                                        <p>Responsiveness<span></span></p>
+                                        <input type="radio" id="star5_responsiveness"
+                                            name="{{ form.responsiveness.name }}" value="5" required />
+                                        <label for="star5_responsiveness"></label>
+                                        <input type="radio" id="star4_responsiveness"
+                                            name="{{ form.responsiveness.name }}" value="4" />
+                                        <label for="star4_responsiveness"></label>
+                                        <input type="radio" id="star3_responsiveness"
+                                            name="{{ form.responsiveness.name }}" value="3" />
+                                        <label for="star3_responsiveness"></label>
+                                        <input type="radio" id="star2_responsiveness"
+                                            name="{{ form.responsiveness.name }}" value="2" />
+                                        <label for="star2_responsiveness"></label>
+                                        <input type="radio" id="star1_responsiveness"
+                                            name="{{ form.responsiveness.name }}" value="1" />
+                                        <label for="star1_responsiveness"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the instructor's responsiveness.</div>
+                                </div>
+                            </div>
 
-    <!-- Responsiveness -->
-    <div class="form-group">
-        <div class="rating">
-            <input type="radio" id="star5_responsiveness" name="{{ form.responsiveness.name }}" value="5" required />
-            <label for="star5_responsiveness"></label>
-            <input type="radio" id="star4_responsiveness" name="{{ form.responsiveness.name }}" value="4" />
-            <label for="star4_responsiveness"></label>
-            <input type="radio" id="star3_responsiveness" name="{{ form.responsiveness.name }}" value="3" />
-            <label for="star3_responsiveness"></label>
-            <input type="radio" id="star2_responsiveness" name="{{ form.responsiveness.name }}" value="2" />
-            <label for="star2_responsiveness"></label>
-            <input type="radio" id="star1_responsiveness" name="{{ form.responsiveness.name }}" value="1" />
-            <label for="star1_responsiveness"></label>
-        </div>
-        <div class="invalid-feedback">Please rate the instructor's responsiveness.</div>
-    </div>
+                            <div class="form-group h-25">
+                                <textarea name="{{ form.additional_comments.name }}"
+                                    id="{{ form.additional_comments.auto_id }}" class="form-control rounded"
+                                    placeholder="Additional Comments"></textarea>
+                                <div class="invalid-feedback">Please provide additional comments.</div>
+                            </div>
 
-    <div class="form-group">
-        <textarea name="{{ form.additional_comments.name }}" id="{{ form.additional_comments.auto_id }}" class="form-control rounded" placeholder="Additional Comments"></textarea>
-        <div class="invalid-feedback">Please provide additional comments.</div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="button text-center">
-                <button type="submit" class="theme-btn">Submit Feedback</button>
-            </div>
-        </div>
-    </div>
-</form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="button text-center">
+                                        <button type="submit" class="theme-btn">Submit Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
 
 

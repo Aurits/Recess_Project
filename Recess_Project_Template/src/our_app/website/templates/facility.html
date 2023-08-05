@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Group S</title>
+  <title>Mak Feedback</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -115,7 +115,7 @@
                   <a class="page-scroll" href="{% url 'facility' %}">facility</a>
                 </li>
 
-                
+
               </ul>
             </div>
             <!-- navbar collapse -->
@@ -141,7 +141,8 @@
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System | Makerere University</a></li>
+                  <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System |
+                      Makerere University</a></li>
                 </ol>
               </nav>
             </div>
@@ -155,7 +156,7 @@
   <!-- ========================= contact-section start ========================= -->
 
   <!-- ========================= contact-section start ========================= -->
-  <section class="contact-section pt-130">
+  <section class="contact-section">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
@@ -163,149 +164,125 @@
             <div class="row">
               <div class="col-xl-10 col-lg-8 mx-auto">
                 <div class="section-title1  mb-50">
-                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here,
+                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here
                   </h2>
                   <br>
-                  
+
                 </div>
               </div>
             </div>
 
-            <form action="{% url 'facility' %}" method="post" class="contact-form">
-
+            <form method="post" class="needs-validation" novalidate>
               {% csrf_token %}
+
+              {% if form.errors %}
+              <div class="alert alert-danger">
+                {% for field_errors in form.errors %}
+                {% for error in field_errors %}
+                {{ error }}
+                {% endfor %}
+                {% endfor %}
+              </div>
+              {% endif %}
+
               <div class="row">
-                <div class="col-md-6">
-                  <input type="text" name="name" id="name" placeholder="Facility name" required />
+                <div class="col-md-6 form-group">
+                  <input type="text" name="{{ form.name.name }}" id="name" placeholder="Facility name"
+                    class="form-control m-3" required>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <input type="text" name="facility_college" id="" placeholder="College of facility" required />
+
+                <div class="col-md-6 form-group">
+                  <input type="text" name="{{ form.facility_college.name }}" id="facility_college"
+                    placeholder="College of facility" class="form-control m-3" required>
+                </div>
+              </div>
+
+              <div class="container mt-4 row">
+                <div class="col-md-6 mb-5 form-group">
+                  <label for="{{ form.facility_accessibility.id_for_label }}">Facility accessibility:</label>
+                  <select class="form-control" id="{{ form.facility_accessibility.id_for_label }}"
+                    name="{{ form.facility_accessibility.name }}" required>
+                    <option value="">Select one</option>
+                    {% for value, label in form.facility_accessibility.field.choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-md-6 mb-5">
+                  <p>Cleanliness and Hygiene</p>
+                  <span class="rating">
+                    {% for value, label in form.cleanliness.field.choices %}
+                    <input type="radio" id="star{{ value }}_cleanliness" name="{{ form.cleanliness.name }}"
+                      value="{{ value }}" required>
+                    <label for="star{{ value }}_cleanliness">{{ label }}</label>
+                    {% endfor %}
+                  </span>
+                </div>
+
+                <div class="col-md-6 mb-5">
+                  <p>Maintenance</p>
+                  <span class="rating">
+                    {% for value, label in form.maintenance.field.choices %}
+                    <input type="radio" id="star{{ value }}_maintenance" name="{{ form.maintenance.name }}"
+                      value="{{ value }}" required>
+                    <label for="star{{ value }}_maintenance">{{ label }}</label>
+                    {% endfor %}
+                  </span>
+                </div>
+
+                <div class="col-md-6 mb-5">
+                  <p>Safety and Security</p>
+                  <span class="rating">
+                    {% for value, label in form.safety.field.choices %}
+                    <input type="radio" id="star{{ value }}_safety" name="{{ form.safety.name }}" value="{{ value }}"
+                      required>
+                    <label for="star{{ value }}_safety">{{ label }}</label>
+                    {% endfor %}
+                  </span>
+                </div>
+
+                <div class="col-md-6 mb-5">
+                  <p>Resource Availability</p>
+                  <span class="rating">
+                    {% for value, label in form.resource_availability.field.choices %}
+                    <input type="radio" id="star{{ value }}_resource" name="{{ form.resource_availability.name }}"
+                      value="{{ value }}" required>
+                    <label for="star{{ value }}_resource">{{ label }}</label>
+                    {% endfor %}
+                  </span>
+                </div>
+
+                <div class="col-md-6 mb-5">
+                  <p>Overall facility rating</p>
+                  <span class="rating">
+                    {% for value, label in form.facility_rating.field.choices %}
+                    <input type="radio" id="star{{ value }}_overall" name="{{ form.facility_rating.name }}"
+                      value="{{ value }}" required>
+                    <label for="star{{ value }}_overall">{{ label }}</label>
+                    {% endfor %}
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 form-group">
+                  <textarea name="{{ form.comment.name }}" id=""
+                    placeholder="Please provide any additional comments or suggestions about our college facilities."
+                    rows="5" class="form-control" required></textarea>
+                </div>
+              </div>
+              <div class="row mt-5">
+                <div class="col-12">
+                  <div class="button text-center">
+                    <button type="submit" class="theme-btn">Submit</button>
                   </div>
-                  <br />
-
-
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="facility_accessibility">Facility accessibility:</label>
-                      <select class="form-control" id="facility_accessibility" name="facility_accessibility">
-                        <option value="">-- Select one --</option>
-                        <option value="fully">Fully accessible</option>
-                        <option value="partial">Partially accessible</option>
-                        <option value="not">Not accessible</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <p>
-                        Cleanliness and Hygiene:
-                        <span class="rating">
-                          <input type="radio" id="star5_cleanliness" name="cleanliness" value="very_good" />
-                          <label for="star5_cleanliness"></label>
-                          <input type="radio" id="star4_cleanliness" name="cleanliness" value="good" />
-                          <label for="star4_cleanliness"></label>
-                          <input type="radio" id="star3_cleanliness" name="classleanliness" value="fair" />
-                          <label for="star3_cleanliness"></label>
-                          <input type="radio" id="star2_cleanliness" name="cleanliness" value="poor" />
-                          <label for="star2_cleanliness"></label>
-                          <input type="radio" id="star1_cleanliness" name="cleanliness" value="very_poor" />
-                          <label for="star1_cleanliness"></label>
-                        </span>
-                      </p>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                      <p>
-                        Maintenance:
-                        <span class="rating">
-                          <input type="radio" id="star5_maintenance" name="maintenance" value="very_good" />
-                          <label for="star5_maintenance"></label>
-                          <input type="radio" id="star4_maintenance" name="maintenance" value="good" />
-                          <label for="star4_maintenance"></label>
-                          <input type="radio" id="star3_maintenance" name="maintenance" value="fair" />
-                          <label for="star3_maintenance"></label>
-                          <input type="radio" id="star2_maintenance" name="maintenance" value="poor" />
-                          <label for="star2_maintenance"></label>
-                          <input type="radio" id="star1_maintenance" name="maintenance" value="very_poor" />
-                          <label for="star1_maintenance"></label>
-                        </span>
-                      </p>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                      <p>
-                        Safety and Security:
-                        <span class="rating">
-                          <input type="radio" id="star5_safety" name="safety" value="very_good" />
-                          <label for="star5_safety"></label>
-                          <input type="radio" id="star4_safety" name="safety" value="good" />
-                          <label for="star4_safety"></label>
-                          <input type="radio" id="star3_safety" name="safety" value="fair" />
-                          <label for="star3_safety"></label>
-                          <input type="radio" id="star2_safety" name="safety" value="poor" />
-                          <label for="star2_safety"></label>
-                          <input type="radio" id="star1_safety" name="safety" value="very_poor" />
-                          <label for="star1_safety"></label>
-                        </span>
-                      </p>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                      <p>
-                        Resource Availability:
-                        <span class="rating">
-                          <input type="radio" id="star5_resource" name="resource_availability" value="very_good" />
-                          <label for="star5_resource"></label>
-                          <input type="radio" id="star4_resource" name="resource_availability" value="good" />
-                          <label for="star4_resource"></label>
-                          <input type="radio" id="star3_resource" name="resource_availability" value="fair" />
-                          <label for="star3_resource"></label>
-                          <input type="radio" id="star2_resource" name="resource_availability" value="poor" />
-                          <label for="star2_resource"></label>
-                          <input type="radio" id="star1_resource" name="resource_availability" value="very_poor" />
-                          <label for="star1_resource"></label>
-                        </span>
-                      </p>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                      <p>
-                        Overall facility rating:
-                        <span class="rating">
-                          <input type="radio" id="star5_overall" name="facility_rating" value="very_good" />
-                          <label for="star5_overall"></label>
-                          <input type="radio" id="star4_overall" name="facility_rating" value="good" />
-                          <label for="star4_overall"></label>
-                          <input type="radio" id="star3_overall" name="facility_rating" value="fair" />
-                          <label for="star3_overall"></label>
-                          <input type="radio" id="star2_overall" name="facility_rating" value="poor" />
-                          <label for="star2_overall"></label>
-                          <input type="radio" id="star1_overall" name="facility_rating" value="very_poor" />
-                          <label for="star1_overall"></label>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-
-
-
-                  <div class="row">
-                    <div class="col-12">
-                      <textarea name="comment" id="message"
-                        placeholder="Please provide any additional comments or suggestions about our college facilities."
-                        rows="5"></textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="button text-center">
-                        <button type="submit" class="theme-btn">Submit</button>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+              </div>
             </form>
+
+
+
           </div>
         </div>
       </div>

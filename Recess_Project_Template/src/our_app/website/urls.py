@@ -17,9 +17,10 @@ urlpatterns = [
     path('instructor_feedback/', views.instructor_feedback, name='instructor'),
     path('instructor_feedbacks/<int:feedback_id>/delete/',
          views.delete_instructor_feedback, name='delete_instructor_feedback'),
-     path('course_feedbacks/<int:feedback_id>/delete/',
+    path('course_feedbacks/<int:feedback_id>/delete/',
          views.delete_course_feedback, name='delete_course_feedback'),
-    path('facility_feedback/', views.facility, name='facility'),
+    path('facilities/<int:feedback_id>/delete/', views.delete_facility_feedback, name='delete_facility_feedback'),
+    path('facility', views.facility, name='facility'),
 
 ]
 

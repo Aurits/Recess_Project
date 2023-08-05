@@ -8,8 +8,9 @@ from .models import FacilityFeedback
 from .models import InstructorFeedback
 from .models import CourseFeedback
 from .forms import CourseFeedbackForm
-
 from django.shortcuts import render, redirect, get_object_or_404
+
+
 
 
 def home(request):
@@ -196,6 +197,7 @@ def studentDetails(request):
 
         # Set a success message to display on the index.html template
         success_message = "Thank you for signing up!"
+        return redirect('start')
 
     else:
         success_message = None
@@ -203,36 +205,35 @@ def studentDetails(request):
     return render(request, 'index.html', {'success_message': success_message})
 
 
+
+
+
 def facility(request):
     if request.method == 'POST':
         form = FacilityForm(request.POST)
         if form.is_valid():
             # Save the form data to the database
-            form_data = form.cleaned_data
-            name = form_data['name']
-            facility_college = form_data['facility_college']
-            facility_accessibility = form_data['facility_accessibility']
-            cleanliness = form_data['cleanliness']
-            maintenance = form_data['maintenance']
-            safety = form_data['safety']
-            resource_availability = form_data['resource_availability']
-            facility_rating = form_data['facility_rating']
-            comment = form_data['comment']
-
             feedback = FacilityFeedback(
-                name=name,
-                facility_college=facility_college,
-                facility_accessibility=facility_accessibility,
-                cleanliness=cleanliness,
-                maintenance=maintenance,
-                safety=safety,
-                resource_availability=resource_availability,
-                facility_rating=facility_rating,
-                comment=comment,
+                name=form.cleaned_data['name'],
+                facility_college=form.cleaned_data['facility_college'],
+                facility_accessibility=form.cleaned_data['facility_accessibility'],
+                cleanliness=form.cleaned_data['cleanliness'],
+                maintenance=form.cleaned_data['maintenance'],
+                safety=form.cleaned_data['safety'],
+                resource_availability=form.cleaned_data['resource_availability'],
+                facility_rating=form.cleaned_data['facility_rating'],
+                comment=form.cleaned_data['comment'],
             )
             feedback.save()
-            return redirect('thankyou')
+            return redirect('thankyou')  
     else:
         form = FacilityForm()
 
     return render(request, 'facility.html', {'form': form})
+
+
+def delete_facility_feedback(request, feedback_id):
+    if request.method == 'POST':
+        feedback = FacilityFeedback.objects.get(pk=feedback_id)
+        feedback.delete()
+    return redirect('facilities')

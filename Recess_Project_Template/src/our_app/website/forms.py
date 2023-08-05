@@ -1,6 +1,7 @@
 from .models import FacilityFeedback
 from .models import InstructorFeedback
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import RadioSelect
 from django.contrib.auth.models import User
 from django import forms
 from .models import InstructorFeedback
@@ -120,91 +121,33 @@ class StudentDetailsForm(forms.ModelForm):
 
 
 class FacilityForm(forms.Form):
-    # Choices for Facility Accessibility dropdown
     FACILITY_ACCESSIBILITY_CHOICES = [
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Fully accessible'),
+        (3, 'Partially accessible'),
+        (1, 'Not accessible'),
     ]
 
-    # Choices for Rating fields
     RATING_CHOICES = [
-        (5, '5 - Very Good'),
-        (4, '4 - Good'),
-        (3, '3 - Fair'),
-        (2, '2 - Poor'),
-        (1, '1 - Very Poor'),
+        (5, ''),
+        (4, ''),
+        (3, ''),
+        (2, ''),
+        (1, ''),
     ]
 
-    # Facility name field with a maximum length of 100 characters
-    name = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Facility name', 'required': True}),
-    )
-
-    # College of facility field with a maximum length of 100 characters
-    facility_college = forms.CharField(
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'College of facility', 'required': True}),
-    )
-
-    # Facility accessibility field as a dropdown with predefined choices
-    facility_accessibility = forms.ChoiceField(
-        choices=FACILITY_ACCESSIBILITY_CHOICES,
-        widget=forms.Select(attrs={'required': True}),
-    )
-
-    # Rating field for Cleanliness
-    cleanliness = forms.ChoiceField(
-        choices=RATING_CHOICES,
-        widget=forms.RadioSelect(),
-    )
-
-    # Rating field for Maintenance
-    maintenance = forms.ChoiceField(
-        choices=RATING_CHOICES,
-        widget=forms.RadioSelect(),
-    )
-
-    # Rating field for Safety and Security
-    safety = forms.ChoiceField(
-        choices=RATING_CHOICES,
-        widget=forms.RadioSelect(),
-    )
-
-    # Rating field for Resource Availability
-    resource_availability = forms.ChoiceField(
-        choices=RATING_CHOICES,
-        widget=forms.RadioSelect(),
-    )
-
-    # Rating field for Overall facility rating
-    facility_rating = forms.ChoiceField(
-        choices=RATING_CHOICES,
-        widget=forms.RadioSelect(),
-    )
-
-    # Comment field with a textarea widget for additional comments or suggestions
-    comment = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'placeholder': 'Please provide any additional comments or suggestions about our college facilities.', 'rows': 5}
-        ),
-    )
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Facility name', 'required': True}))
+    facility_college = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'College of facility', 'required': True}))
+    facility_accessibility = forms.ChoiceField(choices=FACILITY_ACCESSIBILITY_CHOICES, widget=forms.Select(attrs={'required': True}))
+    cleanliness = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect())
+    maintenance = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect())
+    safety = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect())
+    resource_availability = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect())
+    facility_rating = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.RadioSelect())
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Please provide any additional comments or suggestions about our college facilities.', 'rows': 5}))
 
 
 
 
-
-
-
-
-
-
-from django.forms import RadioSelect
 
 class CourseFeedbackForm(forms.ModelForm):
     class Meta:

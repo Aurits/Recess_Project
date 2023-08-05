@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Group S</title>
+    <title>Mak Feedback</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,44 +37,45 @@
         }
     </style>
 
-      <style>
-    /* Style for star icons */
-    .rating {
-      unicode-bidi: bidi-override;
-      direction: rtl;
-      display: inline-block;
-      position: relative;
-    }
+    <style>
+        /* Style for star icons */
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            display: inline-block;
+            position: relative;
+        }
 
-    .rating input {
-      display: none;
-    }
+        .rating input {
+            display: none;
+        }
 
-    .rating label {
-      color: #ccc;
-      font-size: 30px;
-      padding: 0 2px;
-      cursor: pointer;
-    }
+        .rating label {
+            color: #ccc;
+            font-size: 30px;
+            padding: 0 2px;
+            cursor: pointer;
+        }
 
-    .rating label:before {
-      content: "\2605";
-    }
+        .rating label:before {
+            content: "\2605";
+        }
 
-    .rating input:checked~label:before,
-    .rating label:hover~label:before {
-      content: "\2605";
-      color: #ffdd00;
-    }
-    .col-md-6 input{
-  padding: 18px 25px;
-    border-radius: 30px;
-    border: 1px solid #F4EEFB;
-    margin-bottom: 25px;
-    width: 100%;
-    transition: all 0.3s ease-out 0s;
-}
-  </style>
+        .rating input:checked~label:before,
+        .rating label:hover~label:before {
+            content: "\2605";
+            color: #ffdd00;
+        }
+
+        .col-md-6 input {
+            padding: 18px 25px;
+            border-radius: 30px;
+            border: 1px solid #F4EEFB;
+            margin-bottom: 25px;
+            width: 100%;
+            transition: all 0.3s ease-out 0s;
+        }
+    </style>
 </head>
 
 <body>
@@ -133,7 +134,7 @@
                                     <a class="page-scroll " href="{% url 'facility' %}">facility</a>
                                 </li>
 
-                                
+
                             </ul>
 
                         </div> <!-- navbar collapse -->
@@ -156,7 +157,8 @@
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback Collection System | Makerere University</a></li>
+                                    <li class="breadcrumb-item" aria-current="page"><a href="{% url 'home'%}">Feedback
+                                            Collection System | Makerere University</a></li>
 
                                 </ol>
                             </nav>
@@ -176,84 +178,98 @@
                 <div class="col-xl-12">
                     <div class="contact-form-wrapper">
                         <div class="row">
-              <div class="col-xl-10 col-lg-8 mx-auto">
-                <div class="section-title1  mb-50">
-                  <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill here,
-                  </h2>
-                  <br>
-                  
-                </div>
-              </div>
-            </div>
+                            <div class="col-xl-10 col-lg-8 mx-auto">
+                                <div class="section-title1  mb-50">
+                                    <h2 class="wow fadeInDown text-center" data-wow-delay=".2s" style="color: #333">Fill
+                                        here
+                                    </h2>
+                                    <br>
 
-                       <form method="post" class="needs-validation" novalidate>
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-6">
-            <input type="text" name="{{ courseForm.courseName.name }}" id="{{ courseForm.courseName.auto_id }}"
-                class="form-control rounded" placeholder="Course Name*" required />
-            <div class="invalid-feedback">Please provide the Course's name.</div>
-        </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="col-md-6">
-            <input type="text" name="{{ courseForm.courseCode.name }}" id="{{ courseForm.courseCode.auto_id }}"
-                class="form-control rounded" placeholder="Course Code*" required />
-            <div class="invalid-feedback">Please provide the Course code.</div>
-        </div>
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class=" container row">
+                                <div class="col-md-6">
+                                    <input type="text" name="{{ courseForm.courseName.name }}"
+                                        id="{{ courseForm.courseName.auto_id }}" class="form-control rounded"
+                                        placeholder="Course Name*" required />
+                                    <div class="invalid-feedback">Please provide the Course's name.</div>
+                                </div>
 
-        <div class="col-md-6">
-            <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block"><b>Effect of the
-                    course</b><span style="color: red;">*</span>:</label>
-            <div class="rating">
-                <input type="radio" id="star5_effectiveness" name="{{ courseForm.effectiveness.name }}" value="5" required />
-                <label for="star5_effectiveness"></label>
-                <input type="radio" id="star4_effectiveness" name="{{ courseForm.effectiveness.name }}" value="4" />
-                <label for="star4_effectiveness"></label>
-                <input type="radio" id="star3_effectiveness" name="{{ courseForm.effectiveness.name }}" value="3" />
-                <label for="star3_effectiveness"></label>
-                <input type="radio" id="star2_effectiveness" name="{{ courseForm.effectiveness.name }}" value="2" />
-                <label for="star2_effectiveness"></label>
-                <input type="radio" id="star1_effectiveness" name="{{ courseForm.effectiveness.name }}" value="1" />
-                <label for="star1_effectiveness"></label>
-            </div>
-            <div class="invalid-feedback">Please rate the course effectiveness.</div>
-        </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="{{ courseForm.courseCode.name }}"
+                                        id="{{ courseForm.courseCode.auto_id }}" class="form-control rounded"
+                                        placeholder="Course Code*" required />
+                                    <div class="invalid-feedback">Please provide the Course code.</div>
+                                </div>
 
-        <div class="col-md-6">
-            <label for="{{ courseForm.interest.id_for_label }}" class="d-block"><b>Interest</b><span
-                    style="color: red;">*</span>:</label>
-            <div class="rating">
-                <input type="radio" id="star5_interest" name="{{ courseForm.interest.name }}" value="5" required />
-                <label for="star5_interest"></label>
-                <input type="radio" id="star4_interest" name="{{ courseForm.interest.name }}" value="4" />
-                <label for="star4_interest"></label>
-                <input type="radio" id="star3_interest" name="{{ courseForm.interest.name }}" value="3" />
-                <label for="star3_interest"></label>
-                <input type="radio" id="star2_interest" name="{{ courseForm.interest.name }}" value="2" />
-                <label for="star2_interest"></label>
-                <input type="radio" id="star1_interest" name="{{ courseForm.interest.name }}" value="1" />
-                <label for="star1_interest"></label>
-            </div>
-            <div class="invalid-feedback">Please rate the course interest.</div>
-        </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="{{ courseForm.effectiveness.id_for_label }}" class="d-block">Effect of
+                                        the
+                                        course</label>
+                                    <div class="rating">
+                                        <input type="radio" id="star5_effectiveness"
+                                            name="{{ courseForm.effectiveness.name }}" value="5" required />
+                                        <label for="star5_effectiveness"></label>
+                                        <input type="radio" id="star4_effectiveness"
+                                            name="{{ courseForm.effectiveness.name }}" value="4" />
+                                        <label for="star4_effectiveness"></label>
+                                        <input type="radio" id="star3_effectiveness"
+                                            name="{{ courseForm.effectiveness.name }}" value="3" />
+                                        <label for="star3_effectiveness"></label>
+                                        <input type="radio" id="star2_effectiveness"
+                                            name="{{ courseForm.effectiveness.name }}" value="2" />
+                                        <label for="star2_effectiveness"></label>
+                                        <input type="radio" id="star1_effectiveness"
+                                            name="{{ courseForm.effectiveness.name }}" value="1" />
+                                        <label for="star1_effectiveness"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the course effectiveness.</div>
+                                </div>
 
-        <div class="col-md-12 row m-5">
-            <div class="col-md-6">
-                <label for="{{ courseForm.qualitative_feedback.id_for_label }}"><b>Qualitative Feedback</b>:</label>
-                {{ courseForm.qualitative_feedback }}
-                <div class="invalid-feedback">Please provide qualitative feedback.</div>
-            </div>
-        </div>
-    </div>
+                                <div class="col-md-6 mt-3">
+                                    <label for="{{ courseForm.interest.id_for_label }}" class="d-block">Interest</label>
+                                    <div class="rating">
+                                        <input type="radio" id="star5_interest" name="{{ courseForm.interest.name }}"
+                                            value="5" required />
+                                        <label for="star5_interest"></label>
+                                        <input type="radio" id="star4_interest" name="{{ courseForm.interest.name }}"
+                                            value="4" />
+                                        <label for="star4_interest"></label>
+                                        <input type="radio" id="star3_interest" name="{{ courseForm.interest.name }}"
+                                            value="3" />
+                                        <label for="star3_interest"></label>
+                                        <input type="radio" id="star2_interest" name="{{ courseForm.interest.name }}"
+                                            value="2" />
+                                        <label for="star2_interest"></label>
+                                        <input type="radio" id="star1_interest" name="{{ courseForm.interest.name }}"
+                                            value="1" />
+                                        <label for="star1_interest"></label>
+                                    </div>
+                                    <div class="invalid-feedback">Please rate the course interest.</div>
+                                </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="button text-center">
-                <button type="submit" class="theme-btn">Submit Feedback</button>
-            </div>
-        </div>
-    </div>
-</form>
+                                <div class="col-md-12 mt-5 ">
+                                    <div class="">
+                                        <label for="{{ courseForm.qualitative_feedback.id_for_label }}"><b>Additional
+                                                Feedback Comments</b>:</label>
+                                        {{ courseForm.qualitative_feedback }}
+                                        <div class="invalid-feedback">Please provide qualitative feedback.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="button text-center">
+                                        <button type="submit" class="theme-btn">Submit Feedback</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
 
                     </div>

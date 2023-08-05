@@ -7,32 +7,32 @@ class InstructorFeedback(models.Model):
     department = models.CharField(max_length=100)
     courseUnit = models.CharField(max_length=100)
     knowledge = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     communication = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     teachingStyle = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     responsiveness = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     additional_comments = models.TextField()
 
@@ -67,52 +67,16 @@ class CourseFeedback(models.Model):
 
 
 class FacilityFeedback(models.Model):
-
     name = models.CharField(max_length=100)
     facility_college = models.CharField(max_length=100)
-    facility_accessibility = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
-    cleanliness = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
-    maintenance = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
-    safety = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
-    resource_availability = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
-    facility_rating = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
-    ])
+    facility_accessibility = models.IntegerField()
+    cleanliness = models.IntegerField()
+    maintenance = models.IntegerField()
+    safety = models.IntegerField()
+    resource_availability = models.IntegerField()
+    facility_rating = models.IntegerField()
     comment = models.TextField()
+
 
     def __str__(self):
         return self.name
