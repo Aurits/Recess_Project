@@ -797,221 +797,209 @@
   <script src="{% static 'asset/js/plugins/smooth-scrollbar.min.js' %}"></script>
   <script src="{% static 'asset/js/plugins/chartjs.min.js' %}"></script>
 
-  <script>
-    var instructorData = {
-      labels: ["Knowledge", "Communication", "Teaching Style", "Responsiveness"],
-      datasets: [
-        {
-          label: "Poor",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "rgba(255, 99, 132, 0.8)",
-          data: [{{ poor_knowledge }}, {{ poor_communication }}, {{ poor_teaching_style }}, { { poor_responsiveness } }],
-    maxBarThickness: 6,
-      },
-    {
-      label: "Fair",
+<script>
+  var instructorData = {
+    labels: ["Knowledge", "Communication", "Teaching Style", "Responsiveness"],
+    datasets: [
+      {
+        label: "Poor",
         tension: 0.4,
-          borderWidth: 0,
-            borderRadius: 4,
-              borderSkipped: false,
-                backgroundColor: "rgba(255, 159, 64, 0.8)",
-                  data: [{{ fair_knowledge }}, { { fair_communication } }, { { fair_teaching_style } }, { { fair_responsiveness } }],
-    maxBarThickness: 6,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(255, 99, 132, 0.8)",
+        data: [{{ poor_knowledge }}, {{ poor_communication }}, {{ poor_teaching_style }}, {{ poor_responsiveness }}],
+        maxBarThickness: 6,
       },
-    {
-      label: "Good",
+      {
+        label: "Fair",
         tension: 0.4,
-          borderWidth: 0,
-            borderRadius: 4,
-              borderSkipped: false,
-                backgroundColor: "rgba(55, 158, 95, 0.8)",
-                  data: [{{ good_knowledge }}, { { good_communication } }, { { good_teaching_style } }, { { good_responsiveness } }],
-    maxBarThickness: 6,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(255, 159, 64, 0.8)",
+        data: [{{ fair_knowledge }}, {{ fair_communication }}, {{ fair_teaching_style }}, {{ fair_responsiveness }}],
+        maxBarThickness: 6,
       },
-    {
-      label: "Very Good",
+      {
+        label: "Good",
         tension: 0.4,
-          borderWidth: 0,
-            borderRadius: 4,
-              borderSkipped: false,
-                backgroundColor: "rgba(54, 162, 235, 0.8)",
-                  data: [{{ very_good_knowledge }}, { { very_good_communication } }, { { very_good_teaching_style } }, { { very_good_responsiveness } }],
-    maxBarThickness: 6,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(55, 158, 95, 0.8)",
+        data: [{{ good_knowledge }}, {{ good_communication }}, {{ good_teaching_style }}, {{ good_responsiveness }}],
+        maxBarThickness: 6,
       },
-    {
-      label: "Excellent",
+      {
+        label: "Very Good",
         tension: 0.4,
-          borderWidth: 0,
-            borderRadius: 4,
-              borderSkipped: false,
-                backgroundColor: "rgba(75, 192, 192, 0.8)",
-                  data: [{{ excellent_knowledge }}, { { excellent_communication } }, { { excellent_teaching_style } }, { { excellent_responsiveness } }],
-    maxBarThickness: 6,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(54, 162, 235, 0.8)",
+        data: [{{ very_good_knowledge }}, {{ very_good_communication }}, {{ very_good_teaching_style }}, {{ very_good_responsiveness }}],
+        maxBarThickness: 6,
+      },
+      {
+        label: "Excellent",
+        tension: 0.4,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(75, 192, 192, 0.8)",
+        data: [{{ excellent_knowledge }}, {{ excellent_communication }}, {{ excellent_teaching_style }}, {{ excellent_responsiveness }}],
+        maxBarThickness: 6,
       },
     ],
   };
 
-    var instructorOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
+  var instructorOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
           display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
         },
-      },
-      interaction: {
-        intersect: false,
-        mode: 'index',
-      },
-      scales: {
-        y: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-          },
-          ticks: {
-            display: true,
-            padding: 10,
-            color: '#b2b9bf',
-            font: {
-              size: 11,
-              family: "Open Sans",
-              style: 'normal',
-              lineHeight: 2,
-            },
-          },
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            display: true,
-            drawOnChartArea: true,
-            drawTicks: false,
-            borderDash: [5, 5],
-          },
-          ticks: {
-            display: true,
-            color: '#b2b9bf',
-            padding: 20,
-            font: {
-              size: 11,
-              family: "Open Sans",
-              style: 'normal',
-              lineHeight: 2,
-            },
+        ticks: {
+          display: true,
+          padding: 10,
+          color: '#b2b9bf',
+          font: {
+            size: 11,
+            family: "Open Sans",
+            style: 'normal',
+            lineHeight: 2,
           },
         },
       },
-    };
+      x: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
+        },
+        ticks: {
+          display: true,
+          color: '#b2b9bf',
+          padding: 20,
+          font: {
+            size: 11,
+            family: "Open Sans",
+            style: 'normal',
+            lineHeight: 2,
+          },
+        },
+      },
+    },
+  };
 
-    var instructorChart = new Chart(document.getElementById('instructorFeedbackChart'), {
-      type: "bar",
-      data: instructorData,
-      options: instructorOptions,
-    });
-  </script>
+  var instructorChart = new Chart(document.getElementById('instructorFeedbackChart'), {
+    type: "bar",
+    data: instructorData,
+    options: instructorOptions,
+  });
+</script>
 
 
 
-  <script>
-    var ratingsData = {
-      labels: ["Course Effectiveness", "Course Interest", "Instructor Knowledge", "Instructor Communication", "Instructor Teaching Style", "Instructor Responsiveness", "Facility Accessibility", "Facility Cleanliness", "Facility Maintenance", "Facility Safety", "Facility Resource Availability", "Facility Rating"],
-      datasets: [{
-        label: "Course Ratings",
-        borderColor: "rgba(255, 99, 132, 1)", // Red
-        backgroundColor: "rgba(255, 99, 132, 0.2)", // Light Red
-        fill: true,
-        data: [
-          {{ avg_course_effectiveness|default: "0"
-      }},
-      {{ avg_course_interest|default: "0" }},
-    0, // Placeholder for Instructor Ratings
-      0, // Placeholder for Instructor Ratings
-      0, // Placeholder for Instructor Ratings
-      0, // Placeholder for Instructor Ratings
-      0, // Placeholder for Facility Ratings
+<script>
+  var ratingsData = {
+    labels: ["Course Effectiveness", "Course Interest", "Instructor Knowledge", "Instructor Communication", "Instructor Teaching Style", "Instructor Responsiveness", "Facility Accessibility", "Facility Cleanliness", "Facility Maintenance", "Facility Safety", "Facility Resource Availability", "Facility Rating"],
+    datasets: [{
+      label: "Course Ratings",
+      borderColor: "rgba(255, 99, 132, 1)", // Red
+      backgroundColor: "rgba(255, 99, 132, 0.2)", // Light Red
+      fill: true,
+      data: [
+        {{ avg_course_effectiveness|default:"0" }},
+        {{ avg_course_interest|default:"0" }},
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Facility Ratings
       ],
-    maxBarThickness: 30
+      maxBarThickness: 30
     },
     {
       label: "Instructor Ratings",
-        borderColor: "rgba(54, 162, 235, 1)", // Blue
-          backgroundColor: "rgba(54, 162, 235, 0.2)", // Light Blue
-            fill: true,
-              data: [
-                0, // Placeholder for Course Ratings
-                0, // Placeholder for Course Ratings
-                {{ avg_instructor_knowledge|default: "0" }},
-    { { avg_instructor_communication |default: "0" } },
-    { { avg_instructor_teaching_style |default: "0" } },
-    { { avg_instructor_responsiveness |default: "0" } },
-    0, // Placeholder for Facility Ratings
+      borderColor: "rgba(54, 162, 235, 1)", // Blue
+      backgroundColor: "rgba(54, 162, 235, 0.2)", // Light Blue
+      fill: true,
+      data: [
+        0, // Placeholder for Course Ratings
+        0, // Placeholder for Course Ratings
+        {{ avg_instructor_knowledge|default:"0" }},
+        {{ avg_instructor_communication|default:"0" }},
+        {{ avg_instructor_teaching_style|default:"0" }},
+        {{ avg_instructor_responsiveness|default:"0" }},
+        0, // Placeholder for Facility Ratings
       ],
-    maxBarThickness: 30
+      maxBarThickness: 30
     },
     {
       label: "Facility Ratings",
-        borderColor: "rgba(75, 192, 192, 1)", // Teal
-          backgroundColor: "rgba(75, 192, 192, 0.2)", // Light Teal
-            fill: true,
-              data: [
-                0, // Placeholder for Course Ratings
-                0, // Placeholder for Course Ratings
-                0, // Placeholder for Instructor Ratings
-                0, // Placeholder for Instructor Ratings
-                0, // Placeholder for Instructor Ratings
-                0, // Placeholder for Instructor Ratings
-                {{ avg_facility_accessibility|default: "0" }},
-    { { avg_facility_cleanliness |default: "0" } },
-    { { avg_facility_maintenance |default: "0" } },
-    { { avg_facility_safety |default: "0" } },
-    { { avg_facility_resource_availability |default: "0" } },
-    { { avg_facility_rating |default: "0" } }
+      borderColor: "rgba(75, 192, 192, 1)", // Teal
+      backgroundColor: "rgba(75, 192, 192, 0.2)", // Light Teal
+      fill: true,
+      data: [
+        0, // Placeholder for Course Ratings
+        0, // Placeholder for Course Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        0, // Placeholder for Instructor Ratings
+        {{ avg_facility_accessibility|default:"0" }},
+        {{ avg_facility_cleanliness|default:"0" }},
+        {{ avg_facility_maintenance|default:"0" }},
+        {{ avg_facility_safety|default:"0" }},
+        {{ avg_facility_resource_availability|default:"0" }},
+        {{ avg_facility_rating|default:"0" }}
       ],
-    maxBarThickness: 30
+      maxBarThickness: 30
     }],
   };
 
-    var ratingsOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: true, // Show the legend for category labels
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          suggestedMax: 5,
-        }
-      },
-    };
-
-    var ratingsChart = new Chart(document.getElementById('ratingsChart'), {
-      type: "line",
-      data: ratingsData,
-      options: ratingsOptions,
-    });
-  </script>
-
-
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar'))
-    {
-      var options = {
-        damping: '0.5'
+  var ratingsOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true, // Show the legend for category labels
       }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        suggestedMax: 5,
+      }
+    },
+  };
+
+  var ratingsChart = new Chart(document.getElementById('ratingsChart'), {
+    type: "line",
+    data: ratingsData,
+    options: ratingsOptions,
+  });
+</script>
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
