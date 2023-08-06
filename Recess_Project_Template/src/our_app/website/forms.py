@@ -128,11 +128,11 @@ class FacilityForm(forms.Form):
     ]
 
     RATING_CHOICES = [
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, ''),
+        (4, ''),
+        (3, ''),
+        (2, ''),
+        (1, ''),
     ]
 
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Facility name', 'required': True}))

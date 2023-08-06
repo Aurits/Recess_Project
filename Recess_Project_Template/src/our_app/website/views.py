@@ -288,6 +288,17 @@ def signin(request):
         avg_facility_resource_availability = FacilityFeedback.objects.aggregate(Avg('resource_availability'))['resource_availability__avg']
         avg_facility_rating = FacilityFeedback.objects.aggregate(Avg('facility_rating'))['facility_rating__avg']
 
+            # Number of items to show per page
+        items_per_page = 10
+
+        paginator = Paginator(students, items_per_page)
+
+        # Get the current page number from the request's GET parameters
+        page_number = request.GET.get('page')
+
+        # Get the corresponding page from the paginator
+        page_obj = paginator.get_page(page_number)
+
         context = {
             'course_items': course_items,
             'facilities': facilities,
@@ -325,6 +336,7 @@ def signin(request):
             'avg_facility_safety': avg_facility_safety,
             'avg_facility_resource_availability': avg_facility_resource_availability,
             'avg_facility_rating': avg_facility_rating,
+            'page_obj': page_obj,
         }
 
         return render(request, 'dashboard/pages/dashboard.html', context)

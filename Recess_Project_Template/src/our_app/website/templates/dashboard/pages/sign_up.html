@@ -13,13 +13,13 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="{% static 'asset/css/nucleo-icons.css' %}" rel="stylesheet" />
-  <link href="{% static 'asset/css/nucleo-svg.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js' %}" crossorigin="anonymous"></script>
-  <link href="{% static 'asset/css/nucleo-svg.css" rel="stylesheet' %}" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{% static 'assets/css/nucleo-svg.css" rel="stylesheet' %}" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="{% static 'asset/css/soft-ui-dashboard.css' %}" rel="stylesheet" />
+  <link id="pagestyle" href="{% static 'assets/css/soft-ui-dashboard.css' %}" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -183,7 +183,7 @@
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                   </div>
-                  <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;"
+                  <p class="text-sm mt-3 mb-0">Already have an account? <a href="{% url 'sign_in'%}"
                       class="text-dark font-weight-bolder">Sign in</a></p>
                 </form>
               </div>
@@ -197,13 +197,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mb-4 mx-auto text-center">
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            <a href="{% url 'course'%}" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
               Courses
             </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            <a href="{% url 'facility'%}" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
               Facilities
             </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            <a href="{% url 'instructor'%}" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
               Instructors
             </a>
 
@@ -242,7 +242,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{% static 'asset/js/soft-ui-dashboard.min.js' %}"></script>
+  <script src="{% static 'assets/js/soft-ui-dashboard.min.js' %}"></script>
 </body>
 
 </html>
