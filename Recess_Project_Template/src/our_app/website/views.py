@@ -15,7 +15,7 @@ from django.http import HttpResponse
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
 from reportlab.lib import colors
-
+from itertools import chain
 
 
 
@@ -30,21 +30,6 @@ def thankyou(request):
     return render(request, 'thankyou.html')
 
 
-def recommend(request):
-    students = StudentDetails.objects.all()
-    course_items = CourseFeedback.objects.all()
-    facilities = FacilityFeedback.objects.all()
-    instructors = InstructorFeedback.objects.all()
-
-
-    context = {
-        'course_items': course_items,
-        'facilities': facilities,
-        'instructors': instructors,
-        'students': students,
-        }
-
-    return render(request, 'dashboard/pages/recommend.html', context)
 
 
 def course(request):
@@ -566,3 +551,105 @@ def generate_instructor_feedback_pdf(request):
     doc.build(elements)
 
     return response
+
+
+
+
+
+
+def recommend(request):
+    # Query the database to get all the feedback data
+    instructor_feedbacks = InstructorFeedback.objects.all()
+    course_feedbacks = CourseFeedback.objects.all()
+    facility_feedbacks = FacilityFeedback.objects.all()
+    students = StudentDetails.objects.all()
+    course_items = CourseFeedback.objects.all()
+    facilities = FacilityFeedback.objects.all()
+    instructors = InstructorFeedback.objects.all()
+
+
+    # Calculate average ratings for instructors
+    avg_instructor_knowledge = instructor_feedbacks.aggregate(Avg('knowledge'))['knowledge__avg']
+    avg_instructor_communication = instructor_feedbacks.aggregate(Avg('communication'))['communication__avg']
+    avg_instructor_teaching_style = instructor_feedbacks.aggregate(Avg('teachingStyle'))['teachingStyle__avg']
+    avg_instructor_responsiveness = instructor_feedbacks.aggregate(Avg('responsiveness'))['responsiveness__avg']
+
+    # Calculate average ratings for courses
+    avg_course_effectiveness = course_feedbacks.aggregate(Avg('effectiveness'))['effectiveness__avg']
+    avg_course_interest = course_feedbacks.aggregate(Avg('interest'))['interest__avg']
+
+    # Calculate average ratings for facilities
+    avg_facility_accessibility = facility_feedbacks.aggregate(Avg('facility_accessibility'))['facility_accessibility__avg']
+    avg_facility_cleanliness = facility_feedbacks.aggregate(Avg('cleanliness'))['cleanliness__avg']
+    avg_facility_maintenance = facility_feedbacks.aggregate(Avg('maintenance'))['maintenance__avg']
+    avg_facility_safety = facility_feedbacks.aggregate(Avg('safety'))['safety__avg']
+    avg_facility_resource_availability = facility_feedbacks.aggregate(Avg('resource_availability'))['resource_availability__avg']
+    avg_facility_rating = facility_feedbacks.aggregate(Avg('facility_rating'))['facility_rating__avg']
+
+    # Generate recommendations based on the averages
+    instructor_recommendation = get_recommendation(avg_instructor_knowledge, avg_instructor_communication, avg_instructor_teaching_style, avg_instructor_responsiveness)
+    course_recommendation = get_recommendation(avg_course_effectiveness, avg_course_interest)
+    facility_recommendation = get_facility_recommendation(avg_facility_accessibility, avg_facility_cleanliness, avg_facility_maintenance, avg_facility_safety, avg_facility_resource_availability, avg_facility_rating)
+
+    # Filter records with poor performance (average <= 2)
+    poor_performance_instructors = instructor_feedbacks.annotate(
+        avg_rating=(Avg('knowledge') + Avg('communication') + Avg('teachingStyle') + Avg('responsiveness')) / 4
+    ).filter(avg_rating__lte=2)
+
+    poor_performance_courses = course_feedbacks.annotate(
+        avg_rating=(Avg('effectiveness') + Avg('interest')) / 2
+    ).filter(avg_rating__lte=2)
+
+    poor_performance_facilities = facility_feedbacks.annotate(
+        avg_rating=(Avg('facility_accessibility') + Avg('cleanliness') + Avg('maintenance') + Avg('safety') + Avg('resource_availability') + Avg('facility_rating')) / 6
+    ).filter(avg_rating__lte=2)
+
+    # Filter records with very poor performance (average <= 1)
+    very_poor_performance_instructors = instructor_feedbacks.annotate(
+        avg_rating=(Avg('knowledge') + Avg('communication') + Avg('teachingStyle') + Avg('responsiveness')) / 4
+    ).filter(avg_rating__lte=1)
+
+    very_poor_performance_courses = course_feedbacks.annotate(
+        avg_rating=(Avg('effectiveness') + Avg('interest')) / 2
+    ).filter(avg_rating__lte=1)
+
+    very_poor_performance_facilities = facility_feedbacks.annotate(
+        avg_rating=(Avg('facility_accessibility') + Avg('cleanliness') + Avg('maintenance') + Avg('safety') + Avg('resource_availability') + Avg('facility_rating')) / 6
+    ).filter(avg_rating__lte=1)
+
+        # Concatenate the two querysets to remove duplicates
+    combined_instructors = poor_performance_instructors | very_poor_performance_instructors
+    combined_courses = poor_performance_courses | very_poor_performance_courses
+    combined_facilities = poor_performance_facilities | very_poor_performance_facilities
+
+    context = {
+        'course_items': course_items,
+        'facilities': facilities,
+        'instructors': instructors,
+        'students': students,
+        'combined_instructors': combined_instructors,
+        'combined_courses': combined_courses,
+        'combined_facilities': combined_facilities,
+        'instructor_recommendation': instructor_recommendation,
+        'course_recommendation': course_recommendation,
+        'facility_recommendation': facility_recommendation,
+    }
+
+    return render(request, 'dashboard/pages/recommend.html', context)
+
+# Other functions like get_recommendation and get_facility_recommendation remain unchanged.
+
+
+def get_recommendation(*args):
+    overall_avg = sum(args) / len(args)
+    if overall_avg <= 1:
+        return ""
+    else:
+        return "Performance is fair but there is room for improvement."
+
+def get_facility_recommendation(avg_accessibility, avg_cleanliness, avg_maintenance, avg_safety, avg_resource_availability, avg_rating):
+    overall_avg = (avg_accessibility + avg_cleanliness + avg_maintenance + avg_safety + avg_resource_availability + avg_rating) / 6
+    if overall_avg <= 1:
+        return "Facilities need improvement."
+    else:
+        return "Facilities are doing well but there is room for improvement."

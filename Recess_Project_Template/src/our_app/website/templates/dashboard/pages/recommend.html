@@ -418,74 +418,129 @@
 
       <div class="row mt-4">
         <div class="container-fluid">
+          <!-- Table for poor performing instructors -->
+
+          <div id="instructorsContent" style="display: none;">
+            {% if combined_instructors %}
+            <table class="table caption-top">
+              <caption>Quick Insights - Instructors</caption>
+              <thead class="text-start">
+                <tr>
+                  <th>#</th>
+                  <th>Instructor Name</th>
+                  <th>Knowledge</th>
+                  <th>Communication</th>
+                  <th>Teaching Style</th>
+                  <th>Responsiveness</th>
+                  <th>Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for instructor in combined_instructors %}
+                <tr>
+                  <th>{{ forloop.counter }}</th>
+                  <td>{{ instructor.instructorName }}</td>
+                  <td>{{ instructor.get_knowledge_display }}</td>
+                  <td>{{ instructor.get_communication_display }}</td>
+                  <td>{{ instructor.get_teachingStyle_display }}</td>
+                  <td>{{ instructor.get_responsiveness_display }}</td>
+                  <td class="bg-secondary text-danger">{{ instructor_recommendation }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+              No poor performing instructors found.
+            </div>
+            {% endif %}
+
+          </div>
+
+
+
+
+          <!-- Table for poor performing courses -->
           <div id="coursesContent" style="display: none;">
+            {% if combined_courses %}
             <table class="table caption-top">
               <caption>Quick Insights - Courses</caption>
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th>#</th>
+                  <th>Course Name</th>
+                  <th>Effectiveness</th>
+                  <th>Interest</th>
+                  <th>Recommendation</th>
                 </tr>
               </thead>
               <tbody>
+                {% for course in combined_courses %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <th>{{ forloop.counter }}</th>
+                  <td>{{ course.courseName }}</td>
+                  <td>{{ course.get_effectiveness_display }}</td>
+                  <td>{{ course.get_interest_display }}</td>
+                  <td class="bg-secondary text-danger">{{ course_recommendation }}</td>
                 </tr>
-
+                {% endfor %}
               </tbody>
             </table>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+              No poor performing courses found.
+            </div>
+            {% endif %}
           </div>
-          <div id="instructorsContent" style="display: none;">
-            <table class="table caption-top">
-              <caption>Quick Insights - Instructors</caption>
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
 
-              </tbody>
-            </table>
-          </div>
+
+
+          <!-- Table for poor performing facilities -->
           <div id="facilitiesContent" style="display: none;">
+            {% if combined_facilities %}
             <table class="table caption-top">
               <caption>Quick Insights - Facilities</caption>
-              <thead>
+              <thead class="text-start">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th>#</th>
+                  <th>Facility Name</th>
+                  <th>Accessibility</th>
+                  <th>Cleanliness</th>
+                  <th>Maintenance</th>
+                  <th>Safety</th>
+                  <th>Resource Availability</th>
+                  <th>Facility Rating</th>
+                  <th>Recommendation</th>
                 </tr>
               </thead>
               <tbody>
+                {% for facility in combined_facilities %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <th>{{ forloop.counter }}</th>
+                  <td>{{ facility.name }}</td>
+                  <td>{{ facility.facility_accessibility }}</td>
+                  <td>{{ facility.cleanliness }}</td>
+                  <td>{{ facility.maintenance }}</td>
+                  <td>{{ facility.safety }}</td>
+                  <td>{{ facility.resource_availability }}</td>
+                  <td>{{ facility.facility_rating }}</td>
+                  <td class="bg-secondary text-danger">{{ facility_recommendation }}</td>
                 </tr>
-
+                {% endfor %}
               </tbody>
             </table>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+              No poor performing facilities found.
+            </div>
+            {% endif %}
           </div>
+
+
+
         </div>
       </div>
+
 
 
       <div class="row my-4">

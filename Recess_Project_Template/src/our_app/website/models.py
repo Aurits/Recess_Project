@@ -40,24 +40,30 @@ class InstructorFeedback(models.Model):
         return self.instructorName
 
 
+    def get_average_rating(self):
+        # Calculate the average rating for instructors
+        ratings = [self.knowledge, self.communication, self.teachingStyle, self.responsiveness]
+        return sum(ratings) / len(ratings)
+
+
 
 class CourseFeedback(models.Model):
 
     courseName = models.CharField(max_length=100)
     courseCode = models.CharField(max_length=20)
     effectiveness = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     interest = models.IntegerField(choices=[
-        (5, '5 - Excellent'),
-        (4, '4 - Very Good'),
-        (3, '3 - Good'),
-        (2, '2 - Fair'),
-        (1, '1 - Poor'),
+        (5, 'Excellent'),
+        (4, 'Very Good'),
+        (3, 'Good'),
+        (2, 'Fair'),
+        (1, 'Poor'),
     ])
     qualitative_feedback = models.TextField()
 
