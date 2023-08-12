@@ -37,7 +37,14 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
+.form-group input{
+  padding: 18px 25px;
+    border-radius: 30px;
+    border: 1px solid #F4EEFB;
+    margin-bottom: 25px;
+    width: 100%;
+    transition: all 0.3s ease-out 0s;
+}
 .navbar-toggler:focus,
 a:focus,
 input:focus,
