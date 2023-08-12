@@ -16,9 +16,8 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-django-app .
 
-      - name: Log in to Docker Hub (or another registry)
-        run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.jfit8X@SC)P+hk$ }} | docker login -u ${{ secrets.aurits }} --password-stdin
 
       - name: Push Docker image
         run: docker push aurits/my-django-app
-
