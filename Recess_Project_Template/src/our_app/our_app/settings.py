@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'our_app.wsgi.application'
 DATABASES = { 
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'recess_project',
-        'USER': 'root',
-        'PASSWORD': 'Aurit',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'sfjyumaqaqraaaufavdioaox',
+        'USER': 'tsbfwyzjnnraplhr',
+        'PASSWORD': '00,ZJTNVfcLqhOCmI>lI7LuBkAVrpT-w',
+        'HOST': '102.134.147.233',
+        'PORT': '32764',
     }
 }
 
